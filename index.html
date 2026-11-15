@@ -62,6 +62,12 @@ nav a{margin-left:10px;font-size:12px}
 @media(max-width:760px){.dashboard-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 
+.withdrawal-form label{display:block;color:#d8def0;font-size:13px;font-weight:600;margin:0 0 8px}
+.withdrawal-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.withdrawal-fields input,.withdrawal-fields select{width:100%;padding:13px;border:1px solid #343d55;border-radius:11px;background:#0b1020;color:#fff}
+.withdrawal-account{grid-column:1/-1}
+.withdrawal-fields input:focus,.withdrawal-fields select:focus{outline:none;border-color:#a78bfa}
+@media(max-width:600px){.withdrawal-fields{grid-template-columns:1fr}.withdrawal-account{grid-column:auto}}
 /* Refined member workspace */
 .dashboard{padding:64px 20px 80px;background:linear-gradient(180deg,#0b1020 0%,#10162a 100%);min-height:70vh}
 .dashboard-inner{max-width:1120px}
@@ -206,6 +212,19 @@ nav a{margin-left:10px;font-size:12px}
     <p class="profile-meta" style="margin-top:20px">Member ID: <span id="member-id">—</span><br>Joined: <span id="member-joined">—</span></p>
     <div class="dash-message" id="summary-message" role="status"></div>
    </div>
+  </div>
+  <div class="panel" style="margin-top:22px">
+   <div class="summary-heading"><div><div class="summary-kicker">PAYOUT CENTER</div><h3 style="margin-top:6px">Request a Withdrawal</h3><p class="profile-meta" style="margin-top:7px">Choose your preferred mobile financial service and enter the account details carefully.</p></div><span class="tag">BDT PAYOUT</span></div>
+   <form id="withdrawal-form" class="withdrawal-form">
+    <div class="withdrawal-fields">
+     <div><label for="withdrawal-amount">Withdrawal Amount (৳)</label><input id="withdrawal-amount" type="number" min="1" step="0.01" required placeholder="Enter amount"></div>
+     <div><label for="withdrawal-method">Payment Method</label><select id="withdrawal-method" required><option value="">Select payment method</option><option value="bkash">bKash</option><option value="nagad">Nagad</option><option value="rocket">Rocket</option></select></div>
+     <div class="withdrawal-account"><label for="withdrawal-account">Account Number</label><input id="withdrawal-account" type="tel" inputmode="numeric" maxlength="20" required placeholder="Enter your wallet number"></div>
+    </div>
+    <button class="btn" id="withdrawal-submit" type="submit" style="margin-top:18px">Submit Withdrawal Request</button>
+    <p class="edit-hint">Requests are submitted as pending and require administrator review. Please verify your account number before submitting.</p>
+    <div class="dash-message" id="withdrawal-message" role="status"></div>
+   </form>
   </div>
  </div>
 </section>
@@ -388,6 +407,36 @@ nav a{margin-left:10px;font-size:12px}
     document.getElementById("avatar-file").value = "";
     setProfileEditing(false);
     msg.textContent = "Profile updated successfully.";
+  });
+
+  document.getElementById("withdrawal-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = document.getElementById("withdrawal-message");
+    const amount = Number(document.getElementById("withdrawal-amount").value);
+    const method = document.getElementById("withdrawal-method").value;
+    const account = document.getElementById("withdrawal-account").value.trim();
+    const submit = document.getElementById("withdrawal-submit");
+    if (!currentUser) { message.textContent = "Please sign in again to request a withdrawal."; return; }
+    if (!Number.isFinite(amount) || amount <= 0) { message.textContent = "Enter a valid amount greater than zero."; return; }
+    if (!method || !account) { message.textContent = "Choose a payment method and enter your account number."; return; }
+    submit.disabled = true;
+    submit.textContent = "Submitting…";
+    message.textContent = "";
+    const { error } = await client.from("withdrawals").insert({
+      user_id: currentUser.id,
+      amount,
+      method,
+      account_number: account,
+      status: "pending"
+    });
+    submit.disabled = false;
+    submit.textContent = "Submit Withdrawal Request";
+    if (error) {
+      message.textContent = "Could not submit request: " + error.message + ". Database permissions or supported payment methods may need setup.";
+      return;
+    }
+    document.getElementById("withdrawal-form").reset();
+    message.textContent = "Withdrawal request submitted. It is pending administrator review.";
   });
 
   document.getElementById("signout-btn").addEventListener("click", async () => {
