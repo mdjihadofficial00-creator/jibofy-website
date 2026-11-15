@@ -293,7 +293,7 @@ nav a{margin-left:10px;font-size:12px}
       message.textContent = "Account created successfully. You are now signed in.";
       signupForm.reset();
       await loadDashboard(data.user);
-      location.hash = "dashboard";
+      location.href = "dashboard.html";
     } else {
       message.textContent = "Account created. Check your email if confirmation is requested.";
     }
@@ -492,13 +492,13 @@ nav a{margin-left:10px;font-size:12px}
     if (error) { message.textContent = error.message; return; }
     message.textContent = "Signed in successfully.";
     await loadDashboard(data.user);
-    location.hash = "dashboard";
+    location.href = "dashboard.html";
   });
 
   client.auth.getSession().then(async ({data}) => {
     if (data.session?.user) {
       await loadDashboard(data.session.user);
-      location.hash = "dashboard";
+      location.href = "dashboard.html";
       showScreen("dashboard");
     } else {
       showScreen(location.hash || "home");
