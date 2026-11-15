@@ -503,7 +503,7 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
     if (error) { message.textContent = error.message; return; }
     message.textContent = "Signed in successfully.";
     await loadDashboard(data.user);
-    location.hash = "dashboard";
+    location.href = "dashboard.html";
   });
 
   client.auth.getSession().then(async ({data}) => {
