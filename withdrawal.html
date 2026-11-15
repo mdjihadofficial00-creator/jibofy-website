@@ -131,25 +131,17 @@ body[data-page="profile"] .member-subscreen:not([data-subscreen="profile"]){disp
 body[data-page="earnings"] .member-subscreen:not([data-subscreen="earnings"]){display:none!important}
 body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]){display:none!important}
 
-/* Facebook-style JIBOFY member tabs */
-.jibofy-member-tabs{display:flex;align-items:stretch;justify-content:center;gap:8px;max-width:1120px;margin:0 auto;padding:8px 16px 0;background:#0b1020;border-bottom:1px solid #ffffff20;position:sticky;top:0;z-index:100}
-.jibofy-member-tabs a{min-width:130px;display:flex;align-items:center;justify-content:center;gap:9px;padding:15px 20px 13px;color:#aeb8ce;text-decoration:none;font-size:14px;font-weight:700;border-bottom:3px solid transparent;transition:.18s}
-.jibofy-member-tabs a:hover{background:#ffffff0a;color:#fff}
-.jibofy-member-tabs a.active{color:#c4b5fd;border-bottom-color:#a78bfa}
-.jibofy-member-tabs .tab-icon{font-size:19px;line-height:1}
-@media(max-width:600px){.jibofy-member-tabs{gap:0;padding:5px 4px 0}.jibofy-member-tabs a{flex:1;min-width:0;padding:12px 4px 10px;gap:5px;flex-direction:column;font-size:11px}.jibofy-member-tabs .tab-icon{font-size:20px}}
+/* Full-width Facebook-inspired member navigation */
+.jibofy-member-tabs{position:sticky;top:0;z-index:1000;width:100%;max-width:none;min-height:76px;margin:0;padding:0 clamp(12px,5vw,72px);display:flex;align-items:stretch;justify-content:center;gap:clamp(4px,2vw,28px);background:rgba(11,16,32,.96);border-bottom:1px solid rgba(196,181,253,.16);box-shadow:0 8px 28px rgba(0,0,0,.22);backdrop-filter:blur(16px)}
+.jibofy-member-tabs a{position:relative;flex:1;max-width:210px;min-width:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px 12px;color:#aeb8ce;text-decoration:none;font-size:15px;font-weight:700;border:0;border-bottom:3px solid transparent;border-radius:12px 12px 0 0;transition:background .2s,color .2s,border-color .2s}
+.jibofy-member-tabs a:hover{background:rgba(167,139,250,.09);color:#fff}
+.jibofy-member-tabs a.active{color:#d7c8ff;border-bottom-color:#a78bfa;background:linear-gradient(180deg,rgba(139,92,246,.12),rgba(139,92,246,0))}
+.jibofy-member-tabs .tab-icon{width:26px;height:26px;display:grid;place-items:center;font-size:23px;line-height:1}
+@media(max-width:650px){.jibofy-member-tabs{min-height:66px;padding:0 5px;gap:2px}.jibofy-member-tabs a{flex-direction:column;gap:4px;padding:8px 2px 7px;font-size:11px;border-radius:9px 9px 0 0}.jibofy-member-tabs .tab-icon{font-size:21px;width:24px;height:24px}}
 
 </style>
 </head>
 <body data-page="withdrawal">
-<nav>
-<div class="logo">JIBOFY</div>
-<div>
-<a href="index.html">Home</a>
-<a href="index.html#features">Features</a>\n<a href="account.html">Account</a>
-<a href="account.html" class="btn">Get Started</a>
-</div>
-</nav>
 <div class="jibofy-member-tabs" aria-label="Member navigation">
 <a href="dashboard.html" data-tab="dashboard"><span class="tab-icon">⌂</span><span>Home</span></a>
 <a href="profile.html" data-tab="profile"><span class="tab-icon">◎</span><span>Profile</span></a>
@@ -224,7 +216,6 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
 <section class="dashboard app-screen" id="member-dashboard">
  <div class="dashboard-inner">
   <div class="dashboard-top"><div><div class="tag">✦ JIBOFY MEMBER AREA</div><h2 style="margin-top:14px">My Dashboard</h2><p class="profile-meta">Your personal workspace, activity and rewards at a glance.</p></div><button class="btn" id="signout-btn" type="button">Sign Out</button></div>
-  <div class="screen-nav" id="member-screen-nav"><a href="dashboard.html">Overview</a><a href="profile.html">My Profile</a><a href="earnings.html">Earnings</a><a href="withdrawal.html">Withdrawal</a><a href="index.html">Home</a></div>
   <div class="dashboard-grid">
    <form class="panel member-subscreen" id="profile-form" data-subscreen="profile">
     <div class="profile-head"><img class="avatar" id="profile-avatar" alt="Profile photo" src="https://placehold.co/160x160/29334d/ffffff?text=Photo"><div><h3 class="profile-title" id="profile-heading">Your Profile</h3><p class="profile-subtitle">MEMBER PROFILE</p><p class="profile-subtitle">Keep your information up to date</p></div></div>
