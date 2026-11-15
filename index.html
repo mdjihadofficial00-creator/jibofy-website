@@ -244,15 +244,26 @@ nav a{margin-left:10px;font-size:12px}
 
   async function loadDashboard(user) {
     currentUser = user;
+    // Reveal the member area immediately after authentication, even if profile data
+    // is missing, so the member is never left on the landing page without feedback.
+    dashboard.style.display = "block";
+    document.getElementById("profile-name").value = user.user_metadata?.full_name || "";
+    document.getElementById("profile-about").value = user.user_metadata?.about_me || "";
+    document.getElementById("profile-contact").textContent =
+      "Email: " + (user.email || "Not available") + " | Phone: " + (user.user_metadata?.phone || "Not added");
+    document.getElementById("member-id").textContent = user.id;
+    document.getElementById("member-joined").textContent = user.created_at ? new Date(user.created_at).toLocaleDateString() : "—";
     const { data: profile, error: profileError } = await client.from("profiles")
       .select("id,full_name,phone,avatar_url,about_me,role,created_at").eq("id", user.id).maybeSingle();
     if (profileError || !profile) {
-      document.getElementById("login-message").textContent =
-        "Signed in, but profile could not be loaded: " + (profileError?.message || "Profile not found");
+      document.getElementById("profile-message").textContent =
+        "Dashboard opened, but profile details could not be loaded: " + (profileError?.message || "Profile record not found");
+      document.getElementById("summary-message").textContent =
+        "Work and earnings summary will appear when your member data is available.";
+      document.getElementById("profile-heading").textContent = user.user_metadata?.full_name || "JIBOFY Member";
       return;
     }
     currentProfile = profile;
-    dashboard.style.display = "block";
     document.getElementById("profile-name").value = profile.full_name || user.user_metadata?.full_name || "";
     document.getElementById("profile-about").value = profile.about_me || user.user_metadata?.about_me || "";
     document.getElementById("profile-heading").textContent = profile.full_name || "JIBOFY Member";
