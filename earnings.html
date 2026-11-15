@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JIBOFY - Smart Rewards & Digital Earning</title>
+<meta name="description" content="Discover digital opportunities and earn rewards with JIBOFY.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0b1020;color:#fff}
+nav{height:75px;display:flex;align-items:center;justify-content:space-between;padding:0 8%;border-bottom:1px solid #ffffff15}
+.logo{font-size:27px;font-weight:800;color:#a78bfa}
+nav a{color:#ddd;text-decoration:none;margin-left:25px;font-size:14px}
+.btn{background:#8b5cf6;color:white;padding:12px 22px;border-radius:9px;text-decoration:none;display:inline-block;font-weight:bold}
+.hero{text-align:center;padding:105px 20px 90px;background:radial-gradient(ellipse at top,#34205e 0%,#0b1020 65%)}
+.tag{color:#c4b5fd;border:1px solid #8b5cf655;padding:9px 17px;border-radius:30px;font-size:13px;display:inline-block}
+h1{font-size:clamp(38px,7vw,65px);line-height:1.12;margin:28px auto 20px;max-width:850px}
+h1 span{color:#a78bfa}
+.hero p{color:#aab1c5;max-width:600px;margin:0 auto 30px;line-height:1.8;font-size:16px}
+.features{padding:65px 8%;text-align:center}
+.features h2{font-size:32px;margin-bottom:12px}
+.sub{color:#9ca3b5;margin-bottom:38px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#151c30;border:1px solid #ffffff12;padding:30px 23px;border-radius:16px;text-align:left}
+.card .icon{font-size:32px}
+.card h3{margin:17px 0 10px}
+.card p{color:#9ca3b5;line-height:1.7;font-size:14px}
+.cta{text-align:center;padding:65px 20px;background:#15152b}
+.cta p{color:#aab1c5;margin:15px 0 25px}
+footer{text-align:center;padding:35px 20px;color:#858ba0;font-size:13px;border-top:1px solid #ffffff15;background:#0b1020}
+.footer-brand{font-size:25px;font-weight:800;color:#a78bfa;margin-bottom:9px}
+.footer-description{color:#aab1c5;margin-bottom:24px}
+.footer-owner{margin:20px 0}
+.footer-owner span{font-size:11px;letter-spacing:2px;color:#9ca3b5}
+.footer-owner h3{font-size:19px;color:#fff;margin-top:8px}
+.copyright{margin-top:24px;color:#737b91}
+@media(max-width:600px){
+nav{padding:0 5%}
+nav a{margin-left:10px;font-size:12px}
+.hero{padding-top:75px}
+}
+
+
+/* Member dashboard */
+.dashboard{display:none;padding:55px 20px;background:#0b1020}
+.dashboard-inner{max-width:1050px;margin:auto}
+.dashboard-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+.dashboard-grid{display:grid;grid-template-columns: minmax(260px, .85fr) 1.5fr;gap:20px}
+.panel{background:#151c30;border:1px solid #ffffff18;border-radius:16px;padding:24px}
+.profile-head{display:flex;align-items:center;gap:15px;margin-bottom:20px}
+.avatar{width:82px;height:82px;border-radius:50%;object-fit:cover;background:#29334d;border:2px solid #8b5cf6}
+.panel label{display:block;color:#cbd5e1;font-size:13px;margin:13px 0 7px}
+.panel input,.panel textarea{width:100%;padding:12px;border:1px solid #343d55;border-radius:9px;background:#0b1020;color:#fff}
+.panel textarea{min-height:95px;resize:vertical}
+.stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.stat{background:#0e1427;border:1px solid #ffffff12;border-radius:12px;padding:18px}
+.stat span{display:block;color:#9ca3b5;font-size:13px;margin-bottom:8px}
+.stat strong{font-size:25px;color:#c4b5fd}
+.profile-meta{font-size:13px;color:#9ca3b5;line-height:1.8;overflow-wrap:anywhere}
+.dash-message{font-size:13px;color:#c4b5fd;margin-top:12px;overflow-wrap:anywhere}
+@media(max-width:760px){.dashboard-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+.withdrawal-form label{display:block;color:#d8def0;font-size:13px;font-weight:600;margin:0 0 8px}
+.withdrawal-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.withdrawal-fields input,.withdrawal-fields select{width:100%;padding:13px;border:1px solid #343d55;border-radius:11px;background:#0b1020;color:#fff}
+.withdrawal-account{grid-column:1/-1}
+.withdrawal-fields input:focus,.withdrawal-fields select:focus{outline:none;border-color:#a78bfa}
+@media(max-width:600px){.withdrawal-fields{grid-template-columns:1fr}.withdrawal-account{grid-column:auto}}
+/* Refined member workspace */
+.dashboard{padding:64px 20px 80px;background:linear-gradient(180deg,#0b1020 0%,#10162a 100%);min-height:70vh}
+.dashboard-inner{max-width:1120px}
+.dashboard-top{padding:26px 28px;border:1px solid #ffffff18;border-radius:20px;background:linear-gradient(115deg,#211b43,#151c30 65%);margin-bottom:22px}
+.dashboard-top h2{font-size:32px;letter-spacing:-.6px}
+.dashboard-top .tag{background:#8b5cf622}
+.dashboard-grid{grid-template-columns:minmax(290px,.92fr) 1.45fr;gap:22px}
+.panel{border-radius:20px;padding:26px;background:linear-gradient(155deg,#19223a,#121a2d);box-shadow:0 16px 45px #00000022}
+.profile-head{align-items:center;padding-bottom:20px;border-bottom:1px solid #ffffff14}
+.avatar{width:92px;height:92px;border-radius:24px;border:2px solid #a78bfa;box-shadow:0 8px 24px #8b5cf633}
+.profile-title{font-size:19px;letter-spacing:-.2px}
+.profile-subtitle{font-size:12px;color:#9ca3b5;margin-top:5px}
+.panel label{font-weight:600;color:#d8def0}
+.panel input,.panel textarea{border-radius:11px;transition:border-color .2s,background .2s}
+.panel input:focus,.panel textarea:focus{outline:none;border-color:#a78bfa;background:#111a30}
+.panel input:disabled,.panel textarea:disabled{opacity:.82;cursor:not-allowed;background:#11182a;color:#cbd5e1}
+.profile-actions{display:flex;gap:10px;margin-top:18px}
+.profile-actions button{flex:1}
+.btn-secondary{background:#252e48;color:#e2e8f0;border:1px solid #ffffff20;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer}
+.edit-hint{font-size:12px;color:#9ca3b5;margin-top:12px}
+.stat-grid{gap:14px}
+.stat{border-radius:15px;padding:20px;background:linear-gradient(145deg,#111a30,#0c1325);border:1px solid #ffffff12;min-height:105px}
+.stat strong{font-size:27px;letter-spacing:-.5px}
+.stat span{font-size:12px;letter-spacing:.2px}
+.summary-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+.summary-kicker{font-size:11px;color:#a78bfa;letter-spacing:1.5px;font-weight:700;text-transform:uppercase}
+.dash-message{padding-top:8px}
+@media(max-width:760px){.dashboard{padding:38px 14px 55px}.dashboard-top{padding:22px}.dashboard-top h2{font-size:27px}.panel{padding:20px}.dashboard-grid{grid-template-columns:1fr}}
+
+/* Authentication panel */
+.auth-section{padding:70px 20px;background:#0e1427}
+.auth-wrap{max-width:900px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.auth-card{background:#151c30;border:1px solid #ffffff18;border-radius:16px;padding:28px}
+.auth-card h2{font-size:24px;margin-bottom:8px}
+.auth-card>p{color:#9ca3b5;font-size:14px;line-height:1.6;margin-bottom:20px}
+.auth-card label{display:block;color:#cbd5e1;font-size:13px;margin:13px 0 7px}
+.auth-card input{width:100%;padding:13px 14px;border:1px solid #343d55;border-radius:9px;background:#0b1020;color:#fff;outline:none}
+.auth-card input:focus{border-color:#8b5cf6}
+.auth-card button{width:100%;border:0;cursor:pointer;margin-top:18px;font-size:15px}
+.auth-message{margin-top:14px;font-size:13px;line-height:1.6;color:#c4b5fd;overflow-wrap:anywhere}
+.auth-note{max-width:900px;margin:18px auto 0;color:#7f8aa3;font-size:12px;line-height:1.7}
+@media(max-width:700px){.auth-wrap{grid-template-columns:1fr}.auth-card{padding:22px}}
+\n
+/* Separate JIBOFY screens */
+.app-screen{display:none}
+.app-screen.is-active{display:block}
+.screen-nav{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 20px}
+.screen-nav a{display:inline-block;text-decoration:none;color:#e9ddff;background:#252e48;border:1px solid #ffffff20;padding:10px 15px;border-radius:10px;font-size:13px;font-weight:700}
+.screen-nav a:hover{background:#493477}
+#member-dashboard{display:none}
+@media(max-width:600px){.screen-nav a{flex:1;text-align:center}}
+
+body[data-page="home"] #account-screen,body[data-page="home"] #member-dashboard{display:none!important}
+body[data-page="account"] #home-screen,body[data-page="account"] #member-dashboard{display:none!important}
+body[data-page="account"] #account-screen{display:block!important}
+body[data-page="dashboard"] #home-screen,body[data-page="dashboard"] #account-screen{display:none!important}
+body[data-page="profile"] #home-screen,body[data-page="profile"] #account-screen{display:none!important}
+body[data-page="earnings"] #home-screen,body[data-page="earnings"] #account-screen{display:none!important}
+body[data-page="withdrawal"] #home-screen,body[data-page="withdrawal"] #account-screen{display:none!important}
+body[data-page="profile"] .member-subscreen:not([data-subscreen="profile"]){display:none!important}
+body[data-page="earnings"] .member-subscreen:not([data-subscreen="earnings"]){display:none!important}
+body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]){display:none!important}
+</style>
+</head>
+<body data-page="earnings">
+<nav>
+<div class="logo">JIBOFY</div>
+<div>
+<a href="index.html">Home</a>
+<a href="index.html#features">Features</a>\n<a href="account.html">Account</a>
+<a href="account.html" class="btn">Get Started</a>
+</div>
+</nav>
+
+<main id="home-screen" class="app-screen is-active">
+<section class="hero" id="home">
+<div class="tag">✦ SMART REWARDS & DIGITAL OPPORTUNITIES</div>
+<h1>Discover Opportunities.<br><span>Earn Smarter.</span></h1>
+<p>Explore meaningful digital tasks, discover new opportunities and track your rewards — all in one place with JIBOFY.</p>
+<a href="account.html" class="btn">Get Started →</a>
+</section>
+
+<section class="features" id="features">
+<h2>Everything in One Place</h2>
+<p class="sub">A smarter platform for digital opportunities and rewards.</p>
+<div class="cards">
+<div class="card"><div class="icon">🎯</div><h3>Sponsored Tasks</h3><p>Explore sponsored opportunities and complete eligible tasks.</p></div>
+<div class="card"><div class="icon">🤝</div><h3>Affiliate Opportunities</h3><p>Discover referral opportunities and earn from verified results.</p></div>
+<div class="card"><div class="icon">💰</div><h3>Reward Wallet</h3><p>Keep track of approved rewards and your available balance.</p></div>
+<div class="card"><div class="icon">📊</div><h3>Personal Dashboard</h3><p>Manage your activities, submissions and account in one place.</p></div>
+</div>
+</section>
+
+<section class="cta" id="join">
+<h2>Start Your Journey with JIBOFY</h2>
+<p>Discover a smarter way to explore digital opportunities.</p>
+<a href="account.html" class="btn">Create Account</a>
+</section>
+
+
+</main>
+<section class="auth-section app-screen" id="account-screen">
+  <div style="text-align:center;margin-bottom:30px">
+    <h2>Join JIBOFY</h2>
+    <p class="sub" style="margin:10px 0 0">Create an account or sign in to continue.</p>
+  </div>
+  <div class="auth-wrap">
+    <form class="auth-card" id="signup-form">
+      <h2>Create Account</h2>
+      <p>Register free using your email, Bangladesh mobile number and a password.</p>
+      <label for="signup-name">Full Name</label>
+      <input id="signup-name" type="text" autocomplete="name" required maxlength="80" placeholder="Your full name">
+      <label for="signup-email">Email Address</label>
+      <input id="signup-email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
+      <label for="signup-phone">Phone Number</label>
+      <input id="signup-phone" type="tel" autocomplete="tel" required inputmode="tel" placeholder="01XXXXXXXXX">
+      <label for="signup-password">Password</label>
+      <input id="signup-password" type="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters">
+      <label for="signup-confirm">Confirm Password</label>
+      <input id="signup-confirm" type="password" autocomplete="new-password" required minlength="8" placeholder="Enter password again">
+      <button class="btn" type="submit">Create Account</button>
+      <div class="auth-message" id="signup-message" role="status" aria-live="polite"></div>
+    </form>
+    <form class="auth-card" id="login-form">
+      <h2>Welcome Back</h2>
+      <p>Sign in using your email address and password.</p>
+      <label for="login-identity">Email Address</label>
+      <input id="login-identity" type="email" autocomplete="username" required placeholder="you@example.com">
+      <label for="login-password">Password</label>
+      <input id="login-password" type="password" autocomplete="current-password" required placeholder="Your password">
+      <button class="btn" type="submit">Sign In</button>
+      <div class="auth-message" id="login-message" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+  <p class="auth-note">Email is used for secure sign-in and account recovery. Your Bangladesh mobile number is saved in your profile. No SMS or paid SMS provider is required.</p>
+</section>
+
+
+<section class="dashboard app-screen" id="member-dashboard">
+ <div class="dashboard-inner">
+  <div class="dashboard-top"><div><div class="tag">✦ JIBOFY MEMBER AREA</div><h2 style="margin-top:14px">My Dashboard</h2><p class="profile-meta">Your personal workspace, activity and rewards at a glance.</p></div><button class="btn" id="signout-btn" type="button">Sign Out</button></div>
+  <div class="screen-nav" id="member-screen-nav"><a href="dashboard.html">Overview</a><a href="profile.html">My Profile</a><a href="earnings.html">Earnings</a><a href="withdrawal.html">Withdrawal</a><a href="index.html">Home</a></div>
+  <div class="dashboard-grid">
+   <form class="panel member-subscreen" id="profile-form" data-subscreen="profile">
+    <div class="profile-head"><img class="avatar" id="profile-avatar" alt="Profile photo" src="https://placehold.co/160x160/29334d/ffffff?text=Photo"><div><h3 class="profile-title" id="profile-heading">Your Profile</h3><p class="profile-subtitle">MEMBER PROFILE</p><p class="profile-subtitle">Keep your information up to date</p></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 4px"><strong>Personal details</strong><span class="summary-kicker" id="profile-mode">VIEW MODE</span></div>
+    <label for="avatar-file">Profile Photo</label><input id="avatar-file" type="file" accept="image/png,image/jpeg,image/webp" disabled>
+    <label for="profile-name">Full Name</label><input id="profile-name" type="text" maxlength="80" required disabled>
+    <label for="profile-about">About Me</label><textarea id="profile-about" maxlength="500" placeholder="Write a short introduction about yourself" disabled></textarea>
+    <div class="profile-meta" id="profile-contact" style="margin-top:14px"></div>
+    <div class="profile-actions"><button class="btn" id="edit-profile-btn" type="button">Edit Profile</button><button class="btn" id="save-profile-btn" type="submit" style="display:none">Save Changes</button><button class="btn-secondary" id="cancel-profile-btn" type="button" style="display:none">Cancel</button></div>
+    <p class="edit-hint" id="profile-hint">Your personal information is visible here. Select Edit Profile to make changes.</p>
+    <div class="dash-message" id="profile-message" role="status"></div>
+   </form>
+   <div class="panel member-subscreen" id="earnings-panel" data-subscreen="earnings">
+    <div class="summary-heading"><div><div class="summary-kicker">ACCOUNT OVERVIEW</div><h3 style="margin-top:6px">Work & Earnings</h3></div><span class="tag">LIVE SUMMARY</span></div>
+    <div class="stat-grid">
+     <div class="stat"><span>Total Tasks</span><strong id="stat-total-tasks">—</strong></div>
+     <div class="stat"><span>Pending Tasks</span><strong id="stat-pending-tasks">—</strong></div>
+     <div class="stat"><span>Approved Tasks</span><strong id="stat-approved-tasks">—</strong></div>
+     <div class="stat"><span>Rejected Tasks</span><strong id="stat-rejected-tasks">—</strong></div>
+     <div class="stat"><span>Total Earnings</span><strong id="stat-earnings">৳0</strong></div>
+     <div class="stat"><span>Withdrawn</span><strong id="stat-withdrawn">৳0</strong></div>
+    </div>
+    <p class="profile-meta" style="margin-top:20px">Member ID: <span id="member-id">—</span><br>Joined: <span id="member-joined">—</span></p>
+    <div class="dash-message" id="summary-message" role="status"></div>
+   </div>
+  </div>
+  <div class="panel member-subscreen" id="withdrawal-panel" data-subscreen="withdrawal" style="margin-top:22px">
+   <div class="summary-heading"><div><div class="summary-kicker">PAYOUT CENTER</div><h3 style="margin-top:6px">Request a Withdrawal</h3><p class="profile-meta" style="margin-top:7px">Choose your preferred mobile financial service and enter the account details carefully.</p></div><span class="tag">BDT PAYOUT</span></div>
+   <form id="withdrawal-form" class="withdrawal-form">
+    <div class="withdrawal-fields">
+     <div><label for="withdrawal-amount">Withdrawal Amount (৳)</label><input id="withdrawal-amount" type="number" min="1" step="0.01" required placeholder="Enter amount"></div>
+     <div><label for="withdrawal-method">Payment Method</label><select id="withdrawal-method" required><option value="">Select payment method</option><option value="bkash">bKash</option><option value="nagad">Nagad</option><option value="rocket">Rocket</option></select></div>
+     <div class="withdrawal-account"><label for="withdrawal-account">Account Number</label><input id="withdrawal-account" type="tel" inputmode="numeric" maxlength="20" required placeholder="Enter your wallet number"></div>
+    </div>
+    <button class="btn" id="withdrawal-submit" type="submit" style="margin-top:18px">Submit Withdrawal Request</button>
+    <p class="edit-hint">Requests are submitted as pending and require administrator review. Please verify your account number before submitting.</p>
+    <div class="dash-message" id="withdrawal-message" role="status"></div>
+   </form>
+  </div>
+ </div>
+</section>
+
+<footer>
+<div class="footer-brand">JIBOFY</div>
+<p class="footer-description">Smart Rewards &amp; Digital Earning Platform</p>
+<div class="footer-owner">
+<span>FOUNDER &amp; OWNER</span>
+<h3>Muhammad Jihad</h3>
+</div>
+<p class="copyright">&copy; 2026 JIBOFY. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  const SUPABASE_URL = "https://patuusolvptevgnpdizg.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5";
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  function normalizeBdPhone(value) {
+    let digits = value.replace(/\D/g, "");
+    if (digits.startsWith("00880")) digits = digits.slice(2);
+    if (digits.startsWith("880")) digits = digits.slice(3);
+    if (digits.startsWith("0")) digits = digits.slice(1);
+    if (!/^1[3-9]\d{8}$/.test(digits)) return null;
+    return { digits, canonical: "+880" + digits };
+  }
+
+  const signupForm = document.getElementById("signup-form");
+  const loginForm = document.getElementById("login-form");
+
+  signupForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = document.getElementById("signup-message");
+    const name = document.getElementById("signup-name").value.trim();
+    const phone = normalizeBdPhone(document.getElementById("signup-phone").value);
+    const email = document.getElementById("signup-email").value.trim().toLowerCase();
+    const password = document.getElementById("signup-password").value;
+    const confirm = document.getElementById("signup-confirm").value;
+    message.textContent = "";
+    if (!phone) { message.textContent = "Enter a valid Bangladesh mobile number (01XXXXXXXXX)."; return; }
+    if (password !== confirm) { message.textContent = "Passwords do not match."; return; }
+    if (password.length < 8) { message.textContent = "Password must be at least 8 characters."; return; }
+    message.textContent = "Creating your account…";
+    const { data, error } = await client.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: name, phone: phone.canonical } }
+    });
+    if (error) { message.textContent = error.message; return; }
+    if (data.session) {
+      message.textContent = "Account created successfully. You are now signed in.";
+      signupForm.reset();
+      await loadDashboard(data.user);
+      location.href = "dashboard.html";
+    } else {
+      message.textContent = "Account created. Check your email if confirmation is requested.";
+    }
+  });
+
+
+  const dashboard = document.getElementById("member-dashboard");
+  const homeScreen = document.getElementById("home-screen");
+  const accountScreen = document.getElementById("account-screen");
+  function showScreen(route) {
+    const clean = (route || "home").replace(/^#/, "");
+    const memberRoutes = ["dashboard","profile","earnings","withdrawal"];
+    const isMember = memberRoutes.includes(clean);
+    if (isMember && !currentUser) {
+      history.replaceState(null, "", "#account");
+      return showScreen("account");
+    }
+    homeScreen.classList.toggle("is-active", ["home","features"].includes(clean));
+    accountScreen.classList.toggle("is-active", clean === "account" || clean === "join");
+    dashboard.style.display = isMember ? "block" : "none";
+    dashboard.classList.toggle("is-active", isMember);
+    document.querySelectorAll(".member-subscreen").forEach(panel => {
+      panel.style.display = clean === "dashboard" || panel.dataset.subscreen === clean ? "" : "none";
+    });
+    if (clean === "features") document.getElementById("features").scrollIntoView();
+    else window.scrollTo({top:0,behavior:"smooth"});
+  }
+  window.addEventListener("hashchange", () => showScreen(location.hash));
+
+  let currentUser = null;
+  let currentProfile = null;
+  const money = (n) => "৳" + Number(n || 0).toLocaleString("en-BD", {maximumFractionDigits:2});
+
+  async function loadDashboard(user) {
+    currentUser = user;
+    // Reveal the member area immediately after authentication, even if profile data
+    // is missing, so the member is never left on the landing page without feedback.
+    dashboard.style.display = "block";
+    document.getElementById("profile-name").value = user.user_metadata?.full_name || "";
+    document.getElementById("profile-about").value = user.user_metadata?.about_me || "";
+    document.getElementById("profile-contact").textContent =
+      "Email: " + (user.email || "Not available") + " | Phone: " + (user.user_metadata?.phone || "Not added");
+    document.getElementById("member-id").textContent = user.id;
+    document.getElementById("member-joined").textContent = user.created_at ? new Date(user.created_at).toLocaleDateString() : "—";
+    const { data: profile, error: profileError } = await client.from("profiles")
+      .select("id,full_name,phone,avatar_url,about_me,role,created_at").eq("id", user.id).maybeSingle();
+    if (profileError || !profile) {
+      document.getElementById("profile-message").textContent =
+        "Dashboard opened, but profile details could not be loaded: " + (profileError?.message || "Profile record not found");
+      document.getElementById("summary-message").textContent =
+        "Work and earnings summary will appear when your member data is available.";
+      document.getElementById("profile-heading").textContent = user.user_metadata?.full_name || "JIBOFY Member";
+      return;
+    }
+    currentProfile = profile;
+    document.getElementById("profile-name").value = profile.full_name || user.user_metadata?.full_name || "";
+    document.getElementById("profile-about").value = profile.about_me || user.user_metadata?.about_me || "";
+    document.getElementById("profile-heading").textContent = profile.full_name || "JIBOFY Member";
+    document.getElementById("profile-avatar").src = profile.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
+    document.getElementById("profile-contact").textContent =
+      "Email: " + (user.email || "Not available") + " | Phone: " + (profile.phone || user.user_metadata?.phone || "Not added");
+    document.getElementById("member-id").textContent = user.id;
+    document.getElementById("member-joined").textContent = profile.created_at ? new Date(profile.created_at).toLocaleDateString() : "—";
+    const [submissions, wallet, withdrawals] = await Promise.all([
+      client.from("task_submissions").select("id,status").eq("user_id", user.id),
+      client.from("wallet_transactions").select("amount").eq("user_id", user.id),
+      client.from("withdrawals").select("amount,status").eq("user_id", user.id)
+    ]);
+    const summaryError = submissions.error || wallet.error || withdrawals.error;
+    if (summaryError) {
+      document.getElementById("summary-message").textContent = "Some summary data is unavailable: " + summaryError.message;
+      return;
+    }
+    const rows = submissions.data || [];
+    const total = (wallet.data || []).reduce((sum,row)=>sum+Number(row.amount||0),0);
+    const paid = (withdrawals.data || []).filter(row=>String(row.status).toLowerCase()==="paid")
+      .reduce((sum,row)=>sum+Number(row.amount||0),0);
+    document.getElementById("stat-total-tasks").textContent = rows.length;
+    document.getElementById("stat-pending-tasks").textContent = rows.filter(x=>x.status==="pending").length;
+    document.getElementById("stat-approved-tasks").textContent = rows.filter(x=>x.status==="approved").length;
+    document.getElementById("stat-rejected-tasks").textContent = rows.filter(x=>x.status==="rejected").length;
+    document.getElementById("stat-earnings").textContent = money(total);
+    document.getElementById("stat-withdrawn").textContent = money(paid);
+  }
+
+  const profileFields = ["avatar-file","profile-name","profile-about"].map(id=>document.getElementById(id));
+  const editBtn = document.getElementById("edit-profile-btn");
+  const saveBtn = document.getElementById("save-profile-btn");
+  const cancelBtn = document.getElementById("cancel-profile-btn");
+  function setProfileEditing(enabled) {
+    profileFields.forEach(field=>field.disabled=!enabled);
+    editBtn.style.display = enabled ? "none" : "inline-block";
+    saveBtn.style.display = enabled ? "inline-block" : "none";
+    cancelBtn.style.display = enabled ? "inline-block" : "none";
+    document.getElementById("profile-mode").textContent = enabled ? "EDIT MODE" : "VIEW MODE";
+    document.getElementById("profile-hint").textContent = enabled ? "Make your changes, then select Save Changes." : "Your personal information is visible here. Select Edit Profile to make changes.";
+  }
+  editBtn.addEventListener("click",()=>setProfileEditing(true));
+  cancelBtn.addEventListener("click",()=>{
+    document.getElementById("profile-name").value = currentProfile?.full_name || currentUser?.user_metadata?.full_name || "";
+    document.getElementById("profile-about").value = currentProfile?.about_me || "";
+    document.getElementById("profile-avatar").src = currentProfile?.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
+    document.getElementById("avatar-file").value = "";
+    document.getElementById("profile-message").textContent = "";
+    setProfileEditing(false);
+  });
+  document.getElementById("avatar-file").addEventListener("change",event=>{
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/") || file.size > 3*1024*1024) {
+      document.getElementById("profile-message").textContent = "Choose a JPG, PNG or WEBP image smaller than 3 MB.";
+      event.target.value = "";
+      return;
+    }
+    document.getElementById("profile-avatar").src = URL.createObjectURL(file);
+    document.getElementById("profile-message").textContent = "Photo preview ready. Save Changes to upload it.";
+  });
+  setProfileEditing(false);
+
+  document.getElementById("profile-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!currentUser) return;
+    const msg = document.getElementById("profile-message");
+    msg.textContent = "Saving profile…";
+    let avatarUrl = currentProfile?.avatar_url || null;
+    const file = document.getElementById("avatar-file").files[0];
+    if (file) {
+      if (!file.type.startsWith("image/") || file.size > 3*1024*1024) {
+        msg.textContent = "Choose an image smaller than 3 MB."; return;
+      }
+      const ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g,"") || "jpg";
+      const path = currentUser.id + "/avatar-" + Date.now() + "." + ext;
+      const { error: uploadError } = await client.storage.from("avatars").upload(path,file,{upsert:true,contentType:file.type});
+      if (uploadError) { msg.textContent = "Photo upload failed: " + uploadError.message; return; }
+      const { data: publicData } = client.storage.from("avatars").getPublicUrl(path);
+      avatarUrl = publicData.publicUrl;
+    }
+    const updates = { full_name: document.getElementById("profile-name").value.trim(), about_me: document.getElementById("profile-about").value.trim(), avatar_url: avatarUrl };
+    const { data, error } = await client.from("profiles").update(updates).eq("id",currentUser.id).select("id,full_name,phone,avatar_url,about_me,role,created_at").maybeSingle();
+    if (error) { msg.textContent = "Could not save profile: " + error.message; return; }
+    currentProfile = data || {...currentProfile,...updates};
+    document.getElementById("profile-heading").textContent = updates.full_name || "JIBOFY Member";
+    document.getElementById("profile-about").value = updates.about_me;
+    document.getElementById("profile-avatar").src = avatarUrl || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
+    document.getElementById("avatar-file").value = "";
+    setProfileEditing(false);
+    msg.textContent = "Profile updated successfully.";
+  });
+
+  document.getElementById("withdrawal-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = document.getElementById("withdrawal-message");
+    const amount = Number(document.getElementById("withdrawal-amount").value);
+    const method = document.getElementById("withdrawal-method").value;
+    const account = document.getElementById("withdrawal-account").value.trim();
+    const submit = document.getElementById("withdrawal-submit");
+    if (!currentUser) { message.textContent = "Please sign in again to request a withdrawal."; return; }
+    if (!Number.isFinite(amount) || amount <= 0) { message.textContent = "Enter a valid amount greater than zero."; return; }
+    if (!method || !account) { message.textContent = "Choose a payment method and enter your account number."; return; }
+    submit.disabled = true;
+    submit.textContent = "Submitting…";
+    message.textContent = "";
+    const { error } = await client.from("withdrawals").insert({
+      user_id: currentUser.id,
+      amount,
+      method,
+      account_number: account,
+      status: "pending"
+    });
+    submit.disabled = false;
+    submit.textContent = "Submit Withdrawal Request";
+    if (error) {
+      message.textContent = "Could not submit request: " + error.message + ". Database permissions or supported payment methods may need setup.";
+      return;
+    }
+    document.getElementById("withdrawal-form").reset();
+    message.textContent = "Withdrawal request submitted. It is pending administrator review.";
+  });
+
+  document.getElementById("signout-btn").addEventListener("click", async () => {
+    const { error } = await client.auth.signOut();
+    if (error) { alert(error.message); return; }
+    dashboard.style.display = "none";
+    currentUser = null;
+    location.href = "account.html";
+  });
+
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const message = document.getElementById("login-message");
+    const identity = document.getElementById("login-identity").value.trim().toLowerCase();
+    const password = document.getElementById("login-password").value;
+    if (!identity.includes("@")) { message.textContent = "Enter a valid email address."; return; }
+    message.textContent = "Signing in…";
+    const { data, error } = await client.auth.signInWithPassword({ email: identity, password });
+    if (error) { message.textContent = error.message; return; }
+    message.textContent = "Signed in successfully.";
+    await loadDashboard(data.user);
+    location.hash = "dashboard";
+  });
+
+  client.auth.getSession().then(async ({data}) => {
+    const page = document.body.dataset.page || "home";
+    const memberPages = ["dashboard","profile","earnings","withdrawal"];
+    if (data.session?.user) {
+      await loadDashboard(data.session.user);
+      if (page === "account") { location.replace("dashboard.html"); return; }
+      showScreen(memberPages.includes(page) ? page : (page === "home" ? "dashboard" : page));
+    } else {
+      if (memberPages.includes(page)) { location.replace("account.html"); return; }
+      showScreen(page === "account" ? "account" : "home");
+    }
+  }).catch((error) => {
+    console.error("JIBOFY session check failed:", error);
+    showScreen(document.body.dataset.page === "account" ? "account" : "home");
+  });
+})();
+</script>
+</body>
+</html>
