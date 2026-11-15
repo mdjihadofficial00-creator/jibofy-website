@@ -130,6 +130,15 @@ body[data-page="withdrawal"] #home-screen,body[data-page="withdrawal"] #account-
 body[data-page="profile"] .member-subscreen:not([data-subscreen="profile"]){display:none!important}
 body[data-page="earnings"] .member-subscreen:not([data-subscreen="earnings"]){display:none!important}
 body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]){display:none!important}
+
+/* Facebook-style JIBOFY member tabs */
+.jibofy-member-tabs{display:flex;align-items:stretch;justify-content:center;gap:8px;max-width:1120px;margin:0 auto;padding:8px 16px 0;background:#0b1020;border-bottom:1px solid #ffffff20;position:sticky;top:0;z-index:100}
+.jibofy-member-tabs a{min-width:130px;display:flex;align-items:center;justify-content:center;gap:9px;padding:15px 20px 13px;color:#aeb8ce;text-decoration:none;font-size:14px;font-weight:700;border-bottom:3px solid transparent;transition:.18s}
+.jibofy-member-tabs a:hover{background:#ffffff0a;color:#fff}
+.jibofy-member-tabs a.active{color:#c4b5fd;border-bottom-color:#a78bfa}
+.jibofy-member-tabs .tab-icon{font-size:19px;line-height:1}
+@media(max-width:600px){.jibofy-member-tabs{gap:0;padding:5px 4px 0}.jibofy-member-tabs a{flex:1;min-width:0;padding:12px 4px 10px;gap:5px;flex-direction:column;font-size:11px}.jibofy-member-tabs .tab-icon{font-size:20px}}
+
 </style>
 </head>
 <body data-page="dashboard">
@@ -141,6 +150,12 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
 <a href="account.html" class="btn">Get Started</a>
 </div>
 </nav>
+<div class="jibofy-member-tabs" aria-label="Member navigation">
+<a href="dashboard.html" data-tab="dashboard"><span class="tab-icon">⌂</span><span>Home</span></a>
+<a href="profile.html" data-tab="profile"><span class="tab-icon">◎</span><span>Profile</span></a>
+<a href="earnings.html" data-tab="earnings"><span class="tab-icon">↗</span><span>Earnings</span></a>
+<a href="withdrawal.html" data-tab="withdrawal"><span class="tab-icon">৳</span><span>Withdraw</span></a>
+</div>
 
 <main id="home-screen" class="app-screen is-active">
 <section class="hero" id="home">
@@ -311,6 +326,9 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
   });
 
 
+  document.querySelectorAll(".jibofy-member-tabs a").forEach(a => {
+    if (a.dataset.tab === document.body.dataset.page) a.classList.add("active");
+  });
   const dashboard = document.getElementById("member-dashboard");
   const homeScreen = document.getElementById("home-screen");
   const accountScreen = document.getElementById("account-screen");
