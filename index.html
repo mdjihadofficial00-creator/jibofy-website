@@ -110,7 +110,16 @@ nav a{margin-left:10px;font-size:12px}
 .auth-message{margin-top:14px;font-size:13px;line-height:1.6;color:#c4b5fd;overflow-wrap:anywhere}
 .auth-note{max-width:900px;margin:18px auto 0;color:#7f8aa3;font-size:12px;line-height:1.7}
 @media(max-width:700px){.auth-wrap{grid-template-columns:1fr}.auth-card{padding:22px}}
-\n</style>
+\n
+/* Separate JIBOFY screens */
+.app-screen{display:none}
+.app-screen.is-active{display:block}
+.screen-nav{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 20px}
+.screen-nav a{display:inline-block;text-decoration:none;color:#e9ddff;background:#252e48;border:1px solid #ffffff20;padding:10px 15px;border-radius:10px;font-size:13px;font-weight:700}
+.screen-nav a:hover{background:#493477}
+#member-dashboard{display:none}
+@media(max-width:600px){.screen-nav a{flex:1;text-align:center}}
+</style>
 </head>
 <body>
 <nav>
@@ -122,6 +131,7 @@ nav a{margin-left:10px;font-size:12px}
 </div>
 </nav>
 
+<main id="home-screen" class="app-screen is-active">
 <section class="hero" id="home">
 <div class="tag">✦ SMART REWARDS & DIGITAL OPPORTUNITIES</div>
 <h1>Discover Opportunities.<br><span>Earn Smarter.</span></h1>
@@ -147,7 +157,8 @@ nav a{margin-left:10px;font-size:12px}
 </section>
 
 
-<section class="auth-section" id="account">
+</main>
+<section class="auth-section app-screen" id="account-screen">
   <div style="text-align:center;margin-bottom:30px">
     <h2>Join JIBOFY</h2>
     <p class="sub" style="margin:10px 0 0">Create an account or sign in to continue.</p>
@@ -184,11 +195,12 @@ nav a{margin-left:10px;font-size:12px}
 </section>
 
 
-<section class="dashboard" id="member-dashboard">
+<section class="dashboard app-screen" id="member-dashboard">
  <div class="dashboard-inner">
   <div class="dashboard-top"><div><div class="tag">✦ JIBOFY MEMBER AREA</div><h2 style="margin-top:14px">My Dashboard</h2><p class="profile-meta">Your personal workspace, activity and rewards at a glance.</p></div><button class="btn" id="signout-btn" type="button">Sign Out</button></div>
+  <div class="screen-nav" id="member-screen-nav"><a href="#dashboard">Overview</a><a href="#profile">My Profile</a><a href="#earnings">Earnings</a><a href="#withdrawal">Withdrawal</a><a href="#home">Home</a></div>
   <div class="dashboard-grid">
-   <form class="panel" id="profile-form">
+   <form class="panel member-subscreen" id="profile-form" data-subscreen="profile">
     <div class="profile-head"><img class="avatar" id="profile-avatar" alt="Profile photo" src="https://placehold.co/160x160/29334d/ffffff?text=Photo"><div><h3 class="profile-title" id="profile-heading">Your Profile</h3><p class="profile-subtitle">MEMBER PROFILE</p><p class="profile-subtitle">Keep your information up to date</p></div></div>
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 4px"><strong>Personal details</strong><span class="summary-kicker" id="profile-mode">VIEW MODE</span></div>
     <label for="avatar-file">Profile Photo</label><input id="avatar-file" type="file" accept="image/png,image/jpeg,image/webp" disabled>
@@ -199,7 +211,7 @@ nav a{margin-left:10px;font-size:12px}
     <p class="edit-hint" id="profile-hint">Your personal information is visible here. Select Edit Profile to make changes.</p>
     <div class="dash-message" id="profile-message" role="status"></div>
    </form>
-   <div class="panel">
+   <div class="panel member-subscreen" id="earnings-panel" data-subscreen="earnings">
     <div class="summary-heading"><div><div class="summary-kicker">ACCOUNT OVERVIEW</div><h3 style="margin-top:6px">Work & Earnings</h3></div><span class="tag">LIVE SUMMARY</span></div>
     <div class="stat-grid">
      <div class="stat"><span>Total Tasks</span><strong id="stat-total-tasks">—</strong></div>
@@ -213,7 +225,7 @@ nav a{margin-left:10px;font-size:12px}
     <div class="dash-message" id="summary-message" role="status"></div>
    </div>
   </div>
-  <div class="panel" style="margin-top:22px">
+  <div class="panel member-subscreen" id="withdrawal-panel" data-subscreen="withdrawal" style="margin-top:22px">
    <div class="summary-heading"><div><div class="summary-kicker">PAYOUT CENTER</div><h3 style="margin-top:6px">Request a Withdrawal</h3><p class="profile-meta" style="margin-top:7px">Choose your preferred mobile financial service and enter the account details carefully.</p></div><span class="tag">BDT PAYOUT</span></div>
    <form id="withdrawal-form" class="withdrawal-form">
     <div class="withdrawal-fields">
@@ -281,7 +293,7 @@ nav a{margin-left:10px;font-size:12px}
       message.textContent = "Account created successfully. You are now signed in.";
       signupForm.reset();
       await loadDashboard(data.user);
-      dashboard.scrollIntoView({behavior:"smooth",block:"start"});
+      location.hash = "dashboard";
     } else {
       message.textContent = "Account created. Check your email if confirmation is requested.";
     }
@@ -289,6 +301,28 @@ nav a{margin-left:10px;font-size:12px}
 
 
   const dashboard = document.getElementById("member-dashboard");
+  const homeScreen = document.getElementById("home-screen");
+  const accountScreen = document.getElementById("account-screen");
+  function showScreen(route) {
+    const clean = (route || "home").replace(/^#/, "");
+    const memberRoutes = ["dashboard","profile","earnings","withdrawal"];
+    const isMember = memberRoutes.includes(clean);
+    if (isMember && !currentUser) {
+      history.replaceState(null, "", "#account");
+      return showScreen("account");
+    }
+    homeScreen.classList.toggle("is-active", ["home","features"].includes(clean));
+    accountScreen.classList.toggle("is-active", clean === "account" || clean === "join");
+    dashboard.style.display = isMember ? "block" : "none";
+    dashboard.classList.toggle("is-active", isMember);
+    document.querySelectorAll(".member-subscreen").forEach(panel => {
+      panel.style.display = clean === "dashboard" || panel.dataset.subscreen === clean ? "" : "none";
+    });
+    if (clean === "features") document.getElementById("features").scrollIntoView();
+    else window.scrollTo({top:0,behavior:"smooth"});
+  }
+  window.addEventListener("hashchange", () => showScreen(location.hash));
+
   let currentUser = null;
   let currentProfile = null;
   const money = (n) => "৳" + Number(n || 0).toLocaleString("en-BD", {maximumFractionDigits:2});
@@ -458,11 +492,12 @@ nav a{margin-left:10px;font-size:12px}
     if (error) { message.textContent = error.message; return; }
     message.textContent = "Signed in successfully.";
     await loadDashboard(data.user);
-    dashboard.scrollIntoView({behavior:"smooth",block:"start"});
+    location.hash = "dashboard";
   });
 
   client.auth.getSession().then(({data}) => {
-    if (data.session?.user) loadDashboard(data.session.user);
+    if (data.session?.user) { await loadDashboard(data.session.user); location.hash = "dashboard"; showScreen("dashboard"); }
+    else showScreen(location.hash || "home");
   });
 })();
 </script>
