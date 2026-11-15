@@ -99,9 +99,11 @@ nav a{margin-left:10px;font-size:12px}
   <div class="auth-wrap">
     <form class="auth-card" id="signup-form">
       <h2>Create Account</h2>
-      <p>Register using your Bangladesh mobile number and a password.</p>
+      <p>Register free using your email, Bangladesh mobile number and a password.</p>
       <label for="signup-name">Full Name</label>
       <input id="signup-name" type="text" autocomplete="name" required maxlength="80" placeholder="Your full name">
+      <label for="signup-email">Email Address</label>
+      <input id="signup-email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
       <label for="signup-phone">Phone Number</label>
       <input id="signup-phone" type="tel" autocomplete="tel" required inputmode="tel" placeholder="01XXXXXXXXX">
       <label for="signup-password">Password</label>
@@ -113,16 +115,16 @@ nav a{margin-left:10px;font-size:12px}
     </form>
     <form class="auth-card" id="login-form">
       <h2>Welcome Back</h2>
-      <p>Sign in with your mobile number and password. The existing admin email login is also supported.</p>
-      <label for="login-identity">Mobile Number or Admin Email</label>
-      <input id="login-identity" type="text" autocomplete="username" required placeholder="01XXXXXXXXX">
+      <p>Sign in using your email address and password.</p>
+      <label for="login-identity">Email Address</label>
+      <input id="login-identity" type="email" autocomplete="username" required placeholder="you@example.com">
       <label for="login-password">Password</label>
       <input id="login-password" type="password" autocomplete="current-password" required placeholder="Your password">
       <button class="btn" type="submit">Sign In</button>
       <div class="auth-message" id="login-message" role="status" aria-live="polite"></div>
     </form>
   </div>
-  <p class="auth-note">Phone numbers are not verified by SMS at this stage. Keep your password private. Account recovery and the member dashboard will be added in a later development step.</p>
+  <p class="auth-note">Email is used for secure sign-in and account recovery. Your Bangladesh mobile number is saved in your profile. No SMS or paid SMS provider is required.</p>
 </section>
 
 <footer>
@@ -159,6 +161,7 @@ nav a{margin-left:10px;font-size:12px}
     const message = document.getElementById("signup-message");
     const name = document.getElementById("signup-name").value.trim();
     const phone = normalizeBdPhone(document.getElementById("signup-phone").value);
+    const email = document.getElementById("signup-email").value.trim().toLowerCase();
     const password = document.getElementById("signup-password").value;
     const confirm = document.getElementById("signup-confirm").value;
     message.textContent = "";
@@ -167,7 +170,7 @@ nav a{margin-left:10px;font-size:12px}
     if (password.length < 8) { message.textContent = "Password must be at least 8 characters."; return; }
     message.textContent = "Creating your account…";
     const { data, error } = await client.auth.signUp({
-      phone: phone.canonical,
+      email,
       password,
       options: { data: { full_name: name, phone: phone.canonical } }
     });
@@ -175,7 +178,7 @@ nav a{margin-left:10px;font-size:12px}
     if (data.session) {
       message.textContent = "Account created successfully. You are now signed in. Dashboard setup is the next step.";
     } else {
-      message.textContent = "Account created, but phone confirmation is enabled. Please contact the administrator to finish setup.";
+      message.textContent = "Account created. Check your email if confirmation is requested.";
     }
     signupForm.reset();
   });
@@ -183,19 +186,11 @@ nav a{margin-left:10px;font-size:12px}
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const message = document.getElementById("login-message");
-    const identity = document.getElementById("login-identity").value.trim();
+    const identity = document.getElementById("login-identity").value.trim().toLowerCase();
     const password = document.getElementById("login-password").value;
-    let email = identity;
-    if (!identity.includes("@")) {
-      const phone = normalizeBdPhone(identity);
-      if (!phone) { message.textContent = "Enter a valid Bangladesh mobile number."; return; }
-      email = null;
-    }
+    if (!identity.includes("@")) { message.textContent = "Enter a valid email address."; return; }
     message.textContent = "Signing in…";
-    const credentials = email
-      ? { email, password }
-      : { phone: normalizeBdPhone(identity).canonical, password };
-    const { data, error } = await client.auth.signInWithPassword(credentials);
+    const { data, error } = await client.auth.signInWithPassword({ email: identity, password });
     if (error) { message.textContent = error.message; return; }
     const { data: profileData, error: profileError } = await client
       .from("profiles").select("full_name, role").eq("id", data.user.id).maybeSingle();
