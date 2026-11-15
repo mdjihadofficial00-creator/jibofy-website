@@ -61,6 +61,36 @@ nav a{margin-left:10px;font-size:12px}
 .dash-message{font-size:13px;color:#c4b5fd;margin-top:12px;overflow-wrap:anywhere}
 @media(max-width:760px){.dashboard-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* Refined member workspace */
+.dashboard{padding:64px 20px 80px;background:linear-gradient(180deg,#0b1020 0%,#10162a 100%);min-height:70vh}
+.dashboard-inner{max-width:1120px}
+.dashboard-top{padding:26px 28px;border:1px solid #ffffff18;border-radius:20px;background:linear-gradient(115deg,#211b43,#151c30 65%);margin-bottom:22px}
+.dashboard-top h2{font-size:32px;letter-spacing:-.6px}
+.dashboard-top .tag{background:#8b5cf622}
+.dashboard-grid{grid-template-columns:minmax(290px,.92fr) 1.45fr;gap:22px}
+.panel{border-radius:20px;padding:26px;background:linear-gradient(155deg,#19223a,#121a2d);box-shadow:0 16px 45px #00000022}
+.profile-head{align-items:center;padding-bottom:20px;border-bottom:1px solid #ffffff14}
+.avatar{width:92px;height:92px;border-radius:24px;border:2px solid #a78bfa;box-shadow:0 8px 24px #8b5cf633}
+.profile-title{font-size:19px;letter-spacing:-.2px}
+.profile-subtitle{font-size:12px;color:#9ca3b5;margin-top:5px}
+.panel label{font-weight:600;color:#d8def0}
+.panel input,.panel textarea{border-radius:11px;transition:border-color .2s,background .2s}
+.panel input:focus,.panel textarea:focus{outline:none;border-color:#a78bfa;background:#111a30}
+.panel input:disabled,.panel textarea:disabled{opacity:.82;cursor:not-allowed;background:#11182a;color:#cbd5e1}
+.profile-actions{display:flex;gap:10px;margin-top:18px}
+.profile-actions button{flex:1}
+.btn-secondary{background:#252e48;color:#e2e8f0;border:1px solid #ffffff20;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer}
+.edit-hint{font-size:12px;color:#9ca3b5;margin-top:12px}
+.stat-grid{gap:14px}
+.stat{border-radius:15px;padding:20px;background:linear-gradient(145deg,#111a30,#0c1325);border:1px solid #ffffff12;min-height:105px}
+.stat strong{font-size:27px;letter-spacing:-.5px}
+.stat span{font-size:12px;letter-spacing:.2px}
+.summary-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+.summary-kicker{font-size:11px;color:#a78bfa;letter-spacing:1.5px;font-weight:700;text-transform:uppercase}
+.dash-message{padding-top:8px}
+@media(max-width:760px){.dashboard{padding:38px 14px 55px}.dashboard-top{padding:22px}.dashboard-top h2{font-size:27px}.panel{padding:20px}.dashboard-grid{grid-template-columns:1fr}}
+
 /* Authentication panel */
 .auth-section{padding:70px 20px;background:#0e1427}
 .auth-wrap{max-width:900px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:22px}
@@ -150,19 +180,21 @@ nav a{margin-left:10px;font-size:12px}
 
 <section class="dashboard" id="member-dashboard">
  <div class="dashboard-inner">
-  <div class="dashboard-top"><div><div class="tag">JIBOFY MEMBER AREA</div><h2 style="margin-top:14px">My Dashboard</h2><p class="profile-meta">Your profile, work activity and earnings summary</p></div><button class="btn" id="signout-btn" type="button">Sign Out</button></div>
+  <div class="dashboard-top"><div><div class="tag">✦ JIBOFY MEMBER AREA</div><h2 style="margin-top:14px">My Dashboard</h2><p class="profile-meta">Your personal workspace, activity and rewards at a glance.</p></div><button class="btn" id="signout-btn" type="button">Sign Out</button></div>
   <div class="dashboard-grid">
    <form class="panel" id="profile-form">
-    <div class="profile-head"><img class="avatar" id="profile-avatar" alt="Profile photo" src="https://placehold.co/160x160/29334d/ffffff?text=Photo"><div><h3 id="profile-heading">Your Profile</h3><p class="profile-meta">Edit your personal information</p></div></div>
-    <label for="avatar-file">Profile Photo</label><input id="avatar-file" type="file" accept="image/*">
-    <label for="profile-name">Full Name</label><input id="profile-name" type="text" maxlength="80" required>
-    <label for="profile-about">About Me</label><textarea id="profile-about" maxlength="500" placeholder="Write a short introduction about yourself"></textarea>
+    <div class="profile-head"><img class="avatar" id="profile-avatar" alt="Profile photo" src="https://placehold.co/160x160/29334d/ffffff?text=Photo"><div><h3 class="profile-title" id="profile-heading">Your Profile</h3><p class="profile-subtitle">MEMBER PROFILE</p><p class="profile-subtitle">Keep your information up to date</p></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 4px"><strong>Personal details</strong><span class="summary-kicker" id="profile-mode">VIEW MODE</span></div>
+    <label for="avatar-file">Profile Photo</label><input id="avatar-file" type="file" accept="image/png,image/jpeg,image/webp" disabled>
+    <label for="profile-name">Full Name</label><input id="profile-name" type="text" maxlength="80" required disabled>
+    <label for="profile-about">About Me</label><textarea id="profile-about" maxlength="500" placeholder="Write a short introduction about yourself" disabled></textarea>
     <div class="profile-meta" id="profile-contact" style="margin-top:14px"></div>
-    <button class="btn" type="submit" style="width:100%;margin-top:18px">Save Profile</button>
+    <div class="profile-actions"><button class="btn" id="edit-profile-btn" type="button">Edit Profile</button><button class="btn" id="save-profile-btn" type="submit" style="display:none">Save Changes</button><button class="btn-secondary" id="cancel-profile-btn" type="button" style="display:none">Cancel</button></div>
+    <p class="edit-hint" id="profile-hint">Your personal information is visible here. Select Edit Profile to make changes.</p>
     <div class="dash-message" id="profile-message" role="status"></div>
    </form>
    <div class="panel">
-    <h3 style="margin-bottom:18px">Work & Earnings Summary</h3>
+    <div class="summary-heading"><div><div class="summary-kicker">ACCOUNT OVERVIEW</div><h3 style="margin-top:6px">Work & Earnings</h3></div><span class="tag">LIVE SUMMARY</span></div>
     <div class="stat-grid">
      <div class="stat"><span>Total Tasks</span><strong id="stat-total-tasks">—</strong></div>
      <div class="stat"><span>Pending Tasks</span><strong id="stat-pending-tasks">—</strong></div>
@@ -171,7 +203,7 @@ nav a{margin-left:10px;font-size:12px}
      <div class="stat"><span>Total Earnings</span><strong id="stat-earnings">৳0</strong></div>
      <div class="stat"><span>Withdrawn</span><strong id="stat-withdrawn">৳0</strong></div>
     </div>
-    <p class="profile-meta" style="margin-top:18px">Member ID: <span id="member-id">—</span><br>Joined: <span id="member-joined">—</span></p>
+    <p class="profile-meta" style="margin-top:20px">Member ID: <span id="member-id">—</span><br>Joined: <span id="member-joined">—</span></p>
     <div class="dash-message" id="summary-message" role="status"></div>
    </div>
   </div>
@@ -294,6 +326,40 @@ nav a{margin-left:10px;font-size:12px}
     document.getElementById("stat-withdrawn").textContent = money(paid);
   }
 
+  const profileFields = ["avatar-file","profile-name","profile-about"].map(id=>document.getElementById(id));
+  const editBtn = document.getElementById("edit-profile-btn");
+  const saveBtn = document.getElementById("save-profile-btn");
+  const cancelBtn = document.getElementById("cancel-profile-btn");
+  function setProfileEditing(enabled) {
+    profileFields.forEach(field=>field.disabled=!enabled);
+    editBtn.style.display = enabled ? "none" : "inline-block";
+    saveBtn.style.display = enabled ? "inline-block" : "none";
+    cancelBtn.style.display = enabled ? "inline-block" : "none";
+    document.getElementById("profile-mode").textContent = enabled ? "EDIT MODE" : "VIEW MODE";
+    document.getElementById("profile-hint").textContent = enabled ? "Make your changes, then select Save Changes." : "Your personal information is visible here. Select Edit Profile to make changes.";
+  }
+  editBtn.addEventListener("click",()=>setProfileEditing(true));
+  cancelBtn.addEventListener("click",()=>{
+    document.getElementById("profile-name").value = currentProfile?.full_name || currentUser?.user_metadata?.full_name || "";
+    document.getElementById("profile-about").value = currentProfile?.about_me || "";
+    document.getElementById("profile-avatar").src = currentProfile?.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
+    document.getElementById("avatar-file").value = "";
+    document.getElementById("profile-message").textContent = "";
+    setProfileEditing(false);
+  });
+  document.getElementById("avatar-file").addEventListener("change",event=>{
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/") || file.size > 3*1024*1024) {
+      document.getElementById("profile-message").textContent = "Choose a JPG, PNG or WEBP image smaller than 3 MB.";
+      event.target.value = "";
+      return;
+    }
+    document.getElementById("profile-avatar").src = URL.createObjectURL(file);
+    document.getElementById("profile-message").textContent = "Photo preview ready. Save Changes to upload it.";
+  });
+  setProfileEditing(false);
+
   document.getElementById("profile-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!currentUser) return;
@@ -319,6 +385,8 @@ nav a{margin-left:10px;font-size:12px}
     document.getElementById("profile-heading").textContent = updates.full_name || "JIBOFY Member";
     document.getElementById("profile-about").value = updates.about_me;
     document.getElementById("profile-avatar").src = avatarUrl || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
+    document.getElementById("avatar-file").value = "";
+    setProfileEditing(false);
     msg.textContent = "Profile updated successfully.";
   });
 
