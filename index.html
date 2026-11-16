@@ -339,7 +339,7 @@ nav a{margin-left:10px;font-size:12px}
     document.getElementById("member-id").textContent = user.id;
     document.getElementById("member-joined").textContent = user.created_at ? new Date(user.created_at).toLocaleDateString() : "—";
     const { data: profile, error: profileError } = await client.from("profiles")
-      .select("id,full_name,phone,avatar_url,about_me,role,created_at").eq("id", user.id).maybeSingle();
+      .select("id,member_code,email,full_name,phone,avatar_url,about_me,role,created_at").eq("id", user.id).maybeSingle();
     if (profileError || !profile) {
       document.getElementById("profile-message").textContent =
         "Dashboard opened, but profile details could not be loaded: " + (profileError?.message || "Profile record not found");
@@ -354,8 +354,8 @@ nav a{margin-left:10px;font-size:12px}
     document.getElementById("profile-heading").textContent = profile.full_name || "JIBOFY Member";
     document.getElementById("profile-avatar").src = profile.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
     document.getElementById("profile-contact").textContent =
-      "Email: " + (user.email || "Not available") + " | Phone: " + (profile.phone || user.user_metadata?.phone || "Not added");
-    document.getElementById("member-id").textContent = user.id;
+      "Email: " + (profile.email || user.email || "Not available") + " | Phone: " + (profile.phone || user.user_metadata?.phone || "Not added");
+    document.getElementById("member-id").textContent = profile.member_code || "Not assigned";
     document.getElementById("member-joined").textContent = profile.created_at ? new Date(profile.created_at).toLocaleDateString() : "—";
     const [submissions, wallet, withdrawals] = await Promise.all([
       client.from("task_submissions").select("id,status").eq("user_id", user.id),
