@@ -143,78 +143,27 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
 
 
 
-/* JIBOFY Midnight Navy + Soft Lilac — consistent design system */
-:root{
- --jf-bg:#F7F6FA;
- --jf-surface:#FFFFFF;
- --jf-lilac:#E6E1F5;
- --jf-lilac-soft:#F0EDFA;
- --jf-navy:#1E1B4B;
- --jf-indigo:#4F46E5;
- --jf-text:#17153B;
- --jf-muted:#6B7280;
- --jf-line:#EAE8F0;
- --jf-shadow:0 4px 18px rgba(0,0,0,.05);
- --jf-radius:15px;
-}
-html{scroll-behavior:smooth}
-body{background:var(--jf-bg)!important;color:var(--jf-text)!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;line-height:1.6}
-h1,h2,h3,h4,h5,h6,strong,b{color:var(--jf-text)}
-p{color:#34324F}
-a{transition:color .18s ease,background .18s ease,border-color .18s ease}
-.logo,.brand,.footer-brand{color:var(--jf-navy)!important;font-weight:800;letter-spacing:.015em}
-nav,.nav,.top,.dashboard-top{background:#fff!important;border-color:var(--jf-line)!important;box-shadow:0 2px 12px rgba(0,0,0,.035)!important}
-nav a,.nav a,.top a{color:#383653!important;font-weight:600}
-nav a:hover,.nav a:hover,.top a:hover{color:var(--jf-indigo)!important}
-.hero{background:linear-gradient(135deg,#F0EDFA 0%,#FFFFFF 100%)!important;border:1px solid #EEEAF8!important;border-radius:22px!important}
-.hero h1,.hero h2,.hero h1 span,.profile-title{color:var(--jf-navy)!important}
-.hero p{color:#55536E!important}
-.tag,.eyebrow,.summary-kicker{color:var(--jf-navy)!important}
-.tag,.pill,.state{background:var(--jf-lilac)!important;color:var(--jf-navy)!important;border:0!important;border-radius:999px!important}
-.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.app-screen,.dialog,.modal,.cta,.features,.dashboard-grid>section{
- background:var(--jf-surface)!important;color:var(--jf-text)!important;border:1px solid rgba(30,27,75,.045)!important;border-radius:var(--jf-radius)!important;box-shadow:var(--jf-shadow)!important
-}
-.card:hover,.task:hover,.campaign:hover{box-shadow:0 7px 22px rgba(30,27,75,.075)!important;transform:translateY(-1px);transition:transform .2s ease,box-shadow .2s ease}
-.card h1,.card h2,.card h3,.panel h1,.panel h2,.panel h3,.task h1,.task h2,.task h3,.campaign h1,.campaign h2,.campaign h3,.auth-card h1,.auth-card h2,.auth-card h3{color:var(--jf-text)!important}
-.card p,.panel p,.task p,.campaign p,.auth-card p,.meta,.profile-meta,.profile-subtitle,.edit-hint,.note,.muted,.sub,.empty,.state{color:var(--jf-muted)!important}
-.btn,.primary,.start-campaign,.complete-campaign,button.primary{background:var(--jf-navy)!important;color:#fff!important;border:1px solid var(--jf-navy)!important;border-radius:12px!important;font-weight:700!important;box-shadow:0 3px 9px rgba(30,27,75,.12)!important}
-.btn:hover,.primary:hover,.start-campaign:hover,.complete-campaign:hover,button.primary:hover{background:var(--jf-indigo)!important;border-color:var(--jf-indigo)!important;color:#fff!important}
-.btn-secondary,.secondary,button.secondary{background:var(--jf-lilac-soft)!important;color:var(--jf-navy)!important;border:1px solid #E6E1F5!important;border-radius:12px!important}
-.danger{background:#FFF1F2!important;color:#A61B36!important;border:1px solid #F7D8DE!important;border-radius:12px!important}
-input,select,textarea,.field input,.field select,.field textarea{background:#fff!important;color:var(--jf-text)!important;border:1px solid #DEDCE8!important;border-radius:10px!important}
-input::placeholder,textarea::placeholder{color:#9291A2!important;opacity:1}
-input:focus,select:focus,textarea:focus{outline:3px solid #E6E1F5!important;border-color:var(--jf-indigo)!important}
-label,.field label,.withdrawal-form label{color:#393751!important;font-weight:600!important}
-.stat span,.stat-card span,.withdrawal-stat span{color:var(--jf-muted)!important}
-.stat strong,.stat-card strong,.reward,.summary-heading{color:var(--jf-navy)!important}
-.filters button{background:#fff!important;color:#393751!important;border:1px solid var(--jf-line)!important;border-radius:999px!important}
-.filters button.active{background:var(--jf-navy)!important;color:#fff!important;border-color:var(--jf-navy)!important}
-.profile-head{border-bottom:1px solid var(--jf-line)!important}
-.avatar{border-color:var(--jf-lilac)!important;box-shadow:0 3px 10px rgba(30,27,75,.08)!important}
-.dashboard{background:var(--jf-bg)!important}
-.dashboard-top{background:#fff!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:16px!important;box-shadow:var(--jf-shadow)!important}
-.dashboard-top h2,.dashboard-top h3{color:var(--jf-navy)!important}
-.dashboard-top p{color:var(--jf-muted)!important}
-footer{background:#fff!important;color:var(--jf-text)!important;border-top:1px solid var(--jf-line)!important}
-footer p,footer span,.footer-description,.copyright{color:var(--jf-muted)!important}
-@media(max-width:700px){
- nav{height:auto!important;min-height:60px;padding:12px 15px!important;gap:8px;flex-wrap:wrap}
- nav a{margin:0 8px 0 0!important;font-size:13px!important}
- .nav{gap:4px!important;padding:8px!important;min-height:58px!important;flex-wrap:wrap}
- .nav a{min-width:42%!important;max-width:none!important;padding:9px 6px!important;font-size:12px!important}
- .top{padding:14px 16px!important;flex-wrap:wrap}
- .dashboard{padding:30px 14px 50px!important}
- .dashboard-top{padding:18px!important}
- .dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}
- .hero{padding:48px 18px!important}
- .auth-card,.panel,.card,.task{padding:18px!important}
- .withdrawal-fields{grid-template-columns:1fr!important}
- .withdrawal-account{grid-column:auto!important}
-}
+
+/* JIBOFY Facebook-inspired classic blue/white theme + dark mode */
+:root{--jf-bg:#f0f2f5;--jf-card:#fff;--jf-text:#1c1e21;--jf-muted:#65676b;--jf-line:#dddfe2;--jf-blue:#1877f2;--jf-blue-hover:#166fe5;--jf-soft:#e7f3ff;--jf-shadow:0 1px 2px rgba(0,0,0,.10);--jf-radius:10px}
+body{background:var(--jf-bg)!important;color:var(--jf-text)!important;font-family:Arial,Helvetica,sans-serif!important}h1,h2,h3,h4,h5,h6,strong,b{color:var(--jf-text)!important}p,label,.muted,.sub,.note,.meta,.profile-subtitle{color:var(--jf-muted)!important}
+nav,.nav,.top,.dashboard-top{background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;box-shadow:var(--jf-shadow)!important}nav a,.nav a,.top a{color:var(--jf-text)!important;font-weight:600}nav a:hover,.nav a:hover,.top a:hover{color:var(--jf-blue)!important}
+.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.dialog,.modal,.features,.cta,.dashboard-grid>section{background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:var(--jf-radius)!important;box-shadow:var(--jf-shadow)!important}.hero{background:var(--jf-card)!important;border:1px solid var(--jf-line)!important;border-radius:12px!important;box-shadow:var(--jf-shadow)!important}.hero h1,.hero h2,.hero p{color:var(--jf-text)!important}
+.btn,.primary,.start-campaign,.complete-campaign,button.primary{background:var(--jf-blue)!important;color:#fff!important;border:1px solid var(--jf-blue)!important;border-radius:8px!important;font-weight:700!important;box-shadow:none!important}.btn:hover,.primary:hover,.start-campaign:hover,.complete-campaign:hover,button.primary:hover{background:var(--jf-blue-hover)!important;color:#fff!important}
+.secondary,button.secondary,.btn-secondary{background:var(--jf-soft)!important;color:var(--jf-blue)!important;border:1px solid #cfe3ff!important;border-radius:8px!important}
+input,select,textarea{background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid #ccd0d5!important;border-radius:8px!important}input::placeholder,textarea::placeholder{color:#8a8d91!important}input:focus,select:focus,textarea:focus{outline:2px solid #cfe3ff!important;border-color:var(--jf-blue)!important}
+.tag,.pill,.state{background:var(--jf-soft)!important;color:var(--jf-blue)!important;border:0!important;border-radius:7px!important}.stat strong,.stat-card strong,.reward,.summary-heading{color:var(--jf-blue)!important}
+.filters button{background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:8px!important}.filters button.active{background:var(--jf-blue)!important;color:#fff!important;border-color:var(--jf-blue)!important}
+footer{background:var(--jf-card)!important;color:var(--jf-muted)!important;border-top:1px solid var(--jf-line)!important}
+#jf-theme-toggle{position:fixed!important;right:18px!important;bottom:18px!important;z-index:99999!important;border:0!important;border-radius:999px!important;padding:11px 16px!important;background:#1877f2!important;color:#fff!important;font:700 13px Arial,sans-serif!important;box-shadow:0 3px 12px rgba(0,0,0,.22)!important;cursor:pointer!important}
+body.jf-dark{--jf-bg:#18191a;--jf-card:#242526;--jf-text:#e4e6eb;--jf-muted:#b0b3b8;--jf-line:#3e4042;--jf-blue:#2d88ff;--jf-blue-hover:#4595ff;--jf-soft:#263951;--jf-shadow:0 1px 2px rgba(0,0,0,.28)}
+body.jf-dark .hero{background:#242526!important}body.jf-dark .hero h1,body.jf-dark .hero h2,body.jf-dark .hero p{color:#e4e6eb!important}body.jf-dark input,body.jf-dark select,body.jf-dark textarea{border-color:#55585c!important}body.jf-dark .secondary,body.jf-dark button.secondary,body.jf-dark .btn-secondary{border-color:#34465b!important}body.jf-dark #jf-theme-toggle{background:#3a3b3c!important;color:#e4e6eb!important}
+@media(max-width:700px){#jf-theme-toggle{right:12px!important;bottom:12px!important;padding:10px 14px!important}.dashboard{padding-left:12px!important;padding-right:12px!important}.dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}}
 
 </style>
 </head>
 <body data-page="earnings">
+<button id="jf-theme-toggle" type="button" aria-label="Switch color theme">🌙 Dark mode</button><script>(()=>{const k="jibofy-theme";let t="light";try{t=localStorage.getItem(k)||"light"}catch(e){}const b=document.body,btn=document.getElementById("jf-theme-toggle");function apply(){b.classList.toggle("jf-dark",t==="dark");btn.textContent=t==="dark"?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(t==="dark"))}btn.addEventListener("click",()=>{t=t==="dark"?"light":"dark";try{localStorage.setItem(k,t)}catch(e){}apply()});apply()})();</script>
 <div class="jibofy-member-tabs" aria-label="Member navigation">
 <a href="dashboard.html" data-tab="dashboard"><span class="tab-icon">⌂</span><span>Home</span></a>
 <a href="tasks.html" data-tab="tasks"><span class="tab-icon">✓</span><span>Workspace</span></a>
