@@ -2,6 +2,52 @@
 *{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f8fafc;font-family:Arial,sans-serif}.nav{position:sticky;top:0;z-index:9;display:flex;justify-content:center;gap:12px;padding:0 5%;min-height:74px;background:#0b1020f5;border-bottom:1px solid #ffffff20;box-shadow:0 8px 25px #0005}.nav a{flex:1;max-width:210px;display:flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;color:#aeb8ce;font-weight:700;border-bottom:3px solid transparent;padding:12px}.nav a.active{color:#d7c8ff;border-color:#a78bfa}.ico{font-size:22px}main{max-width:1100px;margin:auto;padding:36px 20px}.eyebrow{color:#c4b5fd;font-size:12px;font-weight:bold;letter-spacing:2px}h1{font-size:40px;margin:10px 0}.muted{color:#aebbd0;line-height:1.6}.filters{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0}.filters button,.primary,.secondary{border:0;border-radius:10px;padding:12px 17px;font-weight:bold;cursor:pointer}.filters button{background:#1c2941;color:#dbe4f3;border:1px solid #ffffff20}.filters button.active,.primary{background:linear-gradient(100deg,#7c3aed,#5b5bd6);color:white}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:17px}.task{background:#17233a;border:1px solid #ffffff18;border-radius:17px;padding:21px}.taskhead{display:flex;justify-content:space-between;gap:10px;color:#c4b5fd;font-size:12px;text-transform:uppercase}.reward{color:#86efac;font-weight:bold}.task h3{font-size:20px}.task p{color:#b8c4d8;white-space:pre-wrap;line-height:1.6}.task .primary{width:100%;margin-top:12px}.state{padding:20px;border:1px dashed #ffffff30;border-radius:14px;color:#b8c4d8}.modal{display:none;position:fixed;inset:0;background:#050914dd;z-index:20;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.dialog{background:#17233a;border:1px solid #ffffff25;border-radius:17px;padding:23px;width:min(500px,100%)}textarea{width:100%;min-height:130px;background:#0b1222;color:white;border:1px solid #ffffff30;border-radius:10px;padding:12px;font:inherit}.actions{display:flex;gap:10px;margin-top:12px}.actions button{flex:1}.secondary{background:#334155;color:white}@media(max-width:620px){.nav{gap:0;padding:0 3px;min-height:65px}.nav a{flex-direction:column;gap:3px;padding:8px 2px;font-size:11px}.ico{font-size:20px}main{padding:25px 14px}h1{font-size:32px}}
 
 #jibofy-toast{position:fixed;right:20px;bottom:22px;z-index:9999;max-width:min(360px,calc(100vw - 32px));padding:13px 17px;border-radius:12px;background:#17233a;border:1px solid #8b5cf6;color:#fff;box-shadow:0 12px 35px #0008;font-size:13px;line-height:1.5;opacity:0;transform:translateY(12px);pointer-events:none;transition:.22s}#jibofy-toast.show{opacity:1;transform:translateY(0)}#jibofy-toast.success{border-color:#22c55e}#jibofy-toast.error{border-color:#ef4444}
+
+/* JIBOFY unified visual refresh — presentation only; business logic unchanged */
+:root{
+ --jf-bg:#071321;--jf-surface:#0e2033;--jf-surface2:#122a40;--jf-line:rgba(148,190,213,.17);
+ --jf-text:#f2f8fc;--jf-muted:#9db3c5;--jf-cyan:#31d6cf;--jf-blue:#398bff;--jf-green:#a5f36b;
+ --jf-shadow:0 18px 50px rgba(0,0,0,.24);--jf-radius:20px;
+}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse at 12% 0%,rgba(36,133,166,.19),transparent 36%),radial-gradient(ellipse at 90% 15%,rgba(49,214,207,.10),transparent 30%),var(--jf-bg)!important;color:var(--jf-text)!important;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;line-height:1.55}
+a{transition:color .2s ease,background .2s ease,border-color .2s ease}
+.logo,.brand,.footer-brand{color:var(--jf-cyan)!important;letter-spacing:.045em}
+nav,.nav,.top,.dashboard-top{background:rgba(8,24,39,.88)!important;border-color:var(--jf-line)!important;backdrop-filter:blur(16px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+nav a,.nav a,.top a{color:#c4d7e5!important}
+nav a:hover,.nav a:hover,.top a:hover{color:var(--jf-cyan)!important}
+.hero{position:relative}
+.hero h1,.hero h2,.profile-title{color:#f5fbff}
+.tag,.eyebrow,.summary-kicker{color:var(--jf-cyan)!important}
+.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.app-screen,.dialog,.modal,.cta,.features,.dashboard-grid>section{
+ background:linear-gradient(145deg,rgba(18,42,64,.96),rgba(10,29,47,.96))!important;
+ border:1px solid var(--jf-line)!important;border-radius:var(--jf-radius)!important;box-shadow:var(--jf-shadow)
+}
+.card:hover,.task:hover,.campaign:hover{border-color:rgba(49,214,207,.42)!important;transform:translateY(-2px);transition:transform .2s ease,border-color .2s ease}
+.btn,.primary,.start-campaign,.complete-campaign,button.primary{
+ background:linear-gradient(110deg,var(--jf-blue),var(--jf-cyan))!important;color:#041622!important;border:0!important;border-radius:12px!important;font-weight:800!important;box-shadow:0 8px 24px rgba(49,214,207,.16)
+}
+.btn:hover,.primary:hover,.start-campaign:hover,.complete-campaign:hover,button.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-secondary,.secondary,button.secondary{background:#17344b!important;color:#d9f7f5!important;border:1px solid var(--jf-line)!important;border-radius:12px!important}
+.danger{background:#5a2634!important;color:#ffe5e9!important;border:1px solid rgba(255,110,130,.3)!important;border-radius:11px!important}
+input,select,textarea{background:#081a2a!important;color:var(--jf-text)!important;border:1px solid rgba(148,190,213,.25)!important;border-radius:11px!important}
+input:focus,select:focus,textarea:focus{outline:2px solid rgba(49,214,207,.35)!important;border-color:var(--jf-cyan)!important}
+label,.muted,.sub,.profile-subtitle,.edit-hint,.note,.auth-note{color:var(--jf-muted)!important}
+.stat strong,.stat-card strong,.reward,.summary-heading{color:var(--jf-green)!important}
+.pill,.state,.filters button{border-radius:999px}
+.empty,.message,.dash-message{color:var(--jf-muted)}
+footer{border-color:var(--jf-line)!important}
+@media(max-width:700px){
+ nav{height:auto!important;min-height:64px;padding:12px 16px!important;gap:10px;flex-wrap:wrap}
+ nav a{margin:0 8px 0 0!important;font-size:13px!important}
+ .nav{gap:4px!important;padding:8px!important;min-height:62px!important;flex-wrap:wrap}
+ .nav a{min-width:42%!important;max-width:none!important;padding:10px 6px!important;font-size:12px!important}
+ .top{padding:14px 16px!important;flex-wrap:wrap}
+ .dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}
+ .hero{padding-left:18px!important;padding-right:18px!important}
+ .auth-card,.panel,.card{padding:18px!important}
+}
+
 </style></head><body><div id="jibofy-toast" role="status" aria-live="polite"></div>
 <nav class="nav"><a href="dashboard.html"><span class="ico">⌂</span><span>Home</span></a><a class="active" href="tasks.html"><span class="ico">▦</span><span>Workspace</span></a><a href="profile.html"><span class="ico">◎</span><span>Profile</span></a><a href="earnings.html"><span class="ico">↗</span><span>Earnings</span></a><a href="withdrawal.html"><span class="ico">৳</span><span>Withdraw</span></a></nav>
 <main><div class="eyebrow">JIBOFY MEMBER AREA</div><h1>Workspace</h1><p class="muted">Browse sponsor campaigns and other opportunities. Campaign rewards are checked by the server before crediting.</p>
