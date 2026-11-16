@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JIBOFY — Campaign Management</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f8fafc;font-family:Arial,sans-serif}.top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px clamp(16px,5vw,64px);border-bottom:1px solid #ffffff20;background:#10182b}.brand{font-size:23px;font-weight:800;color:#c4b5fd}.top a,.top button{color:#e9ddff;text-decoration:none;background:#26334d;border:1px solid #ffffff20;border-radius:9px;padding:10px 14px;cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:34px 18px 70px}.eyebrow{font-size:11px;letter-spacing:2px;color:#a78bfa;font-weight:bold}h1{font-size:36px;margin:10px 0}.muted{color:#aebbd0;line-height:1.6}.grid{display:grid;grid-template-columns:minmax(300px,.85fr) 1.4fr;gap:20px;margin-top:24px}.panel{background:#151f34;border:1px solid #ffffff18;border-radius:17px;padding:22px;min-width:0}.panel h2{font-size:20px;margin:0 0 18px}.field{margin:13px 0}.field label{display:block;color:#d7def0;font-size:13px;font-weight:bold;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;background:#0b1426;color:white;border:1px solid #34415b;border-radius:9px;padding:12px;font:inherit}.field textarea{min-height:85px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer}.primary{background:linear-gradient(100deg,#7c3aed,#5b5bd6);color:#fff}.secondary{background:#293750;color:#e5e7eb;border:1px solid #ffffff20}.danger{background:#542b3a;color:#ffdbe4;border:1px solid #a34c65}.btn:disabled{opacity:.55;cursor:wait}.message{font-size:13px;line-height:1.5;margin-top:12px;color:#c4b5fd;overflow-wrap:anywhere}.campaign{padding:16px 0;border-bottom:1px solid #ffffff16}.campaign:last-child{border:0}.campaign-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.campaign h3{margin:0 0 7px;font-size:17px}.meta{font-size:12px;color:#aebbd0;line-height:1.7}.pill{display:inline-block;border-radius:30px;padding:5px 9px;background:#26334d;color:#d8ccff;font-size:11px;font-weight:bold}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.empty{padding:22px;border:1px dashed #ffffff30;border-radius:12px;color:#aebbd0}.note{font-size:12px;color:#8996ad;margin-top:18px;line-height:1.6}.hidden{display:none!important}.withdrawal-request{padding:17px 0;border-bottom:1px solid #ffffff18}.withdrawal-request:last-child{border:0}.withdrawal-request h3{margin:0 0 8px;font-size:16px}.withdrawal-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;margin:12px 0}.withdrawal-stat{background:#0b1426;border:1px solid #ffffff12;border-radius:9px;padding:10px}.withdrawal-stat span{display:block;color:#aebbd0;font-size:11px;margin-bottom:5px}.withdrawal-stat strong{font-size:15px}.withdrawal-meta{font-size:12px;color:#aebbd0;line-height:1.7;overflow-wrap:anywhere}@media(max-width:850px){.grid{grid-template-columns:1fr}}@media(max-width:520px){h1{font-size:29px}.panel{padding:17px}.two{grid-template-columns:1fr}.top{padding:14px}.brand{font-size:19px}}
+.withdrawal-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;margin:12px 0}.withdrawal-stat{background:#0b1426;border:1px solid #ffffff12;border-radius:9px;padding:10px}.withdrawal-stat span{display:block;color:#aebbd0;font-size:11px;margin-bottom:5px}.withdrawal-stat strong{font-size:15px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}.nav a{padding:11px 15px;border-radius:10px;background:#1b2942;border:1px solid #ffffff20;color:#dbeafe;text-decoration:none;font-size:14px}.nav a.active{background:#6d4bd1;color:#fff;border-color:#9b83ee}.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px}.stat-card{background:#151f34;border:1px solid #ffffff18;border-radius:14px;padding:18px}.stat-card span{display:block;color:#aebbd0;font-size:12px;margin-bottom:9px}.stat-card strong{font-size:25px}
+</style></head><body>
+<header class="top"><div class="brand">JIBOFY <span style="font-size:11px;color:#aebbd0;font-weight:600">ADMIN</span></div><div style="display:flex;gap:8px"><a href="dashboard.html">Member site</a><button id="logout">Sign out</button></div></header>
+<main class="wrap"><div class="eyebrow">CONTROL CENTER</div><h1>Campaign Management</h1>
+<nav class="nav"><a class="" href="admin.html">Overview</a><a class="active" href="admin-campaigns.html">Campaigns</a><a class="" href="admin-members.html">Members</a><a class="" href="admin-withdrawals.html">Withdrawals</a></nav>
+<div id="loading" class="empty">Checking administrator access…</div><div id="app" class="hidden"><div class="grid">
+<section class="panel">
+<h2>Create advertising campaign</h2>
+<form id="campaign-form">
+<div class="field"><label for="title">Campaign title *</label><input id="title" maxlength="140" required placeholder="Example: Visit sponsor website"></div>
+<div class="field"><label for="description">Description</label><textarea id="description" maxlength="2000" placeholder="Explain the campaign to members"></textarea></div>
+<div class="field"><label for="ad_type">Campaign type</label><select id="ad_type"><option value="website">Website</option><option value="image">Image</option><option value="video">Video</option></select></div>
+<div class="field"><label for="destination_url">Destination URL</label><input id="destination_url" type="url" placeholder="https://example.com"></div>
+<div class="field"><label for="media_url">Image / video URL (optional)</label><input id="media_url" type="url" placeholder="https://example.com/media.jpg"></div>
+<div class="two">
+<div class="field"><label for="reward">Member reward (BDT) *</label><input id="reward" type="number" min="0" step="0.01" value="0.30" required></div>
+<div class="field"><label for="duration">Duration (seconds)</label><input id="duration" type="number" min="1" max="3600" value="30" required></div>
+</div>
+<div class="two">
+<div class="field"><label for="daily_limit">Daily limit per member</label><input id="daily_limit" type="number" min="1" max="100" value="1" required></div>
+<div class="field"><label for="status">Initial status</label><select id="status"><option value="draft">Draft</option><option value="active">Active</option></select></div>
+</div>
+<button class="btn primary" id="create-btn" type="submit">Create campaign</button>
+<p class="note">Only publish campaigns that have sponsor approval and a confirmed reward budget. Ad-network ads that prohibit incentivized traffic must not be used as rewarded campaigns.</p>
+<div id="form-message" class="message" role="status"></div>
+</form>
+</section>
+<section class="panel">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h2 style="margin-bottom:0">Campaigns</h2><button class="btn secondary" id="refresh">Refresh</button></div>
+<p class="muted" style="font-size:13px;margin:8px 0 12px">Review your saved campaigns. Draft campaigns are not shown to members.</p>
+<div id="campaign-list"><div class="empty">Loading campaigns…</div></div>
+<div id="list-message" class="message" role="status"></div>
+</section>
+</div></div></main>
+<script>
+(()=>{const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");const $=id=>document.getElementById(id);const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+async function init(){const {data:{session},error:se}=await db.auth.getSession();if(se||!session){location.replace("account.html");return}const {data:p,error}=await db.from("profiles").select("role").eq("id",session.user.id).single();if(error||p?.role!=="admin"){$("loading").textContent="Access denied. This page is only available to JIBOFY administrators.";return}$("loading").classList.add("hidden");$("app").classList.remove("hidden");async function loadCampaigns(){
+ $("campaign-list").innerHTML='<div class="empty">Loading campaigns…</div>';$("list-message").textContent="";
+ const {data,error}=await db.from("ad_campaigns").select("id,title,description,ad_type,destination_url,media_url,reward,duration_seconds,daily_limit,status,created_at").order("created_at",{ascending:false});
+ if(error){$("campaign-list").innerHTML='<div class="empty">Could not load campaigns: '+esc(error.message)+'</div>';return}
+ campaigns=data||[];
+ if(!campaigns.length){$("campaign-list").innerHTML='<div class="empty">No campaigns yet. Create your first campaign using the form.</div>';return}
+ $("campaign-list").innerHTML=campaigns.map(c=>'<article class="campaign"><div class="campaign-head"><div><h3>'+esc(c.title)+'</h3><div class="meta">'+esc(c.ad_type)+' · Reward: ৳'+esc(c.reward)+' · '+esc(c.duration_seconds)+' sec · Daily limit: '+esc(c.daily_limit)+'</div></div><span class="pill">'+esc(c.status)+'</span></div>'+(c.description?'<p class="muted" style="font-size:13px;margin:8px 0">'+esc(c.description)+'</p>':'')+(c.destination_url?'<div class="meta">Destination: '+esc(c.destination_url)+'</div>':'')+'<div class="actions">'+(c.status==="active"?'<button class="btn secondary" data-action="pause" data-id="'+esc(c.id)+'">Pause</button>':'<button class="btn primary" data-action="activate" data-id="'+esc(c.id)+'">Activate</button>')+'<button class="btn danger" data-action="delete" data-id="'+esc(c.id)+'">Delete</button></div></article>').join("");
+ $("campaign-list").querySelectorAll("button[data-action]").forEach(b=>b.addEventListener("click",()=>changeCampaign(b.dataset.id,b.dataset.action)));
+}
+async function changeCampaign(id,action){
+ const c=campaigns.find(x=>String(x.id)===String(id));if(!c)return;
+ if(action==="delete"&&!confirm('Delete campaign "'+c.title+'"? This cannot be undone.'))return;
+ if(action==="activate"){const url=String(c.destination_url||"").trim();if(!/^https?:\/\//i.test(url)){ $("list-message").textContent="Cannot activate: add a valid sponsor destination URL first.";return }if(!(Number(c.reward)>0)||!(Number(c.duration_seconds)>0)||!(Number(c.daily_limit)>0)){ $("list-message").textContent="Cannot activate: reward, duration and daily limit must be greater than zero.";return }if(!confirm('Activate "'+c.title+'"? Confirm that the sponsor approved this campaign and the reward budget is available.'))return}
+ const patch=action==="pause"?{status:"paused"}:action==="activate"?{status:"active"}:null;
+ $("list-message").textContent="Saving…";
+ let result;
+ if(action==="delete")result=await db.from("ad_campaigns").delete().eq("id",id);
+ else result=await db.from("ad_campaigns").update(patch).eq("id",id);
+ if(result.error){$("list-message").textContent="Action failed: "+result.error.message;return}
+ $("list-message").textContent="Campaign updated.";
+ await loadCampaigns();
+}
+$("campaign-form").addEventListener("submit",async e=>{
+ e.preventDefault();const btn=$("create-btn");btn.disabled=true;$("form-message").textContent="Creating campaign…";
+ const payload={title:$("title").value.trim(),description:$("description").value.trim()||null,ad_type:$("ad_type").value,destination_url:$("destination_url").value.trim()||null,media_url:$("media_url").value.trim()||null,reward:Number($("reward").value),duration_seconds:Number($("duration").value),daily_limit:Number($("daily_limit").value),status:$("status").value};
+ if(!payload.title||!Number.isFinite(payload.reward)||payload.reward<=0||payload.duration_seconds<1||payload.daily_limit<1){$("form-message").textContent="Please enter a title, a reward greater than zero, a valid duration and a daily limit.";btn.disabled=false;return}
+ if(payload.status==="active"&&!/^https?:\/\//i.test(payload.destination_url||"")){$("form-message").textContent="An active campaign must have a valid sponsor destination URL.";btn.disabled=false;return}
+ const {error}=await db.from("ad_campaigns").insert(payload);
+ btn.disabled=false;
+ if(error){$("form-message").textContent="Could not create campaign: "+error.message;return}
+ $("campaign-form").reset();$("reward").value="0.30";$("duration").value="30";$("daily_limit").value="1";$("form-message").textContent="Campaign created successfully.";
+ await loadCampaigns();
+});
+$("refresh").addEventListener("click",loadCampaigns);await loadCampaigns();}
+$("logout").addEventListener("click",async()=>{await db.auth.signOut();location.replace("account.html")});init();
+})();
+</script></body></html>
