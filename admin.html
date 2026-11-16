@@ -72,6 +72,7 @@ async function loadCampaigns(){
 async function changeCampaign(id,action){
  const c=campaigns.find(x=>String(x.id)===String(id));if(!c)return;
  if(action==="delete"&&!confirm('Delete campaign "'+c.title+'"? This cannot be undone.'))return;
+ if(action==="activate"){const url=String(c.destination_url||"").trim();if(!/^https?:\/\//i.test(url)){ $("list-message").textContent="Cannot activate: add a valid sponsor destination URL first.";return }if(!(Number(c.reward)>0)||!(Number(c.duration_seconds)>0)||!(Number(c.daily_limit)>0)){ $("list-message").textContent="Cannot activate: reward, duration and daily limit must be greater than zero.";return }if(!confirm('Activate "'+c.title+'"? Confirm that the sponsor approved this campaign and the reward budget is available.'))return}
  const patch=action==="pause"?{status:"paused"}:action==="activate"?{status:"active"}:null;
  $("list-message").textContent="Saving…";
  let result;
@@ -84,7 +85,8 @@ async function changeCampaign(id,action){
 $("campaign-form").addEventListener("submit",async e=>{
  e.preventDefault();const btn=$("create-btn");btn.disabled=true;$("form-message").textContent="Creating campaign…";
  const payload={title:$("title").value.trim(),description:$("description").value.trim()||null,ad_type:$("ad_type").value,destination_url:$("destination_url").value.trim()||null,media_url:$("media_url").value.trim()||null,reward:Number($("reward").value),duration_seconds:Number($("duration").value),daily_limit:Number($("daily_limit").value),status:$("status").value};
- if(!payload.title||!Number.isFinite(payload.reward)||payload.reward<0||payload.duration_seconds<1||payload.daily_limit<1){$("form-message").textContent="Please check the required values.";btn.disabled=false;return}
+ if(!payload.title||!Number.isFinite(payload.reward)||payload.reward<=0||payload.duration_seconds<1||payload.daily_limit<1){$("form-message").textContent="Please enter a title, a reward greater than zero, a valid duration and a daily limit.";btn.disabled=false;return}
+ if(payload.status==="active"&&!/^https?:\/\//i.test(payload.destination_url||"")){$("form-message").textContent="An active campaign must have a valid sponsor destination URL.";btn.disabled=false;return}
  const {error}=await db.from("ad_campaigns").insert(payload);
  btn.disabled=false;
  if(error){$("form-message").textContent="Could not create campaign: "+error.message;return}
