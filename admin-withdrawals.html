@@ -49,6 +49,23 @@ body.jf-dark :where(.secondary,.btn-secondary){color:#d6e7ff!important;backgroun
 body.jf-dark :where(button,.btn,.primary,.start-campaign,.complete-campaign,.btn-primary){color:#fff!important}
 body.jf-dark :where(.danger){color:#ffc9c9!important;background:#512d31!important}
 
+
+/* Admin navigation: guaranteed readable tab contrast */
+.top a{display:inline-flex!important;align-items:center!important;justify-content:center!important;background:#e7f3ff!important;color:#145dbf!important;border:1px solid #cfe3ff!important;border-radius:8px!important;padding:10px 15px!important;font-weight:700!important}
+.top a:hover{background:#d7eaff!important;color:#104b99!important}
+.top button{background:#1877f2!important;color:#fff!important;border:1px solid #1877f2!important;border-radius:8px!important}
+.nav{background:#fff!important;padding:6px!important;gap:8px!important;border:1px solid #dddfe2!important;border-radius:10px!important}
+.nav a,.nav a:link,.nav a:visited,.nav a:not(.active){background:#e7f3ff!important;color:#145dbf!important;border:1px solid #cfe3ff!important;border-radius:9px!important;padding:11px 18px!important;font-weight:700!important;text-decoration:none!important}
+.nav a:hover{background:#d7eaff!important;color:#104b99!important}
+.nav a.active,.nav a.active:link,.nav a.active:visited{background:#1877f2!important;color:#fff!important;border-color:#1877f2!important}
+body.jf-dark .nav{background:#242526!important;border-color:#3e4042!important}
+body.jf-dark .nav a,body.jf-dark .nav a:link,body.jf-dark .nav a:visited,body.jf-dark .nav a:not(.active){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+body.jf-dark .nav a:hover{background:#4b4d50!important;color:#fff!important}
+body.jf-dark .nav a.active,body.jf-dark .nav a.active:link,body.jf-dark .nav a.active:visited{background:#2d88ff!important;color:#fff!important;border-color:#2d88ff!important}
+body.jf-dark .top a{background:#263951!important;color:#d6e7ff!important;border-color:#3c5674!important}
+body.jf-dark .top button{background:#2d88ff!important;color:#fff!important;border-color:#2d88ff!important}
+@media(max-width:700px){.nav a,.nav a:not(.active){padding:9px 12px!important}}
+
 </style></head><body>
 <button id="jf-theme-toggle" type="button" aria-label="Switch color theme">🌙 Dark mode</button><script>(()=>{const k="jibofy-theme";let t="light";try{t=localStorage.getItem(k)||"light"}catch(e){}const b=document.body,btn=document.getElementById("jf-theme-toggle");function apply(){b.classList.toggle("jf-dark",t==="dark");btn.textContent=t==="dark"?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(t==="dark"))}btn.addEventListener("click",()=>{t=t==="dark"?"light":"dark";try{localStorage.setItem(k,t)}catch(e){}apply()});apply()})();</script>
 <header class="top"><div class="brand">JIBOFY <span style="font-size:11px;color:#aebbd0;font-weight:600">ADMIN</span></div><div style="display:flex;gap:8px"><a href="dashboard.html">Member site</a><button id="logout">Sign out</button></div></header>
