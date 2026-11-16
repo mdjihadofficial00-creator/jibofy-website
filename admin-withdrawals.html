@@ -66,6 +66,26 @@ body.jf-dark .top a{background:#263951!important;color:#d6e7ff!important;border-
 body.jf-dark .top button{background:#2d88ff!important;color:#fff!important;border-color:#2d88ff!important}
 @media(max-width:700px){.nav a,.nav a:not(.active){padding:9px 12px!important}}
 
+
+/* Withdrawal member details: readable text on white cards */
+.withdrawal-request{background:#fff!important;color:#1c1e21!important}
+.withdrawal-request h3{color:#1c1e21!important}
+.withdrawal-request .withdrawal-meta,
+.withdrawal-request .withdrawal-meta strong{color:#50545a!important;opacity:1!important}
+.withdrawal-request .withdrawal-stats .withdrawal-stat{background:#f0f2f5!important;border:1px solid #dddfe2!important}
+.withdrawal-request .withdrawal-stat span{color:#50545a!important;opacity:1!important;font-weight:600!important}
+.withdrawal-request .withdrawal-stat strong{color:#1c1e21!important}
+.withdrawal-request .pill{background:#e7f3ff!important;color:#145dbf!important}
+.withdrawal-request .actions .primary{background:#1877f2!important;color:#fff!important}
+body.jf-dark .withdrawal-request{background:#242526!important;color:#e4e6eb!important}
+body.jf-dark .withdrawal-request h3,
+body.jf-dark .withdrawal-request .withdrawal-meta,
+body.jf-dark .withdrawal-request .withdrawal-meta strong{color:#e4e6eb!important}
+body.jf-dark .withdrawal-request .withdrawal-stats .withdrawal-stat{background:#3a3b3c!important;border-color:#55585c!important}
+body.jf-dark .withdrawal-request .withdrawal-stat span{color:#c2c6cc!important}
+body.jf-dark .withdrawal-request .withdrawal-stat strong{color:#fff!important}
+body.jf-dark .withdrawal-request .pill{background:#263951!important;color:#b9d8ff!important}
+
 </style></head><body>
 <button id="jf-theme-toggle" type="button" aria-label="Switch color theme">🌙 Dark mode</button><script>(()=>{const k="jibofy-theme";let t="light";try{t=localStorage.getItem(k)||"light"}catch(e){}const b=document.body,btn=document.getElementById("jf-theme-toggle");function apply(){b.classList.toggle("jf-dark",t==="dark");btn.textContent=t==="dark"?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(t==="dark"))}btn.addEventListener("click",()=>{t=t==="dark"?"light":"dark";try{localStorage.setItem(k,t)}catch(e){}apply()});apply()})();</script>
 <header class="top"><div class="brand">JIBOFY <span style="font-size:11px;color:#aebbd0;font-weight:600">ADMIN</span></div><div style="display:flex;gap:8px"><a href="dashboard.html">Member site</a><button id="logout">Sign out</button></div></header>
