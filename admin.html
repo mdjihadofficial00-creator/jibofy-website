@@ -46,6 +46,16 @@
 </div>
 <section class="panel" style="margin-top:22px">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+<h2 style="margin:0">Member Directory &amp; Earnings</h2>
+<button class="btn secondary" id="refresh-members" type="button">Refresh Members</button>
+</div>
+<p class="muted" style="font-size:13px;margin:8px 0 12px">Search members by name, 8-digit Member ID, phone number or email. Review task counts and wallet balance.</p>
+<div class="field"><label for="member-search">Search members</label><input id="member-search" type="search" placeholder="Name, Member ID, phone or email"></div>
+<div id="member-directory"><div class="empty">Member list will load here.</div></div>
+<div id="member-directory-message" class="message" role="status"></div>
+</section>
+<section class="panel" style="margin-top:22px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
 <h2 style="margin:0">Member Withdrawal Requests</h2>
 <button class="btn secondary" id="refresh-withdrawals" type="button">Refresh Requests</button>
 </div>
@@ -69,6 +79,7 @@ async function init(){
  if(error||!profile||profile.role!=="admin"){$("loading").textContent="Access denied. This page is only available to JIBOFY administrators.";return}
  $("loading").classList.add("hidden");$("app").classList.remove("hidden");
  await loadCampaigns();
+ await loadMemberDirectory();
  await loadWithdrawalRequests();
 }
 async function loadCampaigns(){
