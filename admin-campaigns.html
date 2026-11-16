@@ -38,6 +38,7 @@
 </div></div></main>
 <script>
 (()=>{const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");const $=id=>document.getElementById(id);const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let campaigns=[],memberSummaries=[];
 async function init(){const {data:{session},error:se}=await db.auth.getSession();if(se||!session){location.replace("account.html");return}const {data:p,error}=await db.from("profiles").select("role").eq("id",session.user.id).single();if(error||p?.role!=="admin"){$("loading").textContent="Access denied. This page is only available to JIBOFY administrators.";return}$("loading").classList.add("hidden");$("app").classList.remove("hidden");async function loadCampaigns(){
  $("campaign-list").innerHTML='<div class="empty">Loading campaigns…</div>';$("list-message").textContent="";
  const {data,error}=await db.from("ad_campaigns").select("id,title,description,ad_type,destination_url,media_url,reward,duration_seconds,daily_limit,status,created_at").order("created_at",{ascending:false});
