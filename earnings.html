@@ -214,17 +214,20 @@ body.jf-dark :where(.secondary,.btn-secondary){color:#d6e7ff!important;backgroun
 body.jf-dark :where(button,.btn,.primary,.start-campaign,.complete-campaign,.btn-primary){color:#fff!important}
 body.jf-dark :where(.danger){color:#ffc9c9!important;background:#512d31!important}
 
+
+/* Unified member top navigation and quick search */
+.member-shell{position:sticky;top:0;z-index:1000;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px clamp(14px,4vw,48px);background:var(--jf-card,#fff);border-bottom:1px solid var(--jf-line,#dddfe2);box-shadow:0 2px 8px rgba(0,0,0,.08)}.member-brand{flex:0 0 auto;color:#1877f2!important;text-decoration:none;font-size:24px;font-weight:800;letter-spacing:-.6px}.member-shell .jibofy-member-tabs,.member-shell .nav{display:flex;align-items:center;gap:5px;flex:0 1 auto;margin:0;padding:0;background:transparent!important;border:0!important;box-shadow:none!important;min-width:0}.member-shell .jibofy-member-tabs a,.member-shell .nav a{display:flex;align-items:center;gap:7px;white-space:nowrap;padding:10px 12px;border-radius:9px;color:var(--jf-text,#1c1e21)!important;text-decoration:none;font-weight:650}.member-shell .jibofy-member-tabs a:hover,.member-shell .nav a:hover{background:var(--jf-soft,#e7f3ff)!important;color:#145dbf!important}.member-shell .jibofy-member-tabs a[aria-current=page],.member-shell .nav a.active{background:#1877f2!important;color:#fff!important}.member-search{display:flex;align-items:center;gap:6px;flex:1 1 200px;max-width:320px;min-width:170px;margin-left:auto}.member-search>span{font-size:20px;color:var(--jf-muted,#65676b)}.member-search input{min-width:0;width:100%;height:38px;padding:8px 12px;border:1px solid var(--jf-line,#dddfe2);border-radius:20px;background:var(--jf-bg,#f0f2f5);color:var(--jf-text,#1c1e21)}.member-search button{border:0;border-radius:20px;background:#1877f2;color:#fff;padding:9px 13px;font-weight:700;cursor:pointer}@media(max-width:900px){.member-shell{gap:9px}.member-shell .jibofy-member-tabs,.member-shell .nav{order:3;flex:1 0 100%;overflow-x:auto}.member-search{margin-left:auto;max-width:none;flex:1 1 200px}}@media(max-width:520px){.member-shell{padding:9px 10px}.member-brand{font-size:21px}.member-search{order:4;flex:1 0 100%;max-width:none}.member-shell .jibofy-member-tabs a,.member-shell .nav a{padding:9px 10px;font-size:12px}}
 </style>
 </head>
 <body data-page="earnings">
 <button id="jf-theme-toggle" type="button" aria-label="Switch color theme">🌙 Dark mode</button><script>(()=>{const k="jibofy-theme";let t="light";try{t=localStorage.getItem(k)||"light"}catch(e){}const b=document.body,btn=document.getElementById("jf-theme-toggle");function apply(){b.classList.toggle("jf-dark",t==="dark");btn.textContent=t==="dark"?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(t==="dark"))}btn.addEventListener("click",()=>{t=t==="dark"?"light":"dark";try{localStorage.setItem(k,t)}catch(e){}apply()});apply()})();</script>
-<div class="jibofy-member-tabs" aria-label="Member navigation">
+<header class="member-shell"><a class="member-brand" href="dashboard.html">JIBOFY</a><nav class="jibofy-member-tabs" aria-label="Member navigation">
 <a href="dashboard.html" data-tab="dashboard"><span class="tab-icon">⌂</span><span>Home</span></a>
 <a href="tasks.html" data-tab="tasks"><span class="tab-icon">✓</span><span>Workspace</span></a>
 <a href="profile.html" data-tab="profile"><span class="tab-icon">◎</span><span>Profile</span></a>
 <a href="earnings.html" data-tab="earnings"><span class="tab-icon">↗</span><span>Earnings</span></a>
 <a href="withdrawal.html" data-tab="withdrawal"><span class="tab-icon">৳</span><span>Withdraw</span></a>
-</div>
+</nav><form class="member-search" action="tasks.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search tasks" aria-label="Search tasks"><button type="submit">Search</button></form></header>
 
 <main id="home-screen" class="app-screen is-active">
 <section class="hero" id="home">
