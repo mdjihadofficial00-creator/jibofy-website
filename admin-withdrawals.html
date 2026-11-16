@@ -24,6 +24,31 @@ body.jf-dark{--jf-bg:#18191a;--jf-card:#242526;--jf-text:#e4e6eb;--jf-muted:#b0b
 body.jf-dark .hero{background:#242526!important}body.jf-dark .hero h1,body.jf-dark .hero h2,body.jf-dark .hero p{color:#e4e6eb!important}body.jf-dark input,body.jf-dark select,body.jf-dark textarea{border-color:#55585c!important}body.jf-dark .secondary,body.jf-dark button.secondary,body.jf-dark .btn-secondary{border-color:#34465b!important}body.jf-dark #jf-theme-toggle{background:#3a3b3c!important;color:#e4e6eb!important}
 @media(max-width:700px){#jf-theme-toggle{right:12px!important;bottom:12px!important;padding:10px 14px!important}.dashboard{padding-left:12px!important;padding-right:12px!important}.dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}}
 
+
+/* Accessibility contrast correction */
+:root{--jf-readable:#1c1e21;--jf-secondary:#50545a}
+body{color:var(--jf-readable)!important}
+body :where(h1,h2,h3,h4,h5,h6,strong,b,.profile-title,.summary-heading,.brand){color:var(--jf-readable)!important}
+body :where(p,li,small,label,.sub,.muted,.note,.meta,.empty,.message,.auth-note,.profile-meta,.profile-subtitle,.edit-hint,.footer-description,.copyright,.eyebrow,.summary-kicker){color:var(--jf-secondary)!important}
+body :where(.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.dialog,.modal,.withdrawal-request,.withdrawal-stat,.hero,.dashboard-top){color:var(--jf-readable)!important}
+body :where(button,.btn,.primary,.start-campaign,.complete-campaign,.btn-primary){color:#fff!important}
+body :where(.secondary,.btn-secondary){color:#1457ad!important}
+body :where(input,select,textarea){color:#1c1e21!important;background:#fff!important}
+body :where(input,select,textarea)::placeholder{color:#65676b!important;opacity:1}
+body :where(a){color:#145dbf}
+body :where(.tag,.pill,.state){color:#1457ad!important;background:#e7f3ff!important}
+body :where(.danger){color:#a61b1b!important}
+body.jf-dark :where(h1,h2,h3,h4,h5,h6,strong,b,.profile-title,.summary-heading,.brand){color:#e4e6eb!important}
+body.jf-dark :where(p,li,small,label,.sub,.muted,.note,.meta,.empty,.message,.auth-note,.profile-meta,.profile-subtitle,.edit-hint,.footer-description,.copyright,.eyebrow,.summary-kicker){color:#c2c6cc!important}
+body.jf-dark :where(.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.dialog,.modal,.withdrawal-request,.withdrawal-stat,.hero,.dashboard-top){color:#e4e6eb!important}
+body.jf-dark :where(input,select,textarea){color:#e4e6eb!important;background:#3a3b3c!important;border-color:#606368!important}
+body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
+body.jf-dark :where(a){color:#78b5ff}
+body.jf-dark :where(.tag,.pill,.state){color:#b9d8ff!important;background:#263951!important}
+body.jf-dark :where(.secondary,.btn-secondary){color:#d6e7ff!important;background:#34465b!important;border-color:#4b6079!important}
+body.jf-dark :where(button,.btn,.primary,.start-campaign,.complete-campaign,.btn-primary){color:#fff!important}
+body.jf-dark :where(.danger){color:#ffc9c9!important;background:#512d31!important}
+
 </style></head><body>
 <button id="jf-theme-toggle" type="button" aria-label="Switch color theme">🌙 Dark mode</button><script>(()=>{const k="jibofy-theme";let t="light";try{t=localStorage.getItem(k)||"light"}catch(e){}const b=document.body,btn=document.getElementById("jf-theme-toggle");function apply(){b.classList.toggle("jf-dark",t==="dark");btn.textContent=t==="dark"?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(t==="dark"))}btn.addEventListener("click",()=>{t=t==="dark"?"light":"dark";try{localStorage.setItem(k,t)}catch(e){}apply()});apply()})();</script>
 <header class="top"><div class="brand">JIBOFY <span style="font-size:11px;color:#aebbd0;font-weight:600">ADMIN</span></div><div style="display:flex;gap:8px"><a href="dashboard.html">Member site</a><button id="logout">Sign out</button></div></header>
