@@ -135,54 +135,75 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
 
 
 
-/* JIBOFY clean professional UI — high contrast, clear hierarchy */
-:root{--jf-bg:#f3f6fb;--jf-white:#fff;--jf-ink:#172338;--jf-body:#344256;--jf-muted:#65748a;--jf-line:#dce4ef;--jf-blue:#2457d6;--jf-blue-hover:#1947b8;--jf-blue-soft:#eaf1ff;--jf-green:#18794e;--jf-green-soft:#e8f5ee;--jf-red:#b42318;--jf-shadow:0 5px 18px rgba(23,35,56,.07);--jf-radius:16px}
-html{scroll-behavior:smooth}
-body{background:var(--jf-bg)!important;color:var(--jf-body)!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;line-height:1.6}
-h1,h2,h3,h4,h5,h6,strong,b{color:var(--jf-ink)}
-p{color:var(--jf-body)}
-.logo,.brand,.footer-brand{color:#fff!important;font-weight:800;letter-spacing:.02em}
-nav,.nav{background:#fff!important;border-bottom:1px solid var(--jf-line)!important;box-shadow:0 2px 10px rgba(23,35,56,.05)!important}
-nav a,.nav a{color:#344256!important;font-weight:600}
-nav a:hover,.nav a:hover{color:var(--jf-blue)!important}
-.top{background:#172338!important;border-bottom:1px solid #26364f!important;box-shadow:0 3px 14px rgba(23,35,56,.12)!important}
-.top a,.top button{color:#fff!important;background:#263b5b!important;border:1px solid #3a5070!important}
-.hero{background:linear-gradient(135deg,#eaf1ff 0%,#f8faff 100%)!important;border:1px solid #d7e4ff!important;border-radius:24px!important}
-.hero h1,.hero h2,.hero h1 span{color:#172338!important}
-.hero p{color:#46566d!important}
-.tag,.eyebrow,.summary-kicker{color:#2457d6!important}
-.tag{background:#fff!important;border:1px solid #cbdafa!important}
-.features,.cta{background:transparent!important;color:var(--jf-ink)!important}
-.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.dialog{
- background:#fff!important;color:var(--jf-body)!important;border:1px solid var(--jf-line)!important;border-radius:var(--jf-radius)!important;box-shadow:var(--jf-shadow)!important
+
+/* JIBOFY Midnight Navy + Soft Lilac — consistent design system */
+:root{
+ --jf-bg:#F7F6FA;
+ --jf-surface:#FFFFFF;
+ --jf-lilac:#E6E1F5;
+ --jf-lilac-soft:#F0EDFA;
+ --jf-navy:#1E1B4B;
+ --jf-indigo:#4F46E5;
+ --jf-text:#17153B;
+ --jf-muted:#6B7280;
+ --jf-line:#EAE8F0;
+ --jf-shadow:0 4px 18px rgba(0,0,0,.05);
+ --jf-radius:15px;
 }
-.app-screen{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important}
-.card h1,.card h2,.card h3,.panel h1,.panel h2,.panel h3,.task h1,.task h2,.task h3,.campaign h1,.campaign h2,.campaign h3,.auth-card h1,.auth-card h2,.auth-card h3,.dialog h1,.dialog h2,.dialog h3{color:var(--jf-ink)!important}
-.card p,.panel p,.task p,.campaign p,.auth-card p,.dialog p,.meta,.profile-meta,.profile-subtitle,.edit-hint,.note,.muted,.sub,.empty,.state{color:var(--jf-muted)!important}
-.panel label,.auth-card label,.field label,.withdrawal-form label{color:#344256!important;font-weight:650!important}
-.stat span,.stat-card span,.withdrawal-stat span{color:#65748a!important}
-.stat strong,.stat-card strong,.reward,.summary-heading{color:var(--jf-green)!important}
-.btn,.primary,.start-campaign,.complete-campaign,button.primary{background:var(--jf-blue)!important;color:#fff!important;border:1px solid var(--jf-blue)!important;border-radius:10px!important;font-weight:700!important;box-shadow:0 3px 8px rgba(36,87,214,.16)!important}
-.btn:hover,.primary:hover,.start-campaign:hover,.complete-campaign:hover,button.primary:hover{background:var(--jf-blue-hover)!important;color:#fff!important}
-.btn-secondary,.secondary,button.secondary{background:#eef2f7!important;color:#26364d!important;border:1px solid #d7e0eb!important;border-radius:10px!important}
-.danger{background:#fff1f0!important;color:var(--jf-red)!important;border:1px solid #f4c7c3!important;border-radius:10px!important}
-input,select,textarea,.field input,.field select,.field textarea{background:#fff!important;color:#172338!important;border:1px solid #cbd5e1!important;border-radius:9px!important}
-input::placeholder,textarea::placeholder{color:#8794a6!important;opacity:1}
-input:focus,select:focus,textarea:focus{outline:3px solid #dbe7ff!important;border-color:#2457d6!important}
+html{scroll-behavior:smooth}
+body{background:var(--jf-bg)!important;color:var(--jf-text)!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;line-height:1.6}
+h1,h2,h3,h4,h5,h6,strong,b{color:var(--jf-text)}
+p{color:#34324F}
+a{transition:color .18s ease,background .18s ease,border-color .18s ease}
+.logo,.brand,.footer-brand{color:var(--jf-navy)!important;font-weight:800;letter-spacing:.015em}
+nav,.nav,.top,.dashboard-top{background:#fff!important;border-color:var(--jf-line)!important;box-shadow:0 2px 12px rgba(0,0,0,.035)!important}
+nav a,.nav a,.top a{color:#383653!important;font-weight:600}
+nav a:hover,.nav a:hover,.top a:hover{color:var(--jf-indigo)!important}
+.hero{background:linear-gradient(135deg,#F0EDFA 0%,#FFFFFF 100%)!important;border:1px solid #EEEAF8!important;border-radius:22px!important}
+.hero h1,.hero h2,.hero h1 span,.profile-title{color:var(--jf-navy)!important}
+.hero p{color:#55536E!important}
+.tag,.eyebrow,.summary-kicker{color:var(--jf-navy)!important}
+.tag,.pill,.state{background:var(--jf-lilac)!important;color:var(--jf-navy)!important;border:0!important;border-radius:999px!important}
+.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.app-screen,.dialog,.modal,.cta,.features,.dashboard-grid>section{
+ background:var(--jf-surface)!important;color:var(--jf-text)!important;border:1px solid rgba(30,27,75,.045)!important;border-radius:var(--jf-radius)!important;box-shadow:var(--jf-shadow)!important
+}
+.card:hover,.task:hover,.campaign:hover{box-shadow:0 7px 22px rgba(30,27,75,.075)!important;transform:translateY(-1px);transition:transform .2s ease,box-shadow .2s ease}
+.card h1,.card h2,.card h3,.panel h1,.panel h2,.panel h3,.task h1,.task h2,.task h3,.campaign h1,.campaign h2,.campaign h3,.auth-card h1,.auth-card h2,.auth-card h3{color:var(--jf-text)!important}
+.card p,.panel p,.task p,.campaign p,.auth-card p,.meta,.profile-meta,.profile-subtitle,.edit-hint,.note,.muted,.sub,.empty,.state{color:var(--jf-muted)!important}
+.btn,.primary,.start-campaign,.complete-campaign,button.primary{background:var(--jf-navy)!important;color:#fff!important;border:1px solid var(--jf-navy)!important;border-radius:12px!important;font-weight:700!important;box-shadow:0 3px 9px rgba(30,27,75,.12)!important}
+.btn:hover,.primary:hover,.start-campaign:hover,.complete-campaign:hover,button.primary:hover{background:var(--jf-indigo)!important;border-color:var(--jf-indigo)!important;color:#fff!important}
+.btn-secondary,.secondary,button.secondary{background:var(--jf-lilac-soft)!important;color:var(--jf-navy)!important;border:1px solid #E6E1F5!important;border-radius:12px!important}
+.danger{background:#FFF1F2!important;color:#A61B36!important;border:1px solid #F7D8DE!important;border-radius:12px!important}
+input,select,textarea,.field input,.field select,.field textarea{background:#fff!important;color:var(--jf-text)!important;border:1px solid #DEDCE8!important;border-radius:10px!important}
+input::placeholder,textarea::placeholder{color:#9291A2!important;opacity:1}
+input:focus,select:focus,textarea:focus{outline:3px solid #E6E1F5!important;border-color:var(--jf-indigo)!important}
+label,.field label,.withdrawal-form label{color:#393751!important;font-weight:600!important}
+.stat span,.stat-card span,.withdrawal-stat span{color:var(--jf-muted)!important}
+.stat strong,.stat-card strong,.reward,.summary-heading{color:var(--jf-navy)!important}
+.filters button{background:#fff!important;color:#393751!important;border:1px solid var(--jf-line)!important;border-radius:999px!important}
+.filters button.active{background:var(--jf-navy)!important;color:#fff!important;border-color:var(--jf-navy)!important}
 .profile-head{border-bottom:1px solid var(--jf-line)!important}
-.avatar{border-color:#c7d7fa!important;box-shadow:0 3px 10px rgba(36,87,214,.12)!important}
+.avatar{border-color:var(--jf-lilac)!important;box-shadow:0 3px 10px rgba(30,27,75,.08)!important}
 .dashboard{background:var(--jf-bg)!important}
-.dashboard-top{background:#172338!important;color:#fff!important;border:1px solid #26364f!important;border-radius:18px!important;box-shadow:var(--jf-shadow)!important}
-.dashboard-top h2,.dashboard-top h3,.dashboard-top p,.dashboard-top .tag{color:#fff!important}
-.stat,.stat-card{background:#fff!important}
-.stat-grid{gap:14px}
-.pill{background:#edf2f8!important;color:#344256!important;border-radius:999px!important}
-.state{background:#fff!important;border:1px dashed #b9c7d8!important}
-.filters button{background:#fff!important;color:#344256!important;border:1px solid #d6dfeb!important}
-.filters button.active{background:var(--jf-blue)!important;color:#fff!important;border-color:var(--jf-blue)!important}
-footer{background:#172338!important;color:#d5deea!important;border-color:#26364f!important}
-footer p,footer span,.footer-description,.copyright{color:#c1ccda!important}
-@media(max-width:700px){nav{height:auto!important;min-height:60px;padding:12px 15px!important;gap:8px;flex-wrap:wrap}nav a{margin:0 8px 0 0!important;font-size:13px!important}.nav{gap:3px!important;padding:7px!important;min-height:58px!important;flex-wrap:wrap}.nav a{min-width:42%!important;max-width:none!important;padding:9px 5px!important;font-size:12px!important}.dashboard{padding:30px 14px 50px!important}.dashboard-top{padding:18px!important}.dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}.hero{padding:55px 18px!important}.auth-card,.panel,.card,.task{padding:18px!important}.withdrawal-fields{grid-template-columns:1fr!important}.withdrawal-account{grid-column:auto!important}}
+.dashboard-top{background:#fff!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:16px!important;box-shadow:var(--jf-shadow)!important}
+.dashboard-top h2,.dashboard-top h3{color:var(--jf-navy)!important}
+.dashboard-top p{color:var(--jf-muted)!important}
+footer{background:#fff!important;color:var(--jf-text)!important;border-top:1px solid var(--jf-line)!important}
+footer p,footer span,.footer-description,.copyright{color:var(--jf-muted)!important}
+@media(max-width:700px){
+ nav{height:auto!important;min-height:60px;padding:12px 15px!important;gap:8px;flex-wrap:wrap}
+ nav a{margin:0 8px 0 0!important;font-size:13px!important}
+ .nav{gap:4px!important;padding:8px!important;min-height:58px!important;flex-wrap:wrap}
+ .nav a{min-width:42%!important;max-width:none!important;padding:9px 6px!important;font-size:12px!important}
+ .top{padding:14px 16px!important;flex-wrap:wrap}
+ .dashboard{padding:30px 14px 50px!important}
+ .dashboard-top{padding:18px!important}
+ .dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}
+ .hero{padding:48px 18px!important}
+ .auth-card,.panel,.card,.task{padding:18px!important}
+ .withdrawal-fields{grid-template-columns:1fr!important}
+ .withdrawal-account{grid-column:auto!important}
+}
 
 </style>
 </head>
