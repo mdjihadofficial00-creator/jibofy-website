@@ -4,50 +4,25 @@
 .withdrawal-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;margin:12px 0}.withdrawal-stat{background:#0b1426;border:1px solid #ffffff12;border-radius:9px;padding:10px}.withdrawal-stat span{display:block;color:#aebbd0;font-size:11px;margin-bottom:5px}.withdrawal-stat strong{font-size:15px}
 .nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}.nav a{padding:11px 15px;border-radius:10px;background:#1b2942;border:1px solid #ffffff20;color:#dbeafe;text-decoration:none;font-size:14px}.nav a.active{background:#6d4bd1;color:#fff;border-color:#9b83ee}.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px}.stat-card{background:#151f34;border:1px solid #ffffff18;border-radius:14px;padding:18px}.stat-card span{display:block;color:#aebbd0;font-size:12px;margin-bottom:9px}.stat-card strong{font-size:25px}
 
-/* JIBOFY unified visual refresh — presentation only; business logic unchanged */
-:root{
- --jf-bg:#071321;--jf-surface:#0e2033;--jf-surface2:#122a40;--jf-line:rgba(148,190,213,.17);
- --jf-text:#f2f8fc;--jf-muted:#9db3c5;--jf-cyan:#31d6cf;--jf-blue:#398bff;--jf-green:#a5f36b;
- --jf-shadow:0 18px 50px rgba(0,0,0,.24);--jf-radius:20px;
-}
-html{scroll-behavior:smooth}
-body{background:radial-gradient(ellipse at 12% 0%,rgba(36,133,166,.19),transparent 36%),radial-gradient(ellipse at 90% 15%,rgba(49,214,207,.10),transparent 30%),var(--jf-bg)!important;color:var(--jf-text)!important;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;line-height:1.55}
-a{transition:color .2s ease,background .2s ease,border-color .2s ease}
-.logo,.brand,.footer-brand{color:var(--jf-cyan)!important;letter-spacing:.045em}
-nav,.nav,.top,.dashboard-top{background:rgba(8,24,39,.88)!important;border-color:var(--jf-line)!important;backdrop-filter:blur(16px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
-nav a,.nav a,.top a{color:#c4d7e5!important}
-nav a:hover,.nav a:hover,.top a:hover{color:var(--jf-cyan)!important}
-.hero{position:relative}
-.hero h1,.hero h2,.profile-title{color:#f5fbff}
-.tag,.eyebrow,.summary-kicker{color:var(--jf-cyan)!important}
-.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.app-screen,.dialog,.modal,.cta,.features,.dashboard-grid>section{
- background:linear-gradient(145deg,rgba(18,42,64,.96),rgba(10,29,47,.96))!important;
- border:1px solid var(--jf-line)!important;border-radius:var(--jf-radius)!important;box-shadow:var(--jf-shadow)
-}
-.card:hover,.task:hover,.campaign:hover{border-color:rgba(49,214,207,.42)!important;transform:translateY(-2px);transition:transform .2s ease,border-color .2s ease}
-.btn,.primary,.start-campaign,.complete-campaign,button.primary{
- background:linear-gradient(110deg,var(--jf-blue),var(--jf-cyan))!important;color:#041622!important;border:0!important;border-radius:12px!important;font-weight:800!important;box-shadow:0 8px 24px rgba(49,214,207,.16)
-}
-.btn:hover,.primary:hover,.start-campaign:hover,.complete-campaign:hover,button.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.btn-secondary,.secondary,button.secondary{background:#17344b!important;color:#d9f7f5!important;border:1px solid var(--jf-line)!important;border-radius:12px!important}
-.danger{background:#5a2634!important;color:#ffe5e9!important;border:1px solid rgba(255,110,130,.3)!important;border-radius:11px!important}
-input,select,textarea{background:#081a2a!important;color:var(--jf-text)!important;border:1px solid rgba(148,190,213,.25)!important;border-radius:11px!important}
-input:focus,select:focus,textarea:focus{outline:2px solid rgba(49,214,207,.35)!important;border-color:var(--jf-cyan)!important}
-label,.muted,.sub,.profile-subtitle,.edit-hint,.note,.auth-note{color:var(--jf-muted)!important}
-.stat strong,.stat-card strong,.reward,.summary-heading{color:var(--jf-green)!important}
-.pill,.state,.filters button{border-radius:999px}
-.empty,.message,.dash-message{color:var(--jf-muted)}
-footer{border-color:var(--jf-line)!important}
-@media(max-width:700px){
- nav{height:auto!important;min-height:64px;padding:12px 16px!important;gap:10px;flex-wrap:wrap}
- nav a{margin:0 8px 0 0!important;font-size:13px!important}
- .nav{gap:4px!important;padding:8px!important;min-height:62px!important;flex-wrap:wrap}
- .nav a{min-width:42%!important;max-width:none!important;padding:10px 6px!important;font-size:12px!important}
- .top{padding:14px 16px!important;flex-wrap:wrap}
- .dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}
- .hero{padding-left:18px!important;padding-right:18px!important}
- .auth-card,.panel,.card{padding:18px!important}
-}
+
+/* JIBOFY warm premium refresh — presentation only */
+:root{--jf-bg:#f6f7f2;--jf-paper:#fff;--jf-ink:#26352f;--jf-muted:#78857d;--jf-line:#e7ebe4;--jf-sage:#6f927b;--jf-sage-dark:#42634f;--jf-mint:#eaf2eb;--jf-peach:#f7e7dc;--jf-gold:#d9ad65;--jf-shadow:0 8px 26px rgba(39,59,45,.07);--jf-radius:18px}
+html{scroll-behavior:smooth}body{background:var(--jf-bg)!important;color:var(--jf-ink)!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;line-height:1.6}
+a{transition:color .18s ease,background .18s ease,border-color .18s ease}.logo,.brand,.footer-brand{color:var(--jf-sage-dark)!important;letter-spacing:.035em}
+nav,.nav,.top,.dashboard-top{background:rgba(255,255,255,.94)!important;border-color:var(--jf-line)!important;backdrop-filter:blur(12px);box-shadow:0 3px 16px rgba(39,59,45,.04)}
+nav a,.nav a,.top a{color:#52645a!important}nav a:hover,.nav a:hover,.top a:hover{color:var(--jf-sage-dark)!important}
+.hero{background:linear-gradient(135deg,#edf4ed 0%,#f8f5ef 100%)!important;border:1px solid #e5ece3!important;border-radius:26px!important}.hero h1,.hero h2,.profile-title{color:#263b30!important}.tag,.eyebrow,.summary-kicker{color:var(--jf-sage-dark)!important}
+.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.app-screen,.dialog,.modal,.cta,.features,.dashboard-grid>section{background:var(--jf-paper)!important;border:1px solid var(--jf-line)!important;border-radius:var(--jf-radius)!important;box-shadow:var(--jf-shadow)}
+.card:hover,.task:hover,.campaign:hover{border-color:#cbdacb!important;transform:translateY(-2px);transition:transform .2s ease,border-color .2s ease}
+.btn,.primary,.start-campaign,.complete-campaign,button.primary{background:var(--jf-sage-dark)!important;color:#fff!important;border:1px solid var(--jf-sage-dark)!important;border-radius:11px!important;font-weight:700!important;box-shadow:0 4px 10px rgba(66,99,79,.12)}
+.btn:hover,.primary:hover,.start-campaign:hover,.complete-campaign:hover,button.primary:hover{background:#355540!important;transform:translateY(-1px)}
+.btn-secondary,.secondary,button.secondary{background:var(--jf-mint)!important;color:var(--jf-sage-dark)!important;border:1px solid #dce8dd!important;border-radius:11px!important}
+.danger{background:#fff0ed!important;color:#a34f45!important;border:1px solid #f3d7d1!important;border-radius:11px!important}
+input,select,textarea{background:#fff!important;color:var(--jf-ink)!important;border:1px solid #dfe6de!important;border-radius:10px!important}
+input:focus,select:focus,textarea:focus{outline:2px solid #c8ddca!important;border-color:var(--jf-sage)!important}
+label,.muted,.sub,.profile-subtitle,.edit-hint,.note,.auth-note{color:var(--jf-muted)!important}.stat strong,.stat-card strong,.reward,.summary-heading{color:var(--jf-sage-dark)!important}
+.pill,.state,.filters button{border-radius:999px}.empty,.message,.dash-message{color:var(--jf-muted)}footer{border-color:var(--jf-line)!important}
+@media(max-width:700px){nav{height:auto!important;min-height:62px;padding:12px 16px!important;gap:10px;flex-wrap:wrap}nav a{margin:0 8px 0 0!important;font-size:13px!important}.nav{gap:4px!important;padding:8px!important;min-height:60px!important;flex-wrap:wrap}.nav a{min-width:42%!important;max-width:none!important;padding:10px 6px!important;font-size:12px!important}.top{padding:14px 16px!important;flex-wrap:wrap}.dashboard-grid,.stat-grid,.grid,.cards{grid-template-columns:1fr!important}.hero{padding-left:18px!important;padding-right:18px!important}.auth-card,.panel,.card{padding:18px!important}}
 
 </style></head><body>
 <header class="top"><div class="brand">JIBOFY <span style="font-size:11px;color:#aebbd0;font-weight:600">ADMIN</span></div><div style="display:flex;gap:8px"><a href="dashboard.html">Member site</a><button id="logout">Sign out</button></div></header>
