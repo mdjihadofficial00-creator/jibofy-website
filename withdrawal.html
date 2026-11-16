@@ -139,9 +139,12 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
 .jibofy-member-tabs .tab-icon{width:26px;height:26px;display:grid;place-items:center;font-size:23px;line-height:1}
 @media(max-width:650px){.jibofy-member-tabs{min-height:66px;padding:0 5px;gap:2px}.jibofy-member-tabs a{flex-direction:column;gap:4px;padding:8px 2px 7px;font-size:11px;border-radius:9px 9px 0 0}.jibofy-member-tabs .tab-icon{font-size:21px;width:24px;height:24px}}
 
+
+#jibofy-toast{position:fixed;right:20px;bottom:22px;z-index:9999;max-width:min(360px,calc(100vw - 32px));padding:13px 17px;border-radius:12px;background:#17233a;border:1px solid #8b5cf6;color:#fff;box-shadow:0 12px 35px #0008;font-size:13px;line-height:1.5;opacity:0;transform:translateY(12px);pointer-events:none;transition:.22s}#jibofy-toast.show{opacity:1;transform:translateY(0)}#jibofy-toast.success{border-color:#22c55e}#jibofy-toast.error{border-color:#ef4444}
 </style>
 </head>
 <body data-page="withdrawal">
+<div id="jibofy-toast" role="status" aria-live="polite"></div>
 <div class="jibofy-member-tabs" aria-label="Member navigation">
 <a href="dashboard.html" data-tab="dashboard"><span class="tab-icon">⌂</span><span>Home</span></a>
 <a href="tasks.html" data-tab="tasks"><span class="tab-icon">✓</span><span>Workspace</span></a>
@@ -245,6 +248,7 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
   </div>
   <div class="panel member-subscreen" id="withdrawal-panel" data-subscreen="withdrawal" style="margin-top:22px">
    <div class="summary-heading"><div><div class="summary-kicker">PAYOUT CENTER</div><h3 style="margin-top:6px">Request a Withdrawal</h3><p class="profile-meta" style="margin-top:7px">Choose your preferred mobile financial service and enter the account details carefully.</p></div><span class="tag">BDT PAYOUT</span></div>
+   <div class="stat" style="margin-bottom:18px"><span>Available Withdrawal Balance</span><strong id="withdrawal-available">৳0.00</strong><p class="edit-hint" id="withdrawal-balance-note">Only your available balance can be requested.</p></div>
    <form id="withdrawal-form" class="withdrawal-form">
     <div class="withdrawal-fields">
      <div><label for="withdrawal-amount">Withdrawal Amount (৳)</label><input id="withdrawal-amount" type="number" min="1" step="0.01" required placeholder="Enter amount"></div>
@@ -347,6 +351,13 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
   let currentUser = null;
   let currentProfile = null;
   const money = (n) => "৳" + Number(n || 0).toLocaleString("en-BD", {maximumFractionDigits:2});
+  let currentAvailableBalance = 0;
+  let toastTimer;
+  function notify(message,type="success"){
+    const el=document.getElementById("jibofy-toast");if(!el)return;
+    el.textContent=message;el.className="show "+type;
+    clearTimeout(toastTimer);toastTimer=setTimeout(()=>{el.className=""},3200);
+  }
 
   async function getUserDestination(user) {
     const { data: profile, error } = await client.from("profiles")
@@ -401,8 +412,16 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
     }
     const rows = submissions.data || [];
     const total = (wallet.data || []).reduce((sum,row)=>sum+Number(row.amount||0),0);
-    const paid = (withdrawals.data || []).filter(row=>String(row.status).toLowerCase()==="paid")
+    const withdrawalRows=withdrawals.data||[];
+    const paid = withdrawalRows.filter(row=>String(row.status).toLowerCase()==="paid")
       .reduce((sum,row)=>sum+Number(row.amount||0),0);
+    const reserved = withdrawalRows.filter(row=>["pending","approved","paid"].includes(String(row.status).toLowerCase()))
+      .reduce((sum,row)=>sum+Number(row.amount||0),0);
+    currentAvailableBalance=Math.max(0,total-reserved);
+    const availableEl=document.getElementById("withdrawal-available");
+    if(availableEl)availableEl.textContent=money(currentAvailableBalance);
+    const note=document.getElementById("withdrawal-balance-note");
+    if(note)note.textContent=currentAvailableBalance>0?"You can request up to "+money(currentAvailableBalance)+". Pending and approved requests are reserved.":"Your available balance is zero. Earn and receive approved rewards before requesting a withdrawal.";
     document.getElementById("stat-total-tasks").textContent = rows.length;
     document.getElementById("stat-pending-tasks").textContent = rows.filter(x=>x.status==="pending").length;
     document.getElementById("stat-approved-tasks").textContent = rows.filter(x=>x.status==="approved").length;
@@ -477,32 +496,28 @@ body[data-page="withdrawal"] .member-subscreen:not([data-subscreen="withdrawal"]
 
   document.getElementById("withdrawal-form").addEventListener("submit", async (event) => {
     event.preventDefault();
-    const message = document.getElementById("withdrawal-message");
-    const amount = Number(document.getElementById("withdrawal-amount").value);
-    const method = document.getElementById("withdrawal-method").value;
-    const account = document.getElementById("withdrawal-account").value.trim();
-    const submit = document.getElementById("withdrawal-submit");
-    if (!currentUser) { message.textContent = "Please sign in again to request a withdrawal."; return; }
-    if (!Number.isFinite(amount) || amount <= 0) { message.textContent = "Enter a valid amount greater than zero."; return; }
-    if (!method || !account) { message.textContent = "Choose a payment method and enter your account number."; return; }
-    submit.disabled = true;
-    submit.textContent = "Submitting…";
-    message.textContent = "";
-    const { error } = await client.from("withdrawals").insert({
-      user_id: currentUser.id,
-      amount,
-      method,
-      account_number: account,
-      status: "pending"
-    });
-    submit.disabled = false;
-    submit.textContent = "Submit Withdrawal Request";
-    if (error) {
-      message.textContent = "Could not submit request: " + error.message + ". Database permissions or supported payment methods may need setup.";
-      return;
+    const message=document.getElementById("withdrawal-message");
+    const amount=Number(document.getElementById("withdrawal-amount").value);
+    const method=document.getElementById("withdrawal-method").value;
+    const account=document.getElementById("withdrawal-account").value.trim();
+    const submit=document.getElementById("withdrawal-submit");
+    if(!currentUser){message.textContent="Please sign in again.";notify("Please sign in to request a withdrawal.","error");return}
+    if(!Number.isFinite(amount)||amount<=0){message.textContent="Enter a valid amount.";notify("Enter a valid withdrawal amount.","error");return}
+    if(amount>currentAvailableBalance+0.000001){message.textContent="Insufficient balance. Available: "+money(currentAvailableBalance);notify("Insufficient balance. Available: "+money(currentAvailableBalance),"error");return}
+    if(!method||!account){message.textContent="Choose a payment method and enter your account number.";notify("Please complete all withdrawal details.","error");return}
+    if(!/^\\d{10,14}$/.test(account.replace(/[\\s-]/g,""))){message.textContent="Enter a valid 10–14 digit wallet number.";notify("Please enter a valid wallet number.","error");return}
+    submit.disabled=true;submit.textContent="Submitting…";message.textContent="";
+    const {data,error}=await client.rpc("request_withdrawal",{p_amount:amount,p_method:method,p_account_number:account.replace(/[\\s-]/g,"")});
+    submit.disabled=false;submit.textContent="Submit Withdrawal Request";
+    if(error||data?.success===false){
+      const reason=error?.message||data?.message||"Request could not be submitted.";
+      message.textContent=reason;notify(reason.toLowerCase().includes("insufficient")?"Insufficient balance. Withdrawal not submitted.":"Withdrawal request failed. Please try again.","error");
+      await loadDashboard(currentUser);return;
     }
     document.getElementById("withdrawal-form").reset();
-    message.textContent = "Withdrawal request submitted. It is pending administrator review.";
+    message.textContent="Withdrawal request submitted successfully. Status: Pending admin review.";
+    notify("Withdrawal successful — your request is Pending.","success");
+    await loadDashboard(currentUser);
   });
 
   document.getElementById("signout-btn").addEventListener("click", async () => {
