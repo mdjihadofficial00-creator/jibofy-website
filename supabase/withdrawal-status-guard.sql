@@ -11,16 +11,13 @@ AS $$
 DECLARE
   v_is_admin boolean;
 BEGIN
-  IF NEW.status IS DISTINCT FROM OLD.status
-     OR NEW.transaction_id IS DISTINCT FROM OLD.transaction_id THEN
-    SELECT EXISTS (
-      SELECT 1 FROM public.profiles p
-      WHERE p.id = auth.uid() AND p.role = 'admin'
-    ) INTO v_is_admin;
+  SELECT EXISTS (
+    SELECT 1 FROM public.profiles p
+    WHERE p.id = auth.uid() AND p.role = 'admin'
+  ) INTO v_is_admin;
 
-    IF NOT v_is_admin THEN
-      RAISE EXCEPTION 'Only administrators can update withdrawal status or payment reference';
-    END IF;
+  IF NOT v_is_admin AND coalesce(auth.role(), '') <> 'service_role' THEN
+    RAISE EXCEPTION 'Only administrators can update withdrawal records';
   END IF;
 
   IF OLD.status IN ('paid', 'rejected') AND NEW.status IS DISTINCT FROM OLD.status THEN
