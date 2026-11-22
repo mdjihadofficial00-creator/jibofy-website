@@ -75,8 +75,8 @@ body.jf-dark .top button{background:#2d88ff!important;color:#fff!important;borde
 .withdrawal-request .withdrawal-stats .withdrawal-stat{background:#f0f2f5!important;border:1px solid #dddfe2!important}
 .withdrawal-request .withdrawal-stat span{color:#50545a!important;opacity:1!important;font-weight:600!important}
 .withdrawal-request .withdrawal-stat strong{color:#1c1e21!important}
-.withdrawal-request .pill{background:#e7f3ff!important;color:#145dbf!important}
-.withdrawal-request .actions .primary{background:#1877f2!important;color:#fff!important}
+.withdrawal-request .pill{background:#e7f3ff!important;color:#145dbf!important}.txn-entry input{background:#fff!important;color:#1c1e21!important}
+.withdrawal-request .actions .primary{background:#1877f2!important;color:#fff!important}.txn-entry{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}.txn-entry input{min-width:220px;flex:1;padding:10px 12px;border:1px solid #ccd0d5;border-radius:8px;font:inherit}.txn-entry input:focus{outline:2px solid #cfe3ff;border-color:#1877f2}
 body.jf-dark .withdrawal-request{background:#242526!important;color:#e4e6eb!important}
 body.jf-dark .withdrawal-request h3,
 body.jf-dark .withdrawal-request .withdrawal-meta,
@@ -84,7 +84,7 @@ body.jf-dark .withdrawal-request .withdrawal-meta strong{color:#e4e6eb!important
 body.jf-dark .withdrawal-request .withdrawal-stats .withdrawal-stat{background:#3a3b3c!important;border-color:#55585c!important}
 body.jf-dark .withdrawal-request .withdrawal-stat span{color:#c2c6cc!important}
 body.jf-dark .withdrawal-request .withdrawal-stat strong{color:#fff!important}
-body.jf-dark .withdrawal-request .pill{background:#263951!important;color:#b9d8ff!important}
+body.jf-dark .withdrawal-request .pill{background:#263951!important;color:#b9d8ff!important}.txn-entry input{background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
 
 
 /* Unified Facebook-style admin top navigation */
@@ -110,7 +110,7 @@ async function init(){const {data:{session},error:se}=await db.auth.getSession()
  $("withdrawal-requests").innerHTML='<div class="empty">Loading withdrawal requests…</div>';
  $("withdrawal-admin-message").textContent="";
  const {data:requests,error}=await db.from("withdrawals")
-  .select("id,user_id,amount,method,account_number,status,created_at")
+  .select("id,user_id,amount,method,account_number,status,transaction_id,created_at")
   .order("created_at",{ascending:false}).limit(100);
  if(error){$("withdrawal-requests").innerHTML='<div class="empty">Could not load requests: '+esc(error.message)+'</div>';return}
  if(!requests?.length){$("withdrawal-requests").innerHTML='<div class="empty">No withdrawal requests yet.</div>';return}
@@ -135,17 +135,17 @@ async function init(){const {data:{session},error:se}=await db.auth.getSession()
   const date=w.created_at?new Date(w.created_at).toLocaleString():"—";
   const method=String(w.method||"").toLowerCase();
   const label=method==="bkash"?"bKash":method==="nagad"?"Nagad":method==="rocket"?"Rocket":esc(w.method||"—");
-  const actions=status==="pending"?'<button class="btn primary" data-withdraw-action="approve" data-id="'+esc(w.id)+'">Approve</button><button class="btn danger" data-withdraw-action="reject" data-id="'+esc(w.id)+'">Reject</button>':status==="approved"?'<button class="btn primary" data-withdraw-action="paid" data-id="'+esc(w.id)+'">Mark as Paid</button><button class="btn danger" data-withdraw-action="reject" data-id="'+esc(w.id)+'">Reject</button>':"";
-  return '<article class="withdrawal-request"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><div><h3>'+esc(p.full_name||"Member")+'</h3><div class="withdrawal-meta">User ID: '+esc(w.user_id)+'<br>Phone: '+esc(p.phone||"Not available")+'<br>Requested: '+esc(date)+'</div></div><span class="pill">'+esc(status)+'</span></div><div class="withdrawal-stats"><div class="withdrawal-stat"><span>Total submitted tasks</span><strong>'+memberTasks.length+'</strong></div><div class="withdrawal-stat"><span>Total earned</span><strong>৳'+earned.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>Previously paid</span><strong>৳'+paid.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>This request</span><strong>৳'+Number(w.amount||0).toFixed(2)+'</strong></div></div><div class="withdrawal-meta">Payment: <strong>'+label+'</strong> · Account: <strong>'+esc(w.account_number||"—")+'</strong></div><div class="actions">'+actions+'</div></article>';
+  const actions=status==="pending"?'<button class="btn primary" data-withdraw-action="approve" data-id="'+esc(w.id)+'">Approve</button><button class="btn danger" data-withdraw-action="reject" data-id="'+esc(w.id)+'">Reject</button>':status==="approved"?'<div class="txn-entry"><input type="text" maxlength="80" placeholder="Enter bKash / Nagad / Rocket TxnID" aria-label="Payment transaction ID" data-txn-for="'+esc(w.id)+'"><button class="btn primary" data-withdraw-action="paid" data-id="'+esc(w.id)+'">Confirm payment</button><button class="btn danger" data-withdraw-action="reject" data-id="'+esc(w.id)+'">Reject</button></div>':"";
+  return '<article class="withdrawal-request"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><div><h3>'+esc(p.full_name||"Member")+'</h3><div class="withdrawal-meta">User ID: '+esc(w.user_id)+'<br>Phone: '+esc(p.phone||"Not available")+'<br>Requested: '+esc(date)+'</div></div><span class="pill">'+esc(status)+'</span></div><div class="withdrawal-stats"><div class="withdrawal-stat"><span>Total submitted tasks</span><strong>'+memberTasks.length+'</strong></div><div class="withdrawal-stat"><span>Total earned</span><strong>৳'+earned.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>Previously paid</span><strong>৳'+paid.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>This request</span><strong>৳'+Number(w.amount||0).toFixed(2)+'</strong></div></div><div class="withdrawal-meta">Payment: <strong>'+label+'</strong> · Account: <strong>'+esc(w.account_number||"—")+'</strong></div><div class="actions">'+actions+'</div>'+(status==="paid"?'<div class="withdrawal-meta">Transaction ID: <strong>'+esc(w.transaction_id||"Not recorded") +'</strong></div>':"")+'</article>';
  }).join("");
- $("withdrawal-requests").querySelectorAll("button[data-withdraw-action]").forEach(b=>b.addEventListener("click",()=>changeWithdrawal(b.dataset.id,b.dataset.withdrawAction)));
+ $("withdrawal-requests").querySelectorAll("button[data-withdraw-action]").forEach(b=>b.addEventListener("click",()=>{const txn=document.querySelector('[data-txn-for="'+CSS.escape(b.dataset.id)+'"]');changeWithdrawal(b.dataset.id,b.dataset.withdrawAction,txn?.value||"")}));
 }
-async function changeWithdrawal(id,action){
+async function changeWithdrawal(id,action,transactionId=""){
  const requestLabel=action==="paid"?"mark this request as paid":action==="approve"?"approve this request":"reject this request";
- if(!confirm("Are you sure you want to "+requestLabel+"? For Mark as Paid, first send the money from your bKash/Nagad/Rocket app."))return;
+ if(action==="paid"&&!transactionId.trim()){ $("withdrawal-admin-message").textContent="Enter the payment Transaction ID before confirming.";return }if(action==="paid"&&transactionId.trim().length>80){$("withdrawal-admin-message").textContent="Transaction ID is too long.";return}if(!confirm("Are you sure you want to "+requestLabel+"? Confirm only after the transfer is successful."))return;
  const status=action==="paid"?"paid":action==="approve"?"approved":"rejected";
  $("withdrawal-admin-message").textContent="Updating request…";
- const {error}=await db.from("withdrawals").update({status}).eq("id",id);
+ const patch=action==="paid"?{status,transaction_id:transactionId.trim()}:{status};const {error}=await db.from("withdrawals").update(patch).eq("id",id);
  if(error){$("withdrawal-admin-message").textContent="Could not update request: "+error.message;return}
  $("withdrawal-admin-message").textContent="Request status updated to "+status+".";
  await loadWithdrawalRequests();
