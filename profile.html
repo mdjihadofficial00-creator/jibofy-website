@@ -374,6 +374,7 @@ body[data-page="account"] .auth-note{margin-top:18px!important;padding:0 4px!imp
 body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-card,var(--card,#242526))!important;color:var(--jf-text,var(--text,#e4e6eb))!important;border-color:var(--jf-line,var(--line,#3e4042))!important}
 @media(max-width:700px){#jf-theme-toggle,#theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}
 
+#jf-theme-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;position:static!important;inset:auto!important;min-height:42px!important;padding:9px 15px!important;border:1px solid var(--jf-line,#dce5f2)!important;border-radius:12px!important;background:var(--jf-card,#fff)!important;color:var(--jf-text,#172033)!important;font:750 14px/1.1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;white-space:nowrap!important;box-shadow:0 2px 8px rgba(15,35,65,.08)!important}body.jf-dark #jf-theme-toggle{background:var(--jf-card)!important;color:var(--jf-text)!important;border-color:var(--jf-line)!important}@media(max-width:700px){#jf-theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}/* One consistent JIBOFY theme pill */
 </style>
 </head>
 <body data-page="profile">
@@ -381,7 +382,7 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 <header class="member-shell">
 <a class="member-brand" href="dashboard.html">JIBOFY</a>
 <form class="member-search" action="tasks.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search tasks" aria-label="Search tasks"><button type="submit">Search</button></form>
-<button id="jf-theme-toggle" type="button" aria-label="Switch color theme">🌙 Dark</button>
+<button id="jf-theme-toggle" type="button">🌙 Dark mode</button>
 <details class="member-account"><summary aria-label="Account menu"><span class="member-avatar">♙</span><span class="account-word">Profile</span><span aria-hidden="true">⌄</span></summary><div class="account-pop"><a href="account.html">＋ Add Another Account</a><button type="button" id="header-logout">↪ Log Out</button></div></details>
 
 <nav class="jibofy-member-tabs" aria-label="Member navigation"><a href="dashboard.html" data-tab="dashboard" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span>Home</span></a>
@@ -791,5 +792,6 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light":"🌙 Dark";btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");btn.setAttribute("aria-pressed",String(dark))}
 btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();
 </script>
+<script>(()=>{const key="jibofy-theme",body=document.body,btn=document.getElementById("jf-theme-toggle");if(!btn)return;let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(dark))}btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();</script>
 </body>
 </html>
