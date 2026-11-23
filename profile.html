@@ -297,6 +297,15 @@ body.jf-dark .member-brand{color:#75adff!important}
 }
 @media(max-width:380px){.member-account{margin-right:98px!important}#jf-theme-toggle{font-size:11px!important;padding:6px 8px!important}.member-search button{padding:0 12px!important}}
 
+/* Final mobile header alignment: separate theme and profile controls */
+@media(max-width:760px){
+.member-shell{grid-template-columns:minmax(0,1fr) auto auto!important;grid-template-rows:44px 44px auto!important}
+#jf-theme-toggle{grid-column:2!important;grid-row:1!important}
+.member-account{grid-column:3!important;grid-row:1!important;margin:0!important}
+.member-search{grid-column:1/-1!important;grid-row:2!important}
+.jibofy-member-tabs{grid-column:1/-1!important;grid-row:3!important}
+}
+
 </style>
 </head>
 <body data-page="profile">
