@@ -117,11 +117,18 @@ footer{background:var(--jf-card)!important;color:var(--jf-muted)!important;borde
 body.jf-dark{--jf-bg:#101827;--jf-card:#182437;--jf-text:#e8edf5;--jf-muted:#aab7ca;--jf-line:#2b3a50;--jf-blue:#65a4ff;--jf-blue-hover:#82b5ff;--jf-soft:#223b5e;--jf-shadow:0 8px 26px rgba(0,0,0,.16)}
 body.jf-dark .hero{background:linear-gradient(135deg,#182437,#1c2d46)!important}body.jf-dark .hero h1,body.jf-dark .hero h2,body.jf-dark .hero p{color:var(--jf-text)!important}
 body.jf-dark input,body.jf-dark select,body.jf-dark textarea{border-color:#40516b!important}body.jf-dark .secondary,body.jf-dark button.secondary{border-color:#344d70!important}
-@media(max-width:700px){nav,.nav,.jibofy-member-tabs{gap:3px!important}.wrap,main{padding-left:14px!important;padding-right:14px!important}.panel,.card{padding:16px!important}#jf-theme-toggle{right:12px!important;bottom:12px!important;padding:10px 13px!important}}
+@media(max-width:700px){nav,.nav,.jibofy-member-tabs{gap:3px!important}.wrap,main{padding-left:14px!important;padding-right:14px!important}.panel,.card{padding:16px!important}#jf-theme-toggle{position:static!important;right:auto!important;bottom:auto!important}}
+
+
+/* Unified JIBOFY theme switch — same icon, label and pill style on every page */
+#jf-theme-toggle,#theme-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;position:static!important;inset:auto!important;float:none!important;min-height:42px!important;padding:9px 15px!important;border:1px solid var(--jf-line,var(--line,#dce5f2))!important;border-radius:12px!important;background:var(--jf-card,var(--card,#fff))!important;color:var(--jf-text,var(--ink,#172033))!important;font:750 14px/1.1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;white-space:nowrap!important;box-shadow:0 2px 8px rgba(15,35,65,.08)!important;cursor:pointer!important;z-index:5!important}
+#jf-theme-toggle:hover,#theme-toggle:hover{border-color:#1877f2!important;transform:translateY(-1px)}
+body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-card,var(--card,#242526))!important;color:var(--jf-text,var(--text,#e4e6eb))!important;border-color:var(--jf-line,var(--line,#3e4042))!important}
+@media(max-width:700px){#jf-theme-toggle,#theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}
 
 </style></head><body>
-<button id="jf-theme-toggle" type="button" aria-label="Switch color theme">🌙 Dark mode</button><script>(()=>{const k="jibofy-theme";let t="light";try{t=localStorage.getItem(k)||"light"}catch(e){}const b=document.body,btn=document.getElementById("jf-theme-toggle");function apply(){b.classList.toggle("jf-dark",t==="dark");btn.textContent=t==="dark"?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(t==="dark"))}btn.addEventListener("click",()=>{t=t==="dark"?"light":"dark";try{localStorage.setItem(k,t)}catch(e){}apply()});apply()})();</script>
-<header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
+
+<header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><button id="jf-theme-toggle" type="button">🌙 Dark</button><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
 <main class="wrap"><div class="eyebrow">CONTROL CENTER</div><h1>Withdrawal Management</h1>
 <nav class="nav"><a class="" href="admin.html">Overview</a><a class="" href="admin-campaigns.html">Campaigns</a><a class="" href="admin-members.html">Members</a><a class="active" href="admin-withdrawals.html">Withdrawals</a><a class="" href="admin-sponsors.html">Sponsors</a></nav>
 <div id="loading" class="empty">Checking administrator access…</div><div id="app" class="hidden"><section class="panel" style="margin-top:22px">
@@ -183,4 +190,9 @@ async function changeWithdrawal(id,action,transactionId=""){
 $("refresh-withdrawals").addEventListener("click",loadWithdrawalRequests);await loadWithdrawalRequests();}
 $("logout").addEventListener("click",async()=>{await db.auth.signOut();location.replace("account.html")});init();
 })();
-</script></body></html>
+</script><script>
+(()=>{const key="jibofy-theme",body=document.body,btn=document.getElementById("jf-theme-toggle")||document.getElementById("theme-toggle");if(!btn)return;let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}
+function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light":"🌙 Dark";btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");btn.setAttribute("aria-pressed",String(dark))}
+btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();
+</script>
+</body></html>
