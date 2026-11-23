@@ -326,6 +326,34 @@ body[data-page="account"] .auth-card{padding:22px!important}
 body[data-page="account"] .auth-note{margin-top:18px!important;padding:0 4px!important}
 }
 
+
+/* Animated community profile showcase inspired by talent marketplaces */
+.talent-showcase{overflow:hidden;padding:64px 0 58px;background:var(--jf-bg,#f0f2f5);text-align:center}
+.talent-heading{padding:0 18px 28px}
+.talent-eyebrow{display:inline-block;color:#1877f2;font-size:11px;font-weight:850;letter-spacing:2px;margin-bottom:12px}
+.talent-heading h2{font-size:clamp(27px,4.4vw,39px);font-weight:850;letter-spacing:-1px;margin-bottom:10px}
+.talent-heading h2 span{color:#1877f2}
+.talent-heading p{color:var(--jf-muted,#65676b);font-size:14px}
+.talent-window{width:100%;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.talent-track{display:flex;gap:18px;width:max-content;padding:12px 18px;animation:jf-talent-scroll 38s linear infinite}
+.talent-window:hover .talent-track{animation-play-state:paused}
+.talent-card{position:relative;flex:0 0 clamp(220px,26vw,300px);height:370px;overflow:hidden;border-radius:19px;background:#26364b;box-shadow:0 12px 32px rgba(16,35,65,.16);text-align:left;isolation:isolate;transform:translateY(0);animation:jf-talent-float 5s ease-in-out infinite}
+.talent-card:nth-child(2n){animation-delay:-2.5s}
+.talent-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1);animation:jf-talent-photo 12s ease-in-out infinite alternate}
+.talent-card:hover img{transform:scale(1.08)}
+.talent-caption{position:absolute;left:0;right:0;bottom:0;padding:48px 20px 20px;background:linear-gradient(180deg,transparent 0%,rgba(8,15,27,.82) 38%,rgba(8,15,27,.94) 100%);color:#fff}
+.talent-caption .talent-label{display:inline-block;color:#cfe2ff;font-size:9px;font-weight:850;letter-spacing:1.5px;margin-bottom:8px}
+.talent-caption h3{color:#fff!important;font-size:20px;font-weight:800;margin:0 0 6px}
+.talent-caption p{color:#e1e8f2!important;font-size:12px;margin:0}
+.talent-disclaimer{padding:16px 18px 0;color:var(--jf-muted,#65676b);font-size:11px}
+body.jf-dark .talent-showcase{background:var(--jf-bg)!important}
+body.jf-dark .talent-heading h2{color:var(--jf-text)!important}
+@keyframes jf-talent-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes jf-talent-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes jf-talent-photo{from{transform:scale(1)}to{transform:scale(1.07)}}
+@media(max-width:600px){.talent-showcase{padding:46px 0}.talent-track{gap:13px;animation-duration:30s}.talent-card{flex-basis:245px;height:330px}.talent-caption{padding:42px 17px 18px}}
+@media(prefers-reduced-motion:reduce){.talent-track,.talent-card,.talent-card img{animation:none!important}.talent-window{mask-image:none}}
+
 </style>
 </head>
 <body>
@@ -339,6 +367,52 @@ body[data-page="account"] .auth-note{margin-top:18px!important;padding:0 4px!imp
 <p>Explore meaningful digital tasks, discover new opportunities and track your rewards — all in one place with JIBOFY.</p>
 <a href="#join" class="btn">Get Started →</a>
 </section>
+
+<section class="talent-showcase" aria-label="Example JIBOFY member profiles">
+  <div class="talent-heading">
+    <span class="talent-eyebrow">MEET THE COMMUNITY</span>
+    <h2>People. Skills. <span>Opportunities.</span></h2>
+    <p>এক নজরে JIBOFY-এর কিছু নমুনা Member Profile</p>
+  </div>
+  <div class="talent-window">
+    <div class="talent-track">
+      <article class="talent-card">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Creative Explorer</h3><p>Discovering new opportunities</p></div>
+      </article>
+      <article class="talent-card">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Digital Enthusiast</h3><p>Learning and growing every day</p></div>
+      </article>
+      <article class="talent-card">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Smart Learner</h3><p>Exploring digital tasks</p></div>
+      </article>
+      <article class="talent-card">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Opportunity Seeker</h3><p>Building new experiences</p></div>
+      </article>
+      <article class="talent-card" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Creative Explorer</h3><p>Discovering new opportunities</p></div>
+      </article>
+      <article class="talent-card" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Digital Enthusiast</h3><p>Learning and growing every day</p></div>
+      </article>
+      <article class="talent-card" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Smart Learner</h3><p>Exploring digital tasks</p></div>
+      </article>
+      <article class="talent-card" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
+        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Opportunity Seeker</h3><p>Building new experiences</p></div>
+      </article>
+    </div>
+  </div>
+  <p class="talent-disclaimer">ছবিগুলো শুধুমাত্র ডিজাইনের নমুনা; এগুলো বাস্তব JIBOFY সদস্যের প্রোফাইল নয়।</p>
+</section>
+
 
 <section class="features" id="features">
 <h2>Everything in One Place</h2>
