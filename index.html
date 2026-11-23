@@ -368,49 +368,14 @@ body.jf-dark .talent-heading h2{color:var(--jf-text)!important}
 <a href="#join" class="btn">Get Started →</a>
 </section>
 
-<section class="talent-showcase" aria-label="Example JIBOFY member profiles">
-  <div class="talent-heading">
-    <span class="talent-eyebrow">MEET THE COMMUNITY</span>
-    <h2>People. Skills. <span>Opportunities.</span></h2>
-    <p>এক নজরে JIBOFY-এর কিছু নমুনা Member Profile</p>
-  </div>
-  <div class="talent-window">
-    <div class="talent-track">
-      <article class="talent-card">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Creative Explorer</h3><p>Discovering new opportunities</p></div>
-      </article>
-      <article class="talent-card">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Digital Enthusiast</h3><p>Learning and growing every day</p></div>
-      </article>
-      <article class="talent-card">
-        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Smart Learner</h3><p>Exploring digital tasks</p></div>
-      </article>
-      <article class="talent-card">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=720&q=85" alt="Sample member portrait" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Opportunity Seeker</h3><p>Building new experiences</p></div>
-      </article>
-      <article class="talent-card" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Creative Explorer</h3><p>Discovering new opportunities</p></div>
-      </article>
-      <article class="talent-card" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Digital Enthusiast</h3><p>Learning and growing every day</p></div>
-      </article>
-      <article class="talent-card" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Smart Learner</h3><p>Exploring digital tasks</p></div>
-      </article>
-      <article class="talent-card" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=720&q=85" alt="" loading="lazy">
-        <div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Opportunity Seeker</h3><p>Building new experiences</p></div>
-      </article>
-    </div>
-  </div>
-  <p class="talent-disclaimer">ছবিগুলো শুধুমাত্র ডিজাইনের নমুনা; এগুলো বাস্তব JIBOFY সদস্যের প্রোফাইল নয়।</p>
+<section class="talent-showcase" aria-label="JIBOFY community showcase">
+ <div class="talent-heading"><span class="talent-eyebrow">MEET THE COMMUNITY</span><h2>People. Skills. <span>Opportunities.</span></h2><p>JIBOFY-এর কিছু নমুনা Member Profile</p></div>
+ <div class="talent-window"><div class="talent-track" id="homepage-talent-track">
+  <article class="talent-card"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=85" alt="Sample profile photo"><div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Creative Explorer</h3><p>Discovering new opportunities</p></div></article>
+  <article class="talent-card"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=720&q=85" alt="Sample profile photo"><div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Digital Enthusiast</h3><p>Learning and growing every day</p></div></article>
+  <article class="talent-card"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=720&q=85" alt="Sample profile photo"><div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Smart Learner</h3><p>Exploring digital tasks</p></div></article>
+  <article class="talent-card"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=720&q=85" alt="Sample profile photo"><div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>Opportunity Seeker</h3><p>Building new experiences</p></div></article>
+ </div></div><p class="talent-disclaimer">ছবিগুলো Demo; বাস্তব সদস্যের ছবি বা তথ্য নয়।</p>
 </section>
 
 
@@ -782,6 +747,20 @@ body.jf-dark .talent-heading h2{color:var(--jf-text)!important}
     console.error("JIBOFY session check failed:", error);
     showScreen(location.hash || "home");
   });
+})();
+</script>
+
+<script>
+(()=>{const track=document.getElementById("homepage-talent-track");if(!track||!window.supabase)return;
+ const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");
+ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ db.from("homepage_showcase").select("cards").eq("id",1).maybeSingle().then(({data,error})=>{
+  if(error||!Array.isArray(data?.cards)||!data.cards.length)return;
+  const cards=data.cards.filter(x=>x&&typeof x.image==="string"&&/^https:\/\//i.test(x.image)&&x.title);
+  if(!cards.length)return;
+  const one=cards.map(x=>'<article class="talent-card"><img loading="lazy" src="'+esc(x.image)+'" alt="Sample profile photo"><div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>'+esc(x.title)+'</h3><p>'+esc(x.description||"Discovering opportunities")+'</p></div></article>').join("");
+  track.innerHTML=one+one;
+ });
 })();
 </script>
 </body>
