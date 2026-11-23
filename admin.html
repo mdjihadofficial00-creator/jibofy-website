@@ -133,10 +133,42 @@ body.jf-dark input,body.jf-dark select,body.jf-dark textarea{border-color:#40516
 <header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
 <main class="wrap"><div class="eyebrow">CONTROL CENTER</div><h1>Admin Dashboard</h1>
 <nav class="nav"><a class="active" href="admin.html">Overview</a><a class="" href="admin-campaigns.html">Campaigns</a><a class="" href="admin-members.html">Members</a><a class="" href="admin-withdrawals.html">Withdrawals</a><a class="" href="admin-sponsors.html">Sponsors</a></nav>
-<div id="loading" class="empty">Checking administrator access…</div><div id="app" class="hidden"><p class="muted">JIBOFY platform overview. Choose a section from the menu above to manage it.</p><div class="stat-grid"><div class="stat-card"><span>Total Members</span><strong id="ov-members">—</strong></div><div class="stat-card"><span>Total Campaigns</span><strong id="ov-campaigns">—</strong></div><div class="stat-card"><span>Pending Withdrawals</span><strong id="ov-pending">—</strong></div><div class="stat-card"><span>Pending Withdrawal Amount</span><strong id="ov-amount">—</strong></div></div><p class="note">Use the navigation above to manage campaigns, members and withdrawal requests separately.</p></div></main>
+<div id="loading" class="empty">Checking administrator access…</div><div id="app" class="hidden"><p class="muted">JIBOFY platform overview. Choose a section from the menu above to manage it.</p><div class="stat-grid"><div class="stat-card"><span>Total Members</span><strong id="ov-members">—</strong></div><div class="stat-card"><span>Total Campaigns</span><strong id="ov-campaigns">—</strong></div><div class="stat-card"><span>Pending Withdrawals</span><strong id="ov-pending">—</strong></div><div class="stat-card"><span>Pending Withdrawal Amount</span><strong id="ov-amount">—</strong></div></div><p class="note">Use the navigation above to manage campaigns, members and withdrawal requests separately.</p>
+<section class="panel" id="homepage-showcase-manager" style="margin-top:24px">
+ <div class="eyebrow">WEBSITE CONTENT</div><h2>Welcome Page Photos</h2>
+ <p class="muted">Welcome Page-এর animated photo cards এখান থেকে পরিবর্তন করতে পারবে। প্রতিটি ছবির জন্য সরাসরি HTTPS image link দিতে হবে। সর্বোচ্চ ৮টি কার্ড রাখা যাবে।</p>
+ <div id="showcase-editor-list"></div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="top-action" id="showcase-add" type="button">+ Add photo card</button><button class="top-action" id="showcase-save" type="button">Save welcome page photos</button></div>
+ <p class="muted" id="showcase-status" role="status" aria-live="polite"></p>
+</section></div></main>
 <script>
 (()=>{const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");const $=id=>document.getElementById(id);const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 async function init(){const {data:{session},error:se}=await db.auth.getSession();if(se||!session){location.replace("account.html");return}const {data:p,error}=await db.from("profiles").select("role").eq("id",session.user.id).single();if(error||p?.role!=="admin"){$("loading").textContent="Access denied. This page is only available to JIBOFY administrators.";return}$("loading").classList.add("hidden");$("app").classList.remove("hidden");const [m,c,w]=await Promise.all([db.from("profiles").select("id",{count:"exact",head:true}),db.from("ad_campaigns").select("id",{count:"exact",head:true}),db.from("withdrawals").select("amount").eq("status","pending")]);$("ov-members").textContent=m.error?"Error":(m.count??0);$("ov-campaigns").textContent=c.error?"Error":(c.count??0);$("ov-pending").textContent=w.error?"Error":(w.data?.length??0);$("ov-amount").textContent=w.error?"Error":"৳"+(w.data||[]).reduce((n,x)=>n+Number(x.amount||0),0).toFixed(2);}
 $("logout").addEventListener("click",async()=>{await db.auth.signOut();location.replace("account.html")});init();
 })();
-</script></body></html>
+</script>
+<script id="homepage-showcase-admin">
+(()=>{const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");const list=document.getElementById("showcase-editor-list"),status=document.getElementById("showcase-status");if(!list)return;
+ const demos=[
+ {image:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=85",title:"Creative Explorer",description:"Discovering new opportunities"},
+ {image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=720&q=85",title:"Digital Enthusiast",description:"Learning and growing every day"},
+ {image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=720&q=85",title:"Smart Learner",description:"Exploring digital tasks"},
+ {image:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=720&q=85",title:"Opportunity Seeker",description:"Building new experiences"}];
+ let cards=demos.map(x=>({...x}));
+ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ function draw(){list.innerHTML=cards.map((x,i)=>'<div class="showcase-edit-row" style="display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:13px 0;border-bottom:1px solid var(--jf-line,#334155)"><img src="'+esc(x.image)+'" alt="Preview" style="width:92px;height:112px;object-fit:cover;border-radius:10px;background:#ddd" onerror="this.style.opacity=.25"><div style="display:grid;gap:7px;min-width:0"><label>Photo image URL<input data-i="'+i+'" data-k="image" type="url" value="'+esc(x.image)+'" placeholder="https://..." style="width:100%;box-sizing:border-box"></label><label>Card title<input data-i="'+i+'" data-k="title" value="'+esc(x.title)+'" maxlength="60" style="width:100%;box-sizing:border-box"></label><label>Description<input data-i="'+i+'" data-k="description" value="'+esc(x.description)+'" maxlength="100" style="width:100%;box-sizing:border-box"></label><button type="button" data-remove="'+i+'" class="top-action" style="justify-self:start">Remove card</button></div></div>').join("");
+ list.querySelectorAll("input").forEach(el=>el.addEventListener("input",()=>{cards[+el.dataset.i][el.dataset.k]=el.value;const im=list.querySelector('img');if(el.dataset.k==="image")el.closest(".showcase-edit-row").querySelector("img").src=el.value}));
+ list.querySelectorAll("[data-remove]").forEach(b=>b.addEventListener("click",()=>{cards.splice(+b.dataset.remove,1);draw()}));
+ }
+ async function load(){const {data,error}=await db.from("homepage_showcase").select("cards").eq("id",1).maybeSingle();if(!error&&Array.isArray(data?.cards)&&data.cards.length)cards=data.cards;draw()}
+ document.getElementById("showcase-add").addEventListener("click",()=>{if(cards.length>=8){status.textContent="সর্বোচ্চ ৮টি Photo Card যোগ করা যাবে।";return}cards.push({image:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=85",title:"New Profile",description:"Discovering opportunities"});draw()});
+ document.getElementById("showcase-save").addEventListener("click",async()=>{if(!cards.length){status.textContent="কমপক্ষে ১টি Photo Card রাখতে হবে।";return}
+  const clean=cards.map(x=>({image:String(x.image||"").trim(),title:String(x.title||"").trim(),description:String(x.description||"").trim()}));
+  if(clean.some(x=>!/^https:\/\//i.test(x.image)||!x.title)){status.textContent="প্রতিটি কার্ডে HTTPS Photo URL এবং Title দিতে হবে।";return}
+  status.textContent="Saving…";const {error}=await db.from("homepage_showcase").upsert({id:1,cards:clean,updated_at:new Date().toISOString()},{onConflict:"id"});
+  status.textContent=error?"Save হয়নি: "+error.message:"সফলভাবে Save হয়েছে। Welcome Page Reload করলে নতুন ছবি দেখা যাবে।";
+ });
+ load();
+})();
+</script>
+</body></html>
