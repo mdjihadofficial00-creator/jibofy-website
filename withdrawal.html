@@ -400,6 +400,7 @@ body[data-page="account"] .auth-card{padding:22px!important}
 body[data-page="account"] .auth-note{margin-top:18px!important;padding:0 4px!important}
 }
 
+#jf-theme-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;position:static!important;inset:auto!important;min-height:42px!important;padding:9px 15px!important;border:1px solid var(--jf-line,#dce5f2)!important;border-radius:12px!important;background:var(--jf-card,#fff)!important;color:var(--jf-text,#172033)!important;font:750 14px/1.1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;white-space:nowrap!important;box-shadow:0 2px 8px rgba(15,35,65,.08)!important}body.jf-dark #jf-theme-toggle{background:var(--jf-card)!important;color:var(--jf-text)!important;border-color:var(--jf-line)!important}@media(max-width:700px){#jf-theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}/* One consistent JIBOFY theme pill */
 </style>
 </head>
 <body data-page="withdrawal">
@@ -407,9 +408,9 @@ body[data-page="account"] .auth-note{margin-top:18px!important;padding:0 4px!imp
 <header class="member-shell">
 <a class="member-brand" href="dashboard.html">JIBOFY</a>
 <form class="member-search" action="tasks.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search tasks" aria-label="Search tasks"><button type="submit">Search</button></form>
-<button id="jf-theme-toggle" type="button" aria-label="Switch color theme"><span class="theme-icon" aria-hidden="true">◐</span><span class="theme-label">Dark mode</span></button>
+<button id="jf-theme-toggle" type="button">🌙 Dark mode</button>
 <details class="member-account"><summary aria-label="Account menu"><span class="member-avatar">♙</span><span class="account-word">Profile</span><span aria-hidden="true">⌄</span></summary><div class="account-pop"><a href="account.html">＋ Add Another Account</a><button type="button" id="header-logout">↪ Log Out</button></div></details>
-<script>(()=>{const k="jibofy-theme";let t="light";try{t=localStorage.getItem(k)||"light"}catch(e){}const b=document.body,btn=document.getElementById("jf-theme-toggle");function apply(){b.classList.toggle("jf-dark",t==="dark");btn.querySelector(".theme-icon").textContent=t==="dark"?"☼":"◐";btn.querySelector(".theme-label").textContent=t==="dark"?"Light mode":"Dark mode";btn.setAttribute("aria-pressed",String(t==="dark"))}btn.addEventListener("click",()=>{t=t==="dark"?"light":"dark";try{localStorage.setItem(k,t)}catch(e){}apply()});apply();document.getElementById("header-logout").addEventListener("click",()=>{const b=document.getElementById("signout-btn");if(b)b.click();else location.href="account.html"})})();</script>
+
 <nav class="jibofy-member-tabs" aria-label="Member navigation"><a href="dashboard.html" data-tab="dashboard" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span>Home</span></a>
 <a href="tasks.html" data-tab="tasks" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h4"/></svg></span><span>Workspace</span></a>
 <a href="profile.html" data-tab="profile" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span>Profile</span></a>
@@ -824,5 +825,6 @@ body[data-page="account"] .auth-note{margin-top:18px!important;padding:0 4px!imp
   });
 })();
 </script>
+<script>(()=>{const key="jibofy-theme",body=document.body,btn=document.getElementById("jf-theme-toggle");if(!btn)return;let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(dark))}btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();</script>
 </body>
 </html>
