@@ -252,6 +252,51 @@ body.jf-dark .hero{background:linear-gradient(135deg,#182437,#1c2d46)!important}
 body.jf-dark input,body.jf-dark select,body.jf-dark textarea{border-color:#40516b!important}body.jf-dark .secondary,body.jf-dark button.secondary{border-color:#344d70!important}
 @media(max-width:700px){nav,.nav,.jibofy-member-tabs{gap:3px!important}.wrap,main{padding-left:14px!important;padding-right:14px!important}.panel,.card{padding:16px!important}#jf-theme-toggle{right:12px!important;bottom:12px!important;padding:10px 13px!important}}
 
+
+/* Public site brand and responsive navigation */
+body:not([data-page="account"])>nav{height:auto;min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px clamp(16px,6vw,88px);background:#fff;border-bottom:1px solid #e4e9f1}
+body:not([data-page="account"])>nav .logo{color:#1877f2!important;font-size:28px;font-weight:850;letter-spacing:-1px}
+body:not([data-page="account"])>nav>div{display:flex;align-items:center;gap:clamp(10px,2vw,25px);flex-wrap:wrap}
+body:not([data-page="account"])>nav a{margin:0;color:#344054;font-weight:650}
+body:not([data-page="account"])>nav a:hover{color:#1877f2}
+body:not([data-page="account"]) .btn{background:#1877f2;color:#fff}
+body[data-page="account"]>nav{height:76px;justify-content:flex-start;padding:0 clamp(18px,5vw,60px);background:#fff;border-bottom:1px solid #e4e9f1}
+body[data-page="account"]>nav>div:not(.logo){display:none!important}
+body[data-page="account"]>nav .logo{color:#1877f2!important;font-size:29px;font-weight:850;letter-spacing:-1px}
+body[data-page="account"] #jf-theme-toggle{position:absolute!important;top:18px!important;right:clamp(16px,5vw,60px)!important;bottom:auto!important;background:#eef4ff!important;color:#1765c1!important;border:1px solid #d9e7fb!important;box-shadow:none!important}
+body[data-page="account"] .auth-section{min-height:calc(100vh - 76px);padding:42px 18px 64px;background:linear-gradient(180deg,#f4f7fc,#edf3fb)!important;color:#172033}
+body[data-page="account"] .auth-section>div:first-child h2{font-size:clamp(28px,4vw,36px);font-weight:800;letter-spacing:-.8px;color:#172033}
+body[data-page="account"] .auth-section .sub{color:#667085}
+body[data-page="account"] .auth-wrap{max-width:940px;gap:20px;align-items:stretch}
+body[data-page="account"] .auth-card{background:#fff!important;color:#172033!important;border:1px solid #e3e9f2!important;border-radius:22px!important;padding:clamp(22px,3vw,32px)!important;box-shadow:0 16px 45px rgba(25,50,90,.09)!important}
+body[data-page="account"] .auth-card h2{font-size:23px;color:#172033}
+body[data-page="account"] .auth-card>p{color:#667085}
+body[data-page="account"] .auth-card label{color:#344054;font-weight:650}
+body[data-page="account"] .auth-card input{background:#f8fafc!important;color:#172033!important;border:1px solid #d7deea!important;border-radius:11px!important;min-height:46px}
+body[data-page="account"] .auth-card input:focus{border-color:#1877f2!important;box-shadow:0 0 0 3px rgba(24,119,242,.12)}
+body[data-page="account"] .auth-card button{background:#1877f2!important;border-radius:12px!important;min-height:48px;font-weight:750}
+body[data-page="account"] .auth-message{color:#1765c1}
+body[data-page="account"] .auth-note{color:#667085}
+body[data-page="account"].jf-dark>nav{background:#242526;border-color:#3e4042}
+body[data-page="account"].jf-dark>nav .logo{color:#75adff!important}
+body[data-page="account"].jf-dark .auth-section{background:#18191a!important;color:#e4e6eb}
+body[data-page="account"].jf-dark .auth-section>div:first-child h2{color:#e4e6eb}
+body[data-page="account"].jf-dark .auth-card{background:#242526!important;color:#e4e6eb!important;border-color:#3e4042!important}
+body[data-page="account"].jf-dark .auth-card h2,body[data-page="account"].jf-dark .auth-card label{color:#e4e6eb}
+body[data-page="account"].jf-dark .auth-card input{background:#18191a!important;color:#e4e6eb!important;border-color:#55585c!important}
+body[data-page="account"].jf-dark #jf-theme-toggle{background:#303b4a!important;color:#9cc5ff!important;border-color:#46566b!important}
+@media(max-width:700px){
+body:not([data-page="account"])>nav{align-items:flex-start;flex-direction:column;gap:10px;padding:14px 16px}
+body:not([data-page="account"])>nav>div{width:100%;justify-content:space-between;gap:8px!important}
+body:not([data-page="account"])>nav a{font-size:12px!important}
+body[data-page="account"]>nav{height:68px;padding:0 18px}
+body[data-page="account"] #jf-theme-toggle{top:15px!important;right:14px!important;padding:9px 12px!important}
+body[data-page="account"] .auth-section{padding:30px 14px 50px}
+body[data-page="account"] .auth-wrap{grid-template-columns:1fr;max-width:480px}
+body[data-page="account"] .auth-card{padding:22px!important}
+body[data-page="account"] .auth-section>div:first-child{margin-bottom:22px!important}
+}
+
 </style>
 </head>
 <body data-page="account">
