@@ -339,6 +339,67 @@ body.jf-dark .member-brand{color:#75adff!important}
 .jibofy-member-tabs{grid-column:1/-1!important;grid-row:3!important}
 }
 
+
+/* JIBOFY brand/footer and consistent top-positioned theme control */
+#jf-theme-toggle{position:static!important;inset:auto!important;grid-area:theme!important;justify-self:end!important;align-self:center!important;z-index:20!important;margin:0!important;min-height:40px!important;padding:9px 15px!important;border-radius:999px!important;background:var(--jf-soft,#edf4ff)!important;color:var(--jf-blue,#1769e0)!important;border:1px solid var(--jf-line,#dce5f2)!important;box-shadow:0 3px 12px rgba(15,40,80,.10)!important;font:700 13px system-ui,-apple-system,"Segoe UI",sans-serif!important;white-space:nowrap!important}
+footer{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:12px!important;padding:54px 20px 34px!important;text-align:center!important;background:var(--jf-card,#fff)!important;border-top:1px solid var(--jf-line,#e4e9f1)!important;color:var(--jf-muted,#667085)!important}
+footer .footer-brand{color:#1877f2!important;font-size:clamp(30px,5vw,40px)!important;font-weight:900!important;letter-spacing:-1.3px!important;line-height:1.1!important;background:none!important;-webkit-text-fill-color:#1877f2!important;text-shadow:none!important}
+footer .footer-description{margin:4px 0 12px!important;color:var(--jf-muted,#667085)!important;font-size:15px!important}
+footer .footer-owner{display:flex!important;flex-direction:column!important;align-items:center!important;gap:7px!important;margin:8px 0 10px!important}
+footer .footer-owner span{font-size:11px!important;font-weight:750!important;letter-spacing:3px!important;color:var(--jf-muted,#667085)!important}
+footer .footer-owner h3{margin:0!important;color:var(--jf-text,#172033)!important;font-size:clamp(21px,4vw,27px)!important;font-weight:800!important}
+footer .copyright{margin:10px 0 0!important;color:var(--jf-muted,#667085)!important;font-size:13px!important}
+body.jf-dark footer .footer-brand{color:#75adff!important;-webkit-text-fill-color:#75adff!important}
+body.jf-dark footer .footer-owner h3{color:#e8edf5!important}
+@media(max-width:700px){
+footer{padding:42px 16px 30px!important;gap:10px!important}
+footer .footer-description{font-size:14px!important}
+footer .copyright{font-size:12px!important}
+#jf-theme-toggle{min-height:38px!important;padding:8px 12px!important;font-size:12px!important}
+}
+
+.jf-public-header{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;grid-template-areas:"brand links theme"!important;align-items:center!important;gap:14px 22px!important;min-height:78px!important;padding:12px clamp(16px,5vw,64px)!important;background:var(--jf-card,#fff)!important;border-bottom:1px solid var(--jf-line,#e4e9f1)!important}
+.jf-public-header .logo{grid-area:brand!important;color:#1877f2!important;font-size:29px!important;font-weight:900!important;letter-spacing:-1.2px!important;line-height:1!important}
+.jf-public-header #jf-theme-toggle{grid-area:theme!important}
+.jf-public-links{grid-area:links!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:clamp(12px,2.4vw,30px)!important;min-width:0!important}
+.jf-public-links a{margin:0!important;color:var(--jf-text,#172033)!important;text-decoration:none!important;font-weight:700!important;white-space:nowrap!important}
+.jf-public-links a:hover{color:#1877f2!important}
+.jf-account-header{grid-template-columns:1fr auto!important;grid-template-areas:"brand theme"!important}
+body[data-page="account"] .jf-account-header{position:sticky!important;top:0!important;z-index:1000!important}
+body[data-page="account"] .auth-section{min-height:calc(100vh - 78px)!important;padding:clamp(30px,5vw,58px) 16px 54px!important;background:linear-gradient(180deg,#f4f7fc 0%,#edf3fb 100%)!important}
+body[data-page="account"] .auth-section>div:first-child{max-width:700px!important;margin:0 auto 28px!important}
+body[data-page="account"] .auth-section>div:first-child h2{color:#172033!important;font-size:clamp(29px,4vw,38px)!important;font-weight:850!important;letter-spacing:-1px!important}
+body[data-page="account"] .auth-wrap{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px!important;max-width:960px!important;margin:0 auto!important;align-items:stretch!important}
+body[data-page="account"] .auth-card{display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important;padding:clamp(22px,3vw,34px)!important;border-radius:22px!important;background:#fff!important;border:1px solid #e2e9f3!important;box-shadow:0 18px 48px rgba(22,48,88,.09)!important;color:#172033!important}
+body[data-page="account"] .auth-card h2{margin:0 0 3px!important;color:#172033!important;font-size:23px!important;font-weight:800!important}
+body[data-page="account"] .auth-card>p{margin:0 0 12px!important;color:#667085!important;font-size:14px!important;line-height:1.6!important}
+body[data-page="account"] .auth-card label{margin:5px 0 0!important;color:#344054!important;font-size:13px!important;font-weight:700!important}
+body[data-page="account"] .auth-card input{box-sizing:border-box!important;width:100%!important;min-height:48px!important;padding:12px 14px!important;border:1px solid #d9e1ed!important;border-radius:12px!important;background:#f8fafc!important;color:#172033!important;font-size:15px!important}
+body[data-page="account"] .auth-card button{width:100%!important;min-height:50px!important;margin-top:12px!important;border:0!important;border-radius:12px!important;background:#1877f2!important;color:#fff!important;font-size:15px!important;font-weight:800!important;box-shadow:0 7px 16px rgba(24,119,242,.18)!important}
+body[data-page="account"] .auth-message{min-height:18px!important;margin-top:6px!important;font-size:13px!important}
+body[data-page="account"] .auth-note{max-width:850px!important;margin:24px auto 0!important;color:#667085!important;text-align:center!important;font-size:13px!important;line-height:1.7!important}
+body[data-page="account"] footer{background:#fff!important}
+body.jf-dark .jf-public-header{background:var(--jf-card)!important}
+body.jf-dark .jf-public-links a{color:var(--jf-text)!important}
+body.jf-dark[data-page="account"] .auth-section{background:linear-gradient(180deg,#101827,#142033)!important}
+body.jf-dark[data-page="account"] .auth-section>div:first-child h2{color:#e8edf5!important}
+body.jf-dark[data-page="account"] .auth-card{background:#182437!important;border-color:#2b3a50!important;color:#e8edf5!important}
+body.jf-dark[data-page="account"] .auth-card h2,body.jf-dark[data-page="account"] .auth-card label{color:#e8edf5!important}
+body.jf-dark[data-page="account"] .auth-card>p,body.jf-dark[data-page="account"] .auth-note{color:#aab7ca!important}
+body.jf-dark[data-page="account"] .auth-card input{background:#101827!important;border-color:#40516b!important;color:#e8edf5!important}
+body.jf-dark[data-page="account"] footer{background:#182437!important}
+@media(max-width:700px){
+.jf-public-header{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"brand theme" "links links"!important;gap:12px!important;padding:14px 16px!important}
+.jf-public-header .logo{font-size:26px!important}
+.jf-public-links{justify-content:space-between!important;gap:8px!important;flex-wrap:wrap!important}
+.jf-public-links a{font-size:12px!important}
+.jf-account-header{grid-template-areas:"brand theme"!important;min-height:68px!important}
+body[data-page="account"] .auth-section{padding:28px 14px 42px!important}
+body[data-page="account"] .auth-wrap{grid-template-columns:minmax(0,1fr)!important;max-width:480px!important;gap:16px!important}
+body[data-page="account"] .auth-card{padding:22px!important}
+body[data-page="account"] .auth-note{margin-top:18px!important;padding:0 4px!important}
+}
+
 </style>
 </head>
 <body data-page="withdrawal">
