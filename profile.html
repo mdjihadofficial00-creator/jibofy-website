@@ -761,6 +761,36 @@ body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab
 body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"])::after{display:none!important;content:none!important;border:0!important;box-shadow:none!important}
 body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"]) :where(svg,i,span){color:#0866ff!important;stroke:#0866ff!important}
 
+
+/* Definitive member header, avatar menu and Facebook-style tab correction */
+body .member-shell nav.jibofy-member-tabs a,
+body .member-shell .jibofy-member-tabs a{background:transparent!important;border:0!important;border-bottom:0!important;box-shadow:none!important;color:var(--jf-text,#1c1e21)!important;text-decoration:none!important}
+body .member-shell nav.jibofy-member-tabs a.active,
+body .member-shell nav.jibofy-member-tabs a[aria-current="page"],
+body .member-shell .jibofy-member-tabs a.active,
+body .member-shell .jibofy-member-tabs a[aria-current="page"]{background:transparent!important;background-image:none!important;color:var(--jf-blue,#0866ff)!important;border:0!important;border-bottom:0!important;box-shadow:none!important;outline:0!important}
+body .member-shell nav.jibofy-member-tabs a.active::before,
+body .member-shell nav.jibofy-member-tabs a.active::after,
+body .member-shell nav.jibofy-member-tabs a[aria-current="page"]::before,
+body .member-shell nav.jibofy-member-tabs a[aria-current="page"]::after{content:none!important;display:none!important}
+body .member-shell nav.jibofy-member-tabs a.active .tab-icon,
+body .member-shell nav.jibofy-member-tabs a.active svg,
+body .member-shell nav.jibofy-member-tabs a[aria-current="page"] .tab-icon,
+body .member-shell nav.jibofy-member-tabs a[aria-current="page"] svg{color:var(--jf-blue,#0866ff)!important;stroke:var(--jf-blue,#0866ff)!important}
+body .member-shell .member-account{position:relative!important;flex:0 0 auto!important;margin-left:0!important}
+body .member-shell .member-account>summary{width:46px!important;height:46px!important;min-width:46px!important;padding:2px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:0!important;border:1px solid var(--jf-line,#dddfe2)!important;border-radius:50%!important;background:var(--jf-card,#fff)!important;color:var(--jf-text,#1c1e21)!important;box-shadow:0 1px 3px rgba(0,0,0,.12)!important}
+body .member-shell .member-account>summary .account-word,
+body .member-shell .member-account>summary>span[aria-hidden="true"]{display:none!important}
+body .member-shell .member-account>summary .member-avatar{width:40px!important;height:40px!important;min-width:40px!important;border-radius:50%!important;overflow:hidden!important;display:block!important;margin:0!important;padding:0!important;background:#e4e6eb!important}
+body .member-shell .member-account>summary .member-avatar img{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;display:block!important;object-fit:cover!important;object-position:center!important;border-radius:50%!important}
+body .member-shell .member-account>summary .member-avatar img[hidden]{display:none!important}
+body .member-shell .member-account .account-pop{display:none!important;position:absolute!important;top:calc(100% + 10px)!important;right:0!important;left:auto!important;width:230px!important;min-height:0!important;height:auto!important;padding:8px!important;gap:4px!important;overflow:visible!important;background:var(--jf-card,#fff)!important;color:var(--jf-text,#1c1e21)!important;border:1px solid var(--jf-line,#dddfe2)!important;border-radius:14px!important;box-shadow:0 12px 32px rgba(0,0,0,.18)!important;z-index:3000!important}
+body .member-shell .member-account[open] .account-pop{display:grid!important}
+body .member-shell .member-account .account-pop a,
+body .member-shell .member-account .account-pop button{display:flex!important;align-items:center!important;width:100%!important;min-height:44px!important;height:auto!important;margin:0!important;padding:11px 13px!important;border:0!important;border-radius:9px!important;background:transparent!important;color:var(--jf-text,#1c1e21)!important;text-align:left!important;text-decoration:none!important;white-space:normal!important;font:600 14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif!important;box-shadow:none!important;opacity:1!important;visibility:visible!important}
+body .member-shell .member-account .account-pop a:hover,
+body .member-shell .member-account .account-pop button:hover{background:var(--jf-soft,#e7f3ff)!important;color:var(--jf-blue,#0866ff)!important}
+
 </style>
 </head>
 <body data-page="profile">
