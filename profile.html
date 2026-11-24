@@ -1699,5 +1699,46 @@ body.jf-dark .member-shell .nav a.active svg,
 body.jf-dark .jibofy-member-tabs a.active svg,
 body.jf-dark .jibofy-member-tabs a[aria-current="page"] svg{color:#8ab4ff!important;stroke:#8ab4ff!important}
 </style>
+
+<style id="jibofy-member-active-tab-final-override">
+/* Active member tab: no filled shape; only icon and label are blue */
+html body header.member-shell nav.jibofy-member-tabs > a.active,
+html body header.member-shell nav.jibofy-member-tabs > a[aria-current="page"]{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border:0!important;border-bottom:0!important;box-shadow:none!important;
+ outline:0!important;border-radius:0!important;
+}
+html body header.member-shell nav.jibofy-member-tabs > a.active:hover,
+html body header.member-shell nav.jibofy-member-tabs > a[aria-current="page"]:hover{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+}
+html body header.member-shell nav.jibofy-member-tabs > a.active > span,
+html body header.member-shell nav.jibofy-member-tabs > a[aria-current="page"] > span,
+html body header.member-shell nav.jibofy-member-tabs > a.active svg,
+html body header.member-shell nav.jibofy-member-tabs > a[aria-current="page"] svg{
+ color:#1877f2!important;stroke:#1877f2!important;
+}
+body.jf-dark header.member-shell nav.jibofy-member-tabs > a.active,
+body.jf-dark header.member-shell nav.jibofy-member-tabs > a[aria-current="page"],
+body.jf-dark header.member-shell nav.jibofy-member-tabs > a.active > span,
+body.jf-dark header.member-shell nav.jibofy-member-tabs > a[aria-current="page"] > span,
+body.jf-dark header.member-shell nav.jibofy-member-tabs > a.active svg,
+body.jf-dark header.member-shell nav.jibofy-member-tabs > a[aria-current="page"] svg{color:#8ab4ff!important;stroke:#8ab4ff!important}
+</style>
+<script id="jibofy-member-active-tab-enforcer">
+(()=>{
+ const apply=()=>{
+  document.querySelectorAll('header.member-shell nav.jibofy-member-tabs > a.active,header.member-shell nav.jibofy-member-tabs > a[aria-current="page"]').forEach(a=>{
+   const color=document.body.classList.contains('jf-dark')?'#8ab4ff':'#1877f2';
+   ['background','background-color','background-image','border','border-bottom','box-shadow','outline'].forEach(p=>a.style.setProperty(p,p==='background'?'transparent':p==='background-color'?'transparent':p==='background-image'?'none':p==='box-shadow'?'none':p==='outline'?'none':'0','important'));
+   a.style.setProperty('color',color,'important');
+   a.querySelectorAll(':scope > span,:scope svg,:scope svg *').forEach(el=>{el.style.setProperty('color',color,'important');el.style.setProperty('stroke',color,'important');});
+  });
+ };
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();
+ new MutationObserver(apply).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['class','aria-current']});
+})();
+</script>
+
 </body>
 </html>
