@@ -576,6 +576,25 @@ body .member-shell .member-account .account-pop button:hover{background:#e7f3ff!
 body.jf-dark .jf-account-header #jf-theme-toggle{background:#3a3b3c!important;border-color:#55585c!important;color:#e4e6eb!important}
 @media(max-width:520px){.jf-account-header{padding:12px 16px!important}.jf-account-header .logo{font-size:23px!important}.jf-account-header #jf-theme-toggle{padding:9px 11px!important;font-size:12px!important}}
 </style>
+
+<style id="jibofy-global-surface-consistency-v2">
+/* Keep every large page section on one shared light/dark surface palette */
+:root{--jfs-page:#f0f2f5;--jfs-card:#ffffff;--jfs-text:#1c1e21;--jfs-muted:#65676b;--jfs-line:#dddfe2;--jfs-field:#ffffff}
+html,body{background:var(--jfs-page)!important;color:var(--jfs-text)!important}
+body :where(.hero,.features,.cta,.auth-section,.talent-showcase,.dashboard,.workspace,.main-content,.page-content,.admin-main,.admin-content){background:var(--jfs-page)!important;color:var(--jfs-text)!important}
+body :where(.card,.auth-card,.panel,.stat-card,.summary-card,.profile-card,.task-card,.campaign-card,.content-card,.withdrawal-card,.member-card,.sponsor-card,.modal,.dialog){background:var(--jfs-card)!important;color:var(--jfs-text)!important;border-color:var(--jfs-line)!important}
+body :where(h1,h2,h3,h4,h5,h6,strong,b,label){color:var(--jfs-text)!important}
+body :where(p,.sub,.muted,.note,.meta,.auth-note,.auth-card>p){color:var(--jfs-muted)!important}
+body :where(input,select,textarea){background:var(--jfs-field)!important;color:var(--jfs-text)!important;border-color:var(--jfs-line)!important}
+body.jf-dark{--jfs-page:#18191a;--jfs-card:#242526;--jfs-text:#e4e6eb;--jfs-muted:#b0b3b8;--jfs-line:#3e4042;--jfs-field:#3a3b3c}
+body.jf-dark,html:has(body.jf-dark){background:#18191a!important;color:#e4e6eb!important}
+body.jf-dark :where(.hero,.features,.cta,.auth-section,.talent-showcase,.dashboard,.workspace,.main-content,.page-content,.admin-main,.admin-content){background:#18191a!important;color:#e4e6eb!important}
+body.jf-dark :where(.card,.auth-card,.panel,.stat-card,.summary-card,.profile-card,.task-card,.campaign-card,.content-card,.withdrawal-card,.member-card,.sponsor-card,.modal,.dialog){background:#242526!important;color:#e4e6eb!important;border-color:#3e4042!important}
+body.jf-dark :where(h1,h2,h3,h4,h5,h6,strong,b,label){color:#e4e6eb!important}
+body.jf-dark :where(p,.sub,.muted,.note,.meta,.auth-note,.auth-card>p){color:#b0b3b8!important}
+body.jf-dark :where(input,select,textarea){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
+</style>
 </head>
 <body data-page="account">
 <nav class="jf-public-header jf-account-header"><a class="logo" href="index.html" aria-label="JIBOFY Home">JIBOFY</a><button id="jf-theme-toggle" type="button">🌙 Dark mode</button></nav>
