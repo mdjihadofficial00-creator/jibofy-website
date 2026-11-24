@@ -486,6 +486,125 @@ header.top>#jf-theme-toggle,header.top>#theme-toggle,header.top>#logout{
  header.top>nav a{padding:9px 11px!important;font-size:12px!important}
 }
 
+
+/* JIBOFY admin pages — match the Sponsor page header and Facebook palette */
+:root{
+ --jf-bg:#f0f2f5;--jf-card:#ffffff;--jf-text:#1c1e21;--jf-muted:#65676b;
+ --jf-line:#dddfe2;--jf-blue:#1877f2;--jf-blue-soft:#e7f3ff;--jf-field:#ffffff;
+ --jf-shadow:0 2px 12px rgba(0,0,0,.06);
+}
+html,body{min-height:100%;background:var(--jf-bg)!important;color:var(--jf-text)!important}
+body{font-family:Inter,system-ui,-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important;line-height:1.5}
+body.jf-dark{
+ --jf-bg:#18191a;--jf-card:#242526;--jf-text:#e4e6eb;--jf-muted:#b0b3b8;
+ --jf-line:#3e4042;--jf-blue:#1877f2;--jf-blue-soft:#263951;--jf-field:#3a3b3c;
+ --jf-shadow:0 2px 12px rgba(0,0,0,.22);
+}
+body,body #app,body .wrap{color:var(--jf-text)!important}
+body .top{
+ position:sticky!important;top:0!important;z-index:5000!important;
+ display:flex!important;align-items:center!important;gap:14px!important;
+ flex-wrap:nowrap!important;width:100%!important;min-height:76px!important;
+ padding:13px clamp(14px,4vw,48px)!important;
+ background:var(--jf-card)!important;border:0!important;
+ border-bottom:1px solid var(--jf-line)!important;
+ box-shadow:0 1px 4px rgba(0,0,0,.08)!important;
+}
+body .top .brand{
+ flex:0 0 auto!important;font-size:21px!important;letter-spacing:.2px!important;
+ font-weight:850!important;color:var(--jf-blue)!important;
+ text-decoration:none!important;white-space:nowrap!important;
+}
+body .top nav{
+ display:flex!important;align-items:center!important;gap:6px!important;
+ flex:0 1 auto!important;min-width:0!important;flex-wrap:nowrap!important;
+ overflow-x:auto!important;background:transparent!important;border:0!important;
+ box-shadow:none!important;padding:0!important;scrollbar-width:none!important;
+}
+body .top nav::-webkit-scrollbar{display:none!important}
+body .top nav a{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 auto!important;padding:9px 12px!important;border:0!important;
+ border-radius:9px!important;background:transparent!important;
+ color:var(--jf-muted)!important;text-decoration:none!important;
+ font:700 13px/1.2 Inter,system-ui,-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important;
+ white-space:nowrap!important;
+}
+body .top nav a:hover{background:var(--jf-blue-soft)!important;color:var(--jf-blue)!important}
+body .top nav a.active,body .top nav a[aria-current="page"]{
+ background:var(--jf-blue)!important;color:#fff!important;
+}
+body .top .top-search{
+ display:flex!important;align-items:center!important;gap:8px!important;
+ flex:1 1 190px!important;min-width:165px!important;max-width:260px!important;
+ height:40px!important;margin:0!important;padding:0 12px!important;
+ border:1px solid var(--jf-line)!important;border-radius:22px!important;
+ background:var(--jf-bg)!important;color:var(--jf-muted)!important;
+}
+body .top .top-search span{display:inline-flex!important;flex:0 0 auto!important;font-size:22px!important;line-height:1!important}
+body .top .top-search input{
+ width:100%!important;min-width:0!important;height:100%!important;padding:0!important;
+ border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;
+ color:var(--jf-text)!important;font:500 14px/1.2 Inter,system-ui,-apple-system,"SF Pro Text",Arial,sans-serif!important;
+}
+body .top .top-search input::placeholder{color:var(--jf-muted)!important;opacity:1!important}
+body .top button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 auto!important;min-height:40px!important;padding:10px 14px!important;
+ border:0!important;border-radius:9px!important;background:var(--jf-blue)!important;
+ color:#fff!important;font:700 13px/1.2 Inter,system-ui,-apple-system,"SF Pro Text",Arial,sans-serif!important;
+ white-space:nowrap!important;cursor:pointer!important;
+}
+body .top #jf-theme-toggle,body .top #theme-toggle{
+ margin-left:auto!important;background:var(--jf-blue-soft)!important;
+ color:var(--jf-blue)!important;border:1px solid var(--jf-line)!important;
+}
+body.jf-dark .top #jf-theme-toggle,body.jf-dark .top #theme-toggle{
+ background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important;
+}
+body .top #logout{margin-left:0!important}
+body .wrap{max-width:1180px!important;margin:0 auto!important;padding:34px 18px 70px!important}
+body .panel,body .stat-card,body .stat,.showcase-edit-row{
+ background:var(--jf-card)!important;color:var(--jf-text)!important;
+ border:1px solid var(--jf-line)!important;box-shadow:var(--jf-shadow)!important;
+}
+body .panel h2,body .panel h3,body h1,body h2,body h3,body strong{color:var(--jf-text)!important}
+body .muted,body .note,body .eyebrow,body .field label,body .panel p{color:var(--jf-muted)!important}
+body .field input,body .field textarea,body .field select,body input,body textarea,body select{
+ background:var(--jf-field)!important;color:var(--jf-text)!important;border-color:var(--jf-line)!important;
+}
+body input::placeholder,body textarea::placeholder{color:var(--jf-muted)!important;opacity:1!important}
+body .btn.primary,body .primary,body .top-action,body button.primary{
+ background:var(--jf-blue)!important;color:#fff!important;border:1px solid var(--jf-blue)!important;
+}
+body .btn.secondary,body .secondary,body button.secondary{
+ background:var(--jf-blue-soft)!important;color:var(--jf-blue)!important;border:1px solid var(--jf-line)!important;
+}
+body.jf-dark .panel,body.jf-dark .stat-card,body.jf-dark .stat,body.jf-dark .showcase-edit-row{
+ background:#242526!important;color:#e4e6eb!important;border-color:#3e4042!important;
+}
+body.jf-dark .panel h2,body.jf-dark .panel h3,body.jf-dark h1,body.jf-dark h2,body.jf-dark h3,body.jf-dark strong,body.jf-dark .field label{color:#e4e6eb!important}
+body.jf-dark .muted,body.jf-dark .note,body.jf-dark .eyebrow,body.jf-dark .panel p{color:#b0b3b8!important}
+body.jf-dark input,body.jf-dark textarea,body.jf-dark select,body.jf-dark .field input,body.jf-dark .field textarea,body.jf-dark .field select{
+ background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important;
+}
+body.jf-dark .btn.secondary,body.jf-dark .secondary,body.jf-dark button.secondary{
+ background:#263951!important;color:#dbeafe!important;border-color:#3e4042!important;
+}
+@media(max-width:1100px){
+ body .top{flex-wrap:wrap!important;gap:9px!important}
+ body .top nav{order:3!important;flex:1 1 100%!important;width:100%!important}
+ body .top .top-search{order:4!important;flex:1 1 100%!important;max-width:none!important}
+ body .top #jf-theme-toggle,body .top #theme-toggle{margin-left:auto!important}
+}
+@media(max-width:560px){
+ body .top{padding:10px 12px!important;min-height:0!important}
+ body .top .brand{font-size:19px!important}
+ body .top nav{overflow-x:auto!important;scrollbar-width:none!important}
+ body .top nav a{padding:9px 11px!important;font-size:12px!important}
+ body .wrap{padding:24px 13px 48px!important}
+}
+
 </style></head><body>
 
 <header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a href="admin.html">Overview</a><a href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a class="active" href="admin-withdrawals.html">Withdrawals</a><a href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header>
