@@ -635,6 +635,86 @@ body.jf-dark .jibofy-member-tabs a.active{color:#2d88ff!important;border-bottom-
 .jibofy-member-tabs .tab-icon svg{width:25px!important;height:25px!important;stroke:currentColor!important;fill:none!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
 @media(max-width:700px){.member-shell{grid-template-columns:auto minmax(0,1fr) auto auto!important;grid-template-rows:54px 54px!important;gap:0 8px!important;padding:5px 10px 0!important}.member-brand{font-size:21px!important}.member-search button{display:none!important}.member-search input{height:38px!important;font-size:13px!important;padding-left:36px!important}#jf-theme-toggle{font-size:0!important;padding:9px!important;width:38px;height:38px}#jf-theme-toggle:after{content:"☼";font-size:18px}.member-avatar{width:36px!important;height:36px!important}.jibofy-member-tabs{gap:2px!important;min-height:54px!important}.jibofy-member-tabs a{font-size:11px!important;gap:4px!important;padding:6px 2px 8px!important}.jibofy-member-tabs .tab-icon svg{width:22px!important;height:22px!important}}
 
+
+/* Unified light-mode navigation contrast across every admin and member page */
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a,
+  .member-shell .nav a,
+  .admin-shell .nav a,
+  .nav a,
+  .top nav a,
+  .admin-nav a,
+  .tabs a
+){
+  color:#1c1e21!important;
+  text-decoration:none!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a,
+  .member-shell .nav a,
+  .admin-shell .nav a,
+  .nav a,
+  .top nav a,
+  .admin-nav a,
+  .tabs a
+) :where(span,svg,i){
+  color:inherit!important;
+  stroke:currentColor!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a.active,
+  .jibofy-member-tabs a[aria-current="page"],
+  .member-shell .nav a.active,
+  .member-shell .nav a[aria-current="page"],
+  .admin-shell .nav a.active,
+  .nav a.active,
+  .nav a[aria-current="page"],
+  .top nav a.active,
+  .admin-nav a.active,
+  .tabs a.active
+){
+  color:#0866ff!important;
+  background:transparent!important;
+  border:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a.active,
+  .jibofy-member-tabs a[aria-current="page"],
+  .member-shell .nav a.active,
+  .member-shell .nav a[aria-current="page"],
+  .admin-shell .nav a.active,
+  .nav a.active,
+  .nav a[aria-current="page"],
+  .top nav a.active,
+  .admin-nav a.active,
+  .tabs a.active
+) :where(span,svg,i){
+  color:#0866ff!important;
+  stroke:#0866ff!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a:hover,
+  .member-shell .nav a:hover,
+  .admin-shell .nav a:hover,
+  .nav a:hover,
+  .top nav a:hover,
+  .admin-nav a:hover,
+  .tabs a:hover
+){
+  color:#0866ff!important;
+  background:#e7f3ff!important;
+}
+body:not(.jf-dark) :where(.profile-subtitle,.profile-meta,.edit-hint,.auth-note,.summary-kicker,.muted,.sub,.note,.meta,.description){
+  color:#4b5563!important;
+}
+body.jf-dark :where(.profile-subtitle,.profile-meta,.edit-hint,.auth-note,.summary-kicker,.muted,.sub,.note,.meta,.description){
+  color:#c2c6cc!important;
+}
+
 </style>
 </head>
 <body data-page="dashboard">
