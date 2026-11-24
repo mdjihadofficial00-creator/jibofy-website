@@ -702,6 +702,59 @@ body .member-shell .member-account .account-pop #header-logout{display:flex!impo
 body .member-shell .member-account .account-pop a:hover,
 body .member-shell .member-account .account-pop button:hover{background:#e7f3ff!important;color:#0866ff!important;-webkit-text-fill-color:#0866ff!important}
 
+
+/* JIBOFY FINAL STICKY HEADER + CONSISTENT ACTION BUTTONS */
+:root{--jf-admin-sticky-height:104px}
+html{scroll-padding-top:112px}
+body{scrollbar-gutter:stable}
+body :where(.member-shell,.admin-shell,.top){
+ position:sticky!important;top:0!important;z-index:3000!important;
+ isolation:isolate;
+}
+body :where(.member-shell,.admin-shell,.top){box-shadow:0 2px 10px rgba(0,0,0,.10)!important}
+body :where(.member-shell,.admin-shell,.top){backdrop-filter:saturate(1.15) blur(14px)}
+/* Admin section tabs stay directly below the fixed admin toolbar */
+body .wrap > .nav{
+ position:sticky!important;top:var(--jf-admin-sticky-height)!important;z-index:2500!important;
+ display:flex!important;align-items:center!important;gap:8px!important;flex-wrap:nowrap!important;
+ overflow-x:auto!important;overscroll-behavior-x:contain;
+ margin:0 0 22px!important;padding:7px!important;
+ background:var(--jf-card,#fff)!important;border:1px solid var(--jf-line,#dddfe2)!important;
+ border-radius:12px!important;box-shadow:0 2px 8px rgba(0,0,0,.08)!important;
+}
+body .wrap > .nav a{flex:0 0 auto!important;white-space:nowrap!important}
+body.jf-dark .wrap > .nav{background:#242526!important;border-color:#3e4042!important}
+/* Welcome photo editor actions: readable in both themes */
+body :where(.top-action){
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-height:40px!important;padding:9px 15px!important;border-radius:9px!important;
+ background:#0866ff!important;color:#fff!important;border:1px solid #0866ff!important;
+ font:700 13px/1.2 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;
+ text-decoration:none!important;box-shadow:0 1px 2px rgba(0,0,0,.12)!important;cursor:pointer!important;
+}
+body :where(.top-action):hover{background:#075ce5!important;color:#fff!important}
+body.jf-dark :where(.top-action){background:#2d88ff!important;color:#fff!important;border-color:#2d88ff!important}
+body.jf-dark :where(.top-action):hover{background:#4595ff!important;color:#fff!important}
+body :where(.showcase-edit-row){background:var(--jf-card,#fff)!important;border:1px solid var(--jf-line,#dddfe2)!important;border-radius:12px!important;padding:14px!important;margin:12px 0!important}
+body :where(.showcase-edit-row) label{display:block!important;color:var(--jf-text,#1c1e21)!important;font-weight:650!important;margin:8px 0!important}
+body :where(.showcase-edit-row) input{color:var(--jf-text,#1c1e21)!important;background:var(--jf-field,#fff)!important}
+body.jf-dark :where(.showcase-edit-row) label{color:#e4e6eb!important}
+body.jf-dark :where(.showcase-edit-row) input{color:#e4e6eb!important;background:#3a3b3c!important}
+/* Sponsor admin search matches the rest of the admin header */
+.sponsor-admin-search{display:flex!important;align-items:center!important;gap:7px!important;flex:1 1 220px!important;max-width:340px!important;min-width:180px!important}
+.sponsor-admin-search input{width:100%!important;min-width:0!important;height:40px!important;padding:8px 14px 8px 36px!important;border:1px solid var(--jf-line,#dddfe2)!important;border-radius:22px!important;background:var(--jf-bg,#f0f2f5)!important;color:var(--jf-text,#1c1e21)!important}
+.sponsor-admin-search button{height:40px!important;padding:0 15px!important;border:0!important;border-radius:20px!important;background:#0866ff!important;color:#fff!important;font-weight:700!important;cursor:pointer!important}
+body.jf-dark .sponsor-admin-search input{background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+@media(max-width:900px){
+ body .wrap > .nav{top:104px!important}
+ .sponsor-admin-search{order:3;flex:1 1 100%!important;max-width:none!important}
+}
+@media(max-width:560px){
+ body .wrap > .nav{top:100px!important;gap:5px!important}
+ body .wrap > .nav a{padding:9px 11px!important;font-size:12px!important}
+ .sponsor-admin-search{min-width:0!important}
+}
+
 </style>
 </head>
 <body data-page="withdrawal">
