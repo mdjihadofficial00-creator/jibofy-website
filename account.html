@@ -1067,5 +1067,29 @@ function formatJibofyMemberId(memberCode){
  });
 })();
 </script>
+
+<style id="jibofy-member-nav-active-fix-v2">
+/* Match the actual shared member navigation markup */
+.member-shell nav.jibofy-member-tabs a[aria-current="page"],
+.member-shell nav.jibofy-member-tabs a.active,
+header.member-shell nav.jibofy-member-tabs a[aria-current="page"],
+header.member-shell nav.jibofy-member-tabs a.active{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border:0!important;border-bottom:0!important;box-shadow:none!important;
+ border-radius:9px!important;outline:0!important
+}
+.member-shell nav.jibofy-member-tabs a[aria-current="page"] .tab-icon,
+.member-shell nav.jibofy-member-tabs a.active .tab-icon,
+.member-shell nav.jibofy-member-tabs a[aria-current="page"]>span:not(.tab-icon),
+.member-shell nav.jibofy-member-tabs a.active>span:not(.tab-icon){color:#1877f2!important}
+.member-shell nav.jibofy-member-tabs a[aria-current="page"] .tab-icon svg,
+.member-shell nav.jibofy-member-tabs a.active .tab-icon svg{stroke:#1877f2!important;fill:none!important}
+.member-shell nav.jibofy-member-tabs a[aria-current="page"] .tab-icon svg *,
+.member-shell nav.jibofy-member-tabs a.active .tab-icon svg *{stroke:currentColor!important;fill:none!important}
+body.jf-dark .member-shell nav.jibofy-member-tabs a[aria-current="page"],
+body.jf-dark .member-shell nav.jibofy-member-tabs a.active{color:#2d88ff!important;background:transparent!important}
+body.jf-dark .member-shell nav.jibofy-member-tabs a[aria-current="page"] .tab-icon svg,
+body.jf-dark .member-shell nav.jibofy-member-tabs a.active .tab-icon svg{stroke:#2d88ff!important}
+</style>
 </body>
 </html>
