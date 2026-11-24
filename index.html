@@ -917,5 +917,18 @@ body.jf-dark .footer-social-links a.footer-social-icon{color:#8ab4ff!important;b
 function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light":"🌙 Dark";btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");btn.setAttribute("aria-pressed",String(dark))}
 btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();
 </script>
+<script id="welcome-page-content">
+(()=>{if(!window.supabase)return;const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");
+db.from("homepage_showcase").select("page_content").eq("id",1).maybeSingle().then(({data,error})=>{if(error||!data?.page_content)return;const c=data.page_content,put=(selector,key)=>{const el=document.querySelector(selector);if(el&&c[key])el.textContent=c[key];};
+put(".jf-home-header .jf-public-links a:nth-child(1)","nav_home");put(".jf-home-header .jf-public-links a:nth-child(2)","nav_features");put(".jf-home-header .jf-public-links a:nth-child(3)","nav_sponsors");put(".jf-home-header .jf-public-links a:nth-child(4)","nav_account");
+put(".hero .tag","hero_tag");put(".hero h1","hero_title");put(".hero>p","hero_description");put(".hero>.btn","hero_button");if(c.hero_button_url)document.querySelector(".hero>.btn")?.setAttribute("href",c.hero_button_url);
+put(".talent-heading .talent-eyebrow","community_eyebrow");put(".talent-heading h2","community_title");
+put("#features>h2","features_title");put("#features>.sub","features_description");
+for(let i=1;i<=4;i++){put("#features .card:nth-child("+i+") h3","feature"+i+"_title");put("#features .card:nth-child("+i+") p","feature"+i+"_description");}
+put("#join h2","cta_title");put("#join>p","cta_description");put("#join>.btn","cta_button");if(c.cta_button_url)document.querySelector("#join>.btn")?.setAttribute("href",c.cta_button_url);
+put("footer .footer-brand","footer_brand");put("footer .footer-description","footer_description");put("footer .footer-owner>span","footer_owner_label");put("footer .footer-owner h3","footer_owner_name");put("footer .copyright","footer_copyright");
+});
+})();
+</script>
 </body>
 </html>
