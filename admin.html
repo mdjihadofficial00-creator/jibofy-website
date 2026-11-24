@@ -1242,4 +1242,34 @@ body.jf-dark .top nav a[aria-current="page"]{color:#8ab4ff!important}
 body .top nav a.active :is(span,i,svg),
 body .top nav a[aria-current="page"] :is(span,i,svg){color:inherit!important;stroke:currentColor!important;fill:none!important}
 </style>
+
+<style id="jibofy-admin-active-tab-member-match">
+/* Match the requested member-tab appearance: blue icon + label only. */
+html body header.top nav > a.active,
+html body header.top nav > a.active:hover,
+html body header.top nav > a[aria-current="page"],
+html body header.top nav > a[aria-current="page"]:hover{
+ background:transparent!important;
+ background-color:transparent!important;
+ background-image:none!important;
+ color:#0866ff!important;
+ border:0!important;
+ border-color:transparent!important;
+ border-bottom:0!important;
+ box-shadow:none!important;
+ outline:0!important;
+}
+html body header.top nav > a.active::before,
+html body header.top nav > a.active::after,
+html body header.top nav > a[aria-current="page"]::before,
+html body header.top nav > a[aria-current="page"]::after{display:none!important;content:none!important}
+html body.jf-dark header.top nav > a.active,
+html body.jf-dark header.top nav > a.active:hover,
+html body.jf-dark header.top nav > a[aria-current="page"],
+html body.jf-dark header.top nav > a[aria-current="page"]:hover{color:#8ab4ff!important;background:transparent!important;background-color:transparent!important;background-image:none!important}
+html body header.top nav > a.active :is(span,i,svg),
+html body header.top nav > a.active :is(span,i,svg) *,
+html body header.top nav > a[aria-current="page"] :is(span,i,svg),
+html body header.top nav > a[aria-current="page"] :is(span,i,svg) *{color:inherit!important;stroke:currentColor!important}
+</style>
 </body></html>
