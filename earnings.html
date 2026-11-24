@@ -53,7 +53,7 @@ nav a{margin-left:10px;font-size:12px}
 .panel label{display:block;color:#cbd5e1;font-size:13px;margin:13px 0 7px}
 .panel input,.panel textarea{width:100%;padding:12px;border:1px solid #343d55;border-radius:9px;background:#0b1020;color:#fff}
 .panel textarea{min-height:95px;resize:vertical}
-.stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.earnings-overview{max-width:900px;margin:0 auto;text-align:center}.earnings-overview .summary-heading{justify-content:center;position:relative}.earnings-overview .summary-heading>.tag{position:absolute;right:0}.earnings-filter{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 auto 14px}.earnings-filter button,.earnings-custom button{border:1px solid var(--border-color,#34445d);background:var(--surface-2,#17243a);color:inherit;border-radius:10px;padding:9px 14px;font-weight:650;cursor:pointer}.earnings-filter button.active,.earnings-custom button{background:#1877f2;color:white;border-color:#1877f2}.earnings-custom{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;margin:0 auto 22px}.earnings-custom label{font-size:13px;font-weight:650}.earnings-custom input{width:auto;min-width:135px;padding:9px 10px;border:1px solid #53627a;border-radius:9px;background:#101a2b;color:inherit}.earnings-member-meta{text-align:center;margin-top:20px;overflow-wrap:anywhere}.stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .stat{background:#0e1427;border:1px solid #ffffff12;border-radius:12px;padding:18px}
 .stat span{display:block;color:#9ca3b5;font-size:13px;margin-bottom:8px}
 .stat strong{font-size:25px;color:#c4b5fd}
@@ -574,8 +574,16 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
     <p class="edit-hint" id="profile-hint">Your personal information is visible here. Select Edit Profile to make changes.</p>
     <div class="dash-message" id="profile-message" role="status"></div>
    </form>
-   <div class="panel member-subscreen" id="earnings-panel" data-subscreen="earnings">
+   <div class="panel member-subscreen earnings-overview" id="earnings-panel" data-subscreen="earnings">
     <div class="summary-heading"><div><div class="summary-kicker">ACCOUNT OVERVIEW</div><h3 style="margin-top:6px">Work & Earnings</h3></div><span class="tag">LIVE SUMMARY</span></div>
+    <div class="earnings-filter" role="group" aria-label="Earnings date range">
+     <button type="button" data-range="day" class="active">1 Day</button>
+     <button type="button" data-range="week">1 Week</button>
+     <button type="button" data-range="month">1 Month</button>
+     <button type="button" data-range="year">1 Year</button>
+     <button type="button" data-range="all">All Time</button>
+    </div>
+    <div class="earnings-custom"><label for="earnings-from">Custom range</label><input type="date" id="earnings-from"><span>to</span><input type="date" id="earnings-to"><button type="button" id="earnings-apply">Apply</button></div>
     <div class="stat-grid">
      <div class="stat"><span>Total Tasks</span><strong id="stat-total-tasks">—</strong></div>
      <div class="stat"><span>Pending Tasks</span><strong id="stat-pending-tasks">—</strong></div>
@@ -584,7 +592,7 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
      <div class="stat"><span>Total Earnings</span><strong id="stat-earnings">৳0</strong></div>
      <div class="stat"><span>Withdrawn</span><strong id="stat-withdrawn">৳0</strong></div>
     </div>
-    <p class="profile-meta" style="margin-top:20px">Member ID: <span id="member-id">—</span><br>Joined: <span id="member-joined">—</span></p>
+    <p class="profile-meta earnings-member-meta">Member ID: <span id="member-id">—</span><br>Joined: <span id="member-joined">—</span></p>
     <div class="dash-message" id="summary-message" role="status"></div>
    </div>
   </div>
@@ -704,6 +712,46 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
   }
 
 
+  function formatMemberCode(code, fallback) {
+    if (code !== null && code !== undefined && String(code).trim() !== "") {
+      const digits = String(code).replace(/\\D/g,"");
+      return digits.length >= 6 ? digits.slice(-6) : digits.padStart(6,"0");
+    }
+    return fallback || "—";
+  }
+
+  function renderEarningsSummary(customFrom, customTo) {
+    const data = window.jibofyEarningsRows;
+    if (!data) return;
+    const now = new Date();
+    let start = null, end = new Date(now);
+    const range = window.jibofyEarningsRange || "day";
+    if (range === "day") start = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    if (range === "week") { start = new Date(now); start.setDate(start.getDate()-6); start.setHours(0,0,0,0); }
+    if (range === "month") { start = new Date(now); start.setMonth(start.getMonth()-1); }
+    if (range === "year") { start = new Date(now); start.setFullYear(start.getFullYear()-1); }
+    if (range === "custom") { start = new Date(customFrom+"T00:00:00"); end = new Date(customTo+"T23:59:59.999"); }
+    const inRange = row => {
+      if (!start) return true;
+      if (!row.created_at) return false;
+      const date = new Date(row.created_at);
+      return date >= start && date <= end;
+    };
+    const submissions = data.submissions.filter(inRange);
+    const wallet = data.wallet.filter(inRange);
+    const withdrawals = data.withdrawals.filter(inRange);
+    const total = wallet.reduce((sum,row)=>sum+Number(row.amount||0),0);
+    const paid = withdrawals.filter(row=>String(row.status).toLowerCase()==="paid").reduce((sum,row)=>sum+Number(row.amount||0),0);
+    document.getElementById("stat-total-tasks").textContent = submissions.length;
+    document.getElementById("stat-pending-tasks").textContent = submissions.filter(x=>x.status==="pending").length;
+    document.getElementById("stat-approved-tasks").textContent = submissions.filter(x=>x.status==="approved").length;
+    document.getElementById("stat-rejected-tasks").textContent = submissions.filter(x=>x.status==="rejected").length;
+    document.getElementById("stat-earnings").textContent = money(total);
+    document.getElementById("stat-withdrawn").textContent = money(paid);
+    const labels = {day:"Last 1 day",week:"Last 1 week",month:"Last 1 month",year:"Last 1 year",all:"All time",custom:"Custom date range"};
+    document.getElementById("summary-message").textContent = labels[range] + " summary";
+  }
+
   async function loadDashboard(user) {
     currentUser = user;
     // Reveal the member area immediately after authentication, even if profile data
@@ -716,7 +764,7 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
     document.getElementById("member-id").textContent = user.id;
     document.getElementById("member-joined").textContent = user.created_at ? new Date(user.created_at).toLocaleDateString() : "—";
     const { data: profile, error: profileError } = await client.from("profiles")
-      .select("id,full_name,phone,avatar_url,about_me,role,created_at").eq("id", user.id).maybeSingle();
+      .select("id,full_name,phone,avatar_url,about_me,role,created_at,member_code").eq("id", user.id).maybeSingle();
     if (profileError || !profile) {
       document.getElementById("profile-message").textContent =
         "Dashboard opened, but profile details could not be loaded: " + (profileError?.message || "Profile record not found");
@@ -732,28 +780,37 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
     document.getElementById("profile-avatar").src = profile.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
     document.getElementById("profile-contact").textContent =
       "Email: " + (user.email || "Not available") + " | Phone: " + (profile.phone || user.user_metadata?.phone || "Not added");
-    document.getElementById("member-id").textContent = user.id;
+    document.getElementById("member-id").textContent = formatMemberCode(profile.member_code, user.id);
     document.getElementById("member-joined").textContent = profile.created_at ? new Date(profile.created_at).toLocaleDateString() : "—";
     const [submissions, wallet, withdrawals] = await Promise.all([
-      client.from("task_submissions").select("id,status").eq("user_id", user.id),
-      client.from("wallet_transactions").select("amount").eq("user_id", user.id),
-      client.from("withdrawals").select("amount,status").eq("user_id", user.id)
+      client.from("task_submissions").select("id,status,created_at").eq("user_id", user.id),
+      client.from("wallet_transactions").select("amount,created_at").eq("user_id", user.id),
+      client.from("withdrawals").select("amount,status,created_at").eq("user_id", user.id)
     ]);
     const summaryError = submissions.error || wallet.error || withdrawals.error;
     if (summaryError) {
       document.getElementById("summary-message").textContent = "Some summary data is unavailable: " + summaryError.message;
       return;
     }
-    const rows = submissions.data || [];
-    const total = (wallet.data || []).reduce((sum,row)=>sum+Number(row.amount||0),0);
-    const paid = (withdrawals.data || []).filter(row=>String(row.status).toLowerCase()==="paid")
-      .reduce((sum,row)=>sum+Number(row.amount||0),0);
-    document.getElementById("stat-total-tasks").textContent = rows.length;
-    document.getElementById("stat-pending-tasks").textContent = rows.filter(x=>x.status==="pending").length;
-    document.getElementById("stat-approved-tasks").textContent = rows.filter(x=>x.status==="approved").length;
-    document.getElementById("stat-rejected-tasks").textContent = rows.filter(x=>x.status==="rejected").length;
-    document.getElementById("stat-earnings").textContent = money(total);
-    document.getElementById("stat-withdrawn").textContent = money(paid);
+    window.jibofyEarningsRows = { submissions: submissions.data || [], wallet: wallet.data || [], withdrawals: withdrawals.data || [] };
+    window.jibofyEarningsRange = "day";
+    renderEarningsSummary();
+    document.querySelectorAll(".earnings-filter button").forEach(button=>button.addEventListener("click",()=>{
+      window.jibofyEarningsRange = button.dataset.range;
+      document.querySelectorAll(".earnings-filter button").forEach(item=>item.classList.toggle("active",item===button));
+      renderEarningsSummary();
+    }));
+    document.getElementById("earnings-apply").addEventListener("click",()=>{
+      const from = document.getElementById("earnings-from").value;
+      const to = document.getElementById("earnings-to").value;
+      if (!from || !to || from > to) {
+        document.getElementById("summary-message").textContent = "Please choose a valid start and end date.";
+        return;
+      }
+      window.jibofyEarningsRange = "custom";
+      document.querySelectorAll(".earnings-filter button").forEach(item=>item.classList.remove("active"));
+      renderEarningsSummary(from,to);
+    });
   }
 
   const profileFields = ["avatar-file","profile-name","profile-about"].map(id=>document.getElementById(id));
