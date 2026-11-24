@@ -976,6 +976,13 @@ body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
 <main class="wrap"><div class="eyebrow">CONTROL CENTER</div><h1>Admin Dashboard</h1>
 
 <div id="loading" class="empty">Checking administrator access…</div><div id="app" class="hidden"><p class="muted">JIBOFY platform overview. Choose a section from the menu above to manage it.</p><div class="stat-grid"><div class="stat-card"><span>Total Members</span><strong id="ov-members">—</strong></div><div class="stat-card"><span>Total Campaigns</span><strong id="ov-campaigns">—</strong></div><div class="stat-card"><span>Pending Withdrawals</span><strong id="ov-pending">—</strong></div><div class="stat-card"><span>Pending Withdrawal Amount</span><strong id="ov-amount">—</strong></div></div><p class="note">Use the navigation above to manage campaigns, members and withdrawal requests separately.</p>
+<section class="panel" id="welcome-page-editor" style="margin-top:24px">
+ <div class="eyebrow">FULL WEBSITE CONTENT CONTROL</div><h2>Welcome Page Editor — A to Z</h2>
+ <p class="muted">Welcome Page-এর লেখা, button label/link, navigation label/link, feature content, CTA ও footer এখান থেকে পরিবর্তন করো। ফাঁকা রাখলে বর্তমান লেখা অপরিবর্তিত থাকবে।</p>
+ <div id="welcome-content-fields" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px"></div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px"><button class="top-action" id="welcome-content-save" type="button">Save Welcome Page Content</button><button class="top-action" id="welcome-content-reset" type="button">Reset to default text</button></div>
+ <p class="muted" id="welcome-content-status" role="status" aria-live="polite"></p>
+</section>
 <section class="panel" id="homepage-showcase-manager" style="margin-top:24px">
  <div class="eyebrow">WEBSITE CONTENT</div><h2>Welcome Page Photos</h2>
  <p class="muted">Welcome Page-এর animated photo cards এখান থেকে পরিবর্তন করতে পারবে। প্রতিটি ছবির জন্য সরাসরি HTTPS image link দিতে হবে। সর্বোচ্চ ৮টি কার্ড রাখা যাবে।</p>
@@ -1042,4 +1049,24 @@ load();
 function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light":"🌙 Dark";btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");btn.setAttribute("aria-pressed",String(dark))}
 btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();
 </script>
-</body></html>
+<script id="welcome-content-admin">
+(()=>{const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");const host=document.getElementById("welcome-content-fields"),status=document.getElementById("welcome-content-status");if(!host)return;
+const fields=[
+["nav_home","Home","Navigation"],["nav_features","Features","Navigation"],["nav_sponsors","For Sponsors","Navigation"],["nav_account","Account","Navigation"],
+["hero_tag","Hero small heading","Hero"],["hero_title","Hero main heading","Hero"],["hero_description","Hero description","Hero"],["hero_button","Hero button text","Hero"],["hero_button_url","Hero button link","Hero"],
+["community_eyebrow","Community small heading","Community"],["community_title","Community heading","Community"],
+["features_title","Features heading","Features"],["features_description","Features description","Features"],
+["feature1_title","Feature 1 title","Feature 1"],["feature1_description","Feature 1 description","Feature 1"],["feature2_title","Feature 2 title","Feature 2"],["feature2_description","Feature 2 description","Feature 2"],["feature3_title","Feature 3 title","Feature 3"],["feature3_description","Feature 3 description","Feature 3"],["feature4_title","Feature 4 title","Feature 4"],["feature4_description","Feature 4 description","Feature 4"],
+["cta_title","Call-to-action heading","CTA"],["cta_description","Call-to-action description","CTA"],["cta_button","Call-to-action button text","CTA"],["cta_button_url","Call-to-action button link","CTA"],
+["footer_brand","Footer brand","Footer"],["footer_description","Footer description","Footer"],["footer_owner_label","Founder label","Footer"],["footer_owner_name","Founder name","Footer"],["footer_copyright","Copyright text","Footer"]
+];
+const defaults={nav_home:"Home",nav_features:"Features",nav_sponsors:"For Sponsors",nav_account:"Account",hero_tag:"✦ SMART REWARDS & DIGITAL OPPORTUNITIES",hero_title:"Discover Opportunities. Earn Smarter.",hero_description:"Explore meaningful digital tasks, discover new opportunities and track your rewards — all in one place with JIBOFY.",hero_button:"Get Started →",hero_button_url:"#join",community_eyebrow:"MEET THE COMMUNITY",community_title:"People. Skills. Opportunities.",features_title:"Everything in One Place",features_description:"A smarter platform for digital opportunities and rewards.",feature1_title:"Sponsored Tasks",feature1_description:"Explore sponsored opportunities and complete eligible tasks.",feature2_title:"Affiliate Opportunities",feature2_description:"Discover referral opportunities and earn from verified results.",feature3_title:"Reward Wallet",feature3_description:"Keep track of approved rewards and your available balance.",feature4_title:"Personal Dashboard",feature4_description:"Manage your activities, submissions and account in one place.",cta_title:"Start Your Journey with JIBOFY",cta_description:"Discover a smarter way to explore digital opportunities.",cta_button:"Create Account",cta_button_url:"#account",footer_brand:"JIBOFY",footer_description:"Smart Rewards & Digital Earning Platform",footer_owner_label:"FOUNDER & OWNER",footer_owner_name:"Muhammad Jihad",footer_copyright:"© 2026 JIBOFY. All rights reserved."};
+let content={};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function draw(){let group="";host.innerHTML=fields.map(([key,label,section])=>{const type=key.endsWith("_description")||key==="hero_title"||key==="community_title"||key==="features_title"||key==="cta_title"?"textarea":"input";const value=content[key]??"";return '<label style="display:block;font-weight:600">'+esc(label)+'<'+(type==="textarea"?'textarea':'input')+' data-key="'+key+'" '+(type==="textarea"?'rows="2"':'type="text"')+' style="display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:10px;border:1px solid var(--border,#ccc);border-radius:9px;background:var(--input-bg,transparent);color:inherit" placeholder="'+esc(defaults[key]||"Enter "+label.toLowerCase())+'">'+(type==="textarea"?esc(value)+'</textarea>':' value="'+esc(value)+'">')+'</label>';}).join("");}
+async function load(){const {data,error}=await db.from("homepage_showcase").select("page_content").eq("id",1).maybeSingle();if(error){status.textContent="Could not load content: "+error.message;return;}content=data?.page_content||{};draw();}
+document.getElementById("welcome-content-save").addEventListener("click",async()=>{const next={...content};host.querySelectorAll("[data-key]").forEach(el=>{const v=el.value.trim();if(v)next[el.dataset.key]=v;else delete next[el.dataset.key];});const {error}=await db.from("homepage_showcase").upsert({id:1,page_content:next},{onConflict:"id"});status.textContent=error?"Save failed: "+error.message:"Welcome Page content saved successfully.";if(!error)content=next;});
+document.getElementById("welcome-content-reset").addEventListener("click",()=>{content={};draw();status.textContent="Default values selected. Click Save to restore default text.";});
+load();
+})();
+</script></body></html>
