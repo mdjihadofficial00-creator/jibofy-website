@@ -241,6 +241,86 @@ body.jf-dark .shell-search input{background:#3a3b3c!important;color:#e4e6eb!impo
 body.jf-dark .admin-shell .nav a.active{color:#2d88ff!important;border-bottom-color:#2d88ff!important}
 @media(max-width:700px){.admin-shell{grid-template-columns:auto minmax(0,1fr) auto!important;grid-template-rows:52px 52px!important;gap:0 8px!important;padding:5px 10px 0!important}.shell-brand{font-size:20px!important}.shell-search button{display:none!important}.shell-search input{height:38px!important;font-size:12px!important;padding-left:36px!important}.shell-actions{gap:4px!important}.shell-actions>a,.shell-actions>button:not(#jf-theme-toggle){display:none!important}#jf-theme-toggle{font-size:0!important;padding:8px!important;width:36px;height:36px}.admin-shell .nav{gap:2px!important}.admin-shell .nav a{font-size:11px!important;padding:6px 2px 8px!important}}
 
+
+/* Unified light-mode navigation contrast across every admin and member page */
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a,
+  .member-shell .nav a,
+  .admin-shell .nav a,
+  .nav a,
+  .top nav a,
+  .admin-nav a,
+  .tabs a
+){
+  color:#1c1e21!important;
+  text-decoration:none!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a,
+  .member-shell .nav a,
+  .admin-shell .nav a,
+  .nav a,
+  .top nav a,
+  .admin-nav a,
+  .tabs a
+) :where(span,svg,i){
+  color:inherit!important;
+  stroke:currentColor!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a.active,
+  .jibofy-member-tabs a[aria-current="page"],
+  .member-shell .nav a.active,
+  .member-shell .nav a[aria-current="page"],
+  .admin-shell .nav a.active,
+  .nav a.active,
+  .nav a[aria-current="page"],
+  .top nav a.active,
+  .admin-nav a.active,
+  .tabs a.active
+){
+  color:#0866ff!important;
+  background:transparent!important;
+  border:0!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a.active,
+  .jibofy-member-tabs a[aria-current="page"],
+  .member-shell .nav a.active,
+  .member-shell .nav a[aria-current="page"],
+  .admin-shell .nav a.active,
+  .nav a.active,
+  .nav a[aria-current="page"],
+  .top nav a.active,
+  .admin-nav a.active,
+  .tabs a.active
+) :where(span,svg,i){
+  color:#0866ff!important;
+  stroke:#0866ff!important;
+}
+body:not(.jf-dark) :where(
+  .jibofy-member-tabs a:hover,
+  .member-shell .nav a:hover,
+  .admin-shell .nav a:hover,
+  .nav a:hover,
+  .top nav a:hover,
+  .admin-nav a:hover,
+  .tabs a:hover
+){
+  color:#0866ff!important;
+  background:#e7f3ff!important;
+}
+body:not(.jf-dark) :where(.profile-subtitle,.profile-meta,.edit-hint,.auth-note,.summary-kicker,.muted,.sub,.note,.meta,.description){
+  color:#4b5563!important;
+}
+body.jf-dark :where(.profile-subtitle,.profile-meta,.edit-hint,.auth-note,.summary-kicker,.muted,.sub,.note,.meta,.description){
+  color:#c2c6cc!important;
+}
+
 </style></head><body>
 
 <header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
