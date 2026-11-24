@@ -427,11 +427,29 @@ body.jf-dark .sponsor-admin-search input{background:#3a3b3c!important;color:#e4e
  .sponsor-admin-search{min-width:0!important}
 }
 
+
+/* Unified sponsor-style admin navigation and search */
+.top{position:sticky!important;top:0!important;z-index:1000!important;display:flex!important;align-items:center!important;gap:14px!important;flex-wrap:nowrap!important;padding:13px clamp(14px,4vw,48px)!important;background:var(--jf-card,var(--card,#fff))!important;border:0!important;border-bottom:1px solid var(--jf-line,var(--line,#dddfe2))!important;box-shadow:0 1px 4px #00000010!important}
+.top .brand{font-size:21px!important;font-weight:850!important;color:var(--jf-blue,#1877f2)!important;text-decoration:none!important;white-space:nowrap!important}
+.top nav{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:nowrap!important;min-width:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.top nav a{display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:9px 12px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:var(--jf-muted,#65676b)!important;text-decoration:none!important;font-size:13px!important;font-weight:700!important;white-space:nowrap!important}
+.top nav a:hover{background:var(--jf-soft,#e7f3ff)!important;color:var(--jf-blue,#1877f2)!important}
+.top nav a.active{background:var(--jf-blue,#1877f2)!important;color:#fff!important}
+.top-search{display:flex!important;align-items:center!important;gap:8px!important;flex:1 1 190px!important;min-width:170px!important;max-width:260px!important;height:40px!important;padding:0 12px!important;border:1px solid var(--jf-line,var(--line,#dddfe2))!important;border-radius:22px!important;background:var(--jf-bg,var(--bg,#f0f2f5))!important;color:var(--jf-muted,#65676b)!important}
+.top-search span{font-size:22px!important;line-height:1!important;flex:0 0 auto!important}
+.top-search input{width:100%!important;min-width:0!important;padding:0!important;border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;color:var(--jf-text,var(--text,#1c1e21))!important;font:500 14px/1.2 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important}
+.top-search input::placeholder{color:var(--jf-muted,#65676b)!important}
+.top button{background:var(--jf-blue,#1877f2)!important;color:#fff!important;border:0!important;border-radius:8px!important;padding:10px 14px!important;font-weight:700!important;white-space:nowrap!important}
+.top #jf-theme-toggle,.top #theme-toggle{margin-left:auto!important;flex:0 0 auto!important;background:var(--jf-soft,#e7f3ff)!important;color:var(--jf-blue,#145dbf)!important;border:1px solid var(--jf-line,var(--line,#dddfe2))!important}
+.top #logout{margin-left:0!important;flex:0 0 auto!important}
+@media(max-width:1050px){.top{flex-wrap:wrap!important}.top nav{order:3!important;width:100%!important;overflow-x:auto!important;padding:2px 0!important}.top-search{order:4!important;max-width:none!important;flex:1 1 100%!important}.top #jf-theme-toggle,.top #theme-toggle{margin-left:auto!important}}
+@media(max-width:560px){.top{gap:8px!important;padding:10px 12px!important}.top .brand{font-size:18px!important}.top nav a{padding:8px 10px!important;font-size:12px!important}.top #jf-theme-toggle,.top #theme-toggle,.top #logout{padding:8px 10px!important;font-size:12px!important}}
+
 </style></head><body>
 
-<header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
+<header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a class="active" href="admin.html">Overview</a><a href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a href="admin-withdrawals.html">Withdrawals</a><a href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header>
 <main class="wrap"><div class="eyebrow">CONTROL CENTER</div><h1>Admin Dashboard</h1>
-<nav class="nav"><a class="active" href="admin.html">Overview</a><a class="" href="admin-campaigns.html">Campaigns</a><a class="" href="admin-members.html">Members</a><a class="" href="admin-withdrawals.html">Withdrawals</a><a class="" href="admin-sponsors.html">Sponsors</a></nav>
+
 <div id="loading" class="empty">Checking administrator access…</div><div id="app" class="hidden"><p class="muted">JIBOFY platform overview. Choose a section from the menu above to manage it.</p><div class="stat-grid"><div class="stat-card"><span>Total Members</span><strong id="ov-members">—</strong></div><div class="stat-card"><span>Total Campaigns</span><strong id="ov-campaigns">—</strong></div><div class="stat-card"><span>Pending Withdrawals</span><strong id="ov-pending">—</strong></div><div class="stat-card"><span>Pending Withdrawal Amount</span><strong id="ov-amount">—</strong></div></div><p class="note">Use the navigation above to manage campaigns, members and withdrawal requests separately.</p>
 <section class="panel" id="homepage-showcase-manager" style="margin-top:24px">
  <div class="eyebrow">WEBSITE CONTENT</div><h2>Welcome Page Photos</h2>
