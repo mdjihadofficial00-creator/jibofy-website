@@ -1720,5 +1720,54 @@ html body :is(.toast,.notification,.modal,.popup){animation:jibofySoftPop .24s v
 <script id="jibofy-professional-motion-controller">
 (()=>{const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;const start=()=>{const selectors='main > section,main > .panel,main > .card,main > article,main .stat-card,main .summary-card,main .task,main .campaign,main .withdrawal-request,main .talent-card';const items=[...document.querySelectorAll(selectors)].filter(el=>!el.closest('[hidden]')&&getComputedStyle(el).display!=='none');if(!('IntersectionObserver'in window)){items.forEach(el=>el.classList.add('jibofy-in-view'));return}const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('jibofy-in-view');io.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -24px 0px'});items.forEach(el=>{el.classList.add('jibofy-reveal');io.observe(el)})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();
 </script>
+
+<style id="jibofy-mobile-responsive-layout-only">
+@media (max-width:760px){
+ html,body{max-width:100%;overflow-x:hidden!important}
+ body{font-size:15px!important}
+ /* Member header: retain the same branding and controls, fit them without overlap */
+ header.member-shell{box-sizing:border-box!important;width:100%!important;max-width:100%!important;grid-template-columns:auto minmax(0,1fr) auto auto!important;gap:7px!important;padding:10px 12px 0!important}
+ header.member-shell .member-brand{font-size:clamp(17px,5vw,21px)!important;white-space:nowrap!important}
+ header.member-shell .member-search{min-width:0!important;width:100%!important}
+ header.member-shell .member-search input{box-sizing:border-box!important;width:100%!important;min-width:0!important;font-size:13px!important}
+ header.member-shell nav.jibofy-member-tabs{grid-column:1/-1!important;width:100%!important;max-width:100%!important;display:flex!important;overflow-x:auto!important;overflow-y:hidden!important;justify-content:flex-start!important;gap:0!important;scroll-snap-type:x proximity!important;-webkit-overflow-scrolling:touch!important}
+ header.member-shell nav.jibofy-member-tabs a{box-sizing:border-box!important;flex:0 0 25%!important;min-width:82px!important;max-width:120px!important;padding:10px 7px!important;white-space:nowrap!important;scroll-snap-align:start!important}
+ /* Admin header: stack controls, keep the navigation horizontally scrollable */
+ header.top{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-height:0!important;display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;padding:10px 12px!important}
+ header.top>.brand{font-size:19px!important;flex:1 1 auto!important}
+ header.top>nav{order:5!important;display:flex!important;flex:1 0 100%!important;width:100%!important;min-width:0!important;max-width:100%!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;gap:4px!important;padding:3px 0 5px!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:none!important}
+ header.top>nav::-webkit-scrollbar{display:none!important}
+ header.top>nav a{flex:0 0 auto!important;min-height:40px!important;padding:9px 11px!important;font-size:12px!important;white-space:nowrap!important}
+ header.top .top-search{order:6!important;flex:1 0 100%!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0!important}
+ header.top #jf-theme-toggle,header.top #theme-toggle,header.top #logout{flex:0 0 auto!important;min-height:38px!important;padding:8px 10px!important;font-size:12px!important}
+ /* Page containers and content grids */
+ main.wrap,.wrap{box-sizing:border-box!important;width:100%!important;max-width:100%!important;padding:20px 12px 48px!important;margin-left:auto!important;margin-right:auto!important}
+ main,.app-screen{min-width:0!important;max-width:100%!important}
+ .panel,.stat-card,.stat,.card,.grid,.dashboard-grid,.stat-grid,.withdrawal-fields,.two{min-width:0!important;max-width:100%!important}
+ .grid,.dashboard-grid,.withdrawal-fields,.two{grid-template-columns:minmax(0,1fr)!important}
+ .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .panel{padding:16px!important}
+ img,video,iframe{max-width:100%!important}
+ input,select,textarea,button{max-width:100%}
+}
+@media(max-width:520px){
+ /* Earnings summary: prevent the title/tag collision seen in the supplied screenshot */
+ .earnings-overview{width:100%!important;max-width:100%!important;box-sizing:border-box!important;padding:14px!important}
+ .earnings-overview .summary-heading{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:10px!important;text-align:center!important}
+ .earnings-overview .summary-heading>div{width:100%!important;min-width:0!important}
+ .earnings-overview .summary-heading h3{font-size:clamp(20px,5.5vw,25px)!important;line-height:1.25!important;overflow-wrap:anywhere!important;margin:6px 0 0!important}
+ .earnings-overview .summary-heading>.tag{position:static!important;display:inline-flex!important;align-self:center!important;max-width:100%!important;white-space:normal!important}
+ .earnings-filter{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;gap:8px!important}
+ .earnings-filter button{min-width:0!important;width:100%!important;padding:10px 6px!important;font-size:13px!important}
+ .earnings-filter button:last-child{grid-column:1/-1!important}
+ .earnings-custom{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:9px!important;width:100%!important;justify-items:stretch!important}
+ .earnings-custom label{text-align:left!important}
+ .earnings-custom input,.earnings-custom button{box-sizing:border-box!important;width:100%!important;min-width:0!important;min-height:44px!important}
+ .earnings-custom span{text-align:center!important}
+ .earnings-overview .stat-grid{grid-template-columns:minmax(0,1fr)!important}
+ .earnings-overview .stat{width:100%!important;box-sizing:border-box!important}
+ h1{font-size:clamp(24px,7vw,32px)!important;line-height:1.2!important;overflow-wrap:anywhere!important}
+}
+</style>
 </body>
 </html>
