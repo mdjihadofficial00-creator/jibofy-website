@@ -223,6 +223,24 @@ body.jf-dark :where(.jibofy-member-tabs a.active,.jibofy-member-tabs a[aria-curr
 body.jf-dark :where(.secondary,.btn-secondary,button.secondary){background:#263951!important;color:#e4e6eb!important;border-color:#3e4042!important}
 body.jf-dark :where(#jf-theme-toggle,#theme-toggle){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
 
+
+/* Facebook-like admin navigation and iOS system typography */
+html,body,button,input,select,textarea{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
+.admin-shell{display:grid!important;grid-template-columns:auto minmax(220px,1fr) auto!important;grid-template-rows:56px 56px!important;align-items:center!important;gap:0 20px!important;padding:6px clamp(14px,3vw,38px) 0!important;background:var(--jf-card,#242526)!important;border-bottom:1px solid var(--jf-line)!important;box-shadow:none!important}
+.shell-brand{grid-column:1;grid-row:1;font-size:24px!important;color:#1877f2!important}
+.shell-search{grid-column:2;grid-row:1;position:relative!important;margin:0!important}
+.shell-search>span{position:absolute!important;left:14px!important;top:50%!important;transform:translateY(-50%)!important;font-size:0!important;width:18px;height:18px}
+.shell-search>span:before{content:"";position:absolute;width:11px;height:11px;border:2px solid var(--jf-muted);border-radius:50%;left:1px;top:0}
+.shell-search>span:after{content:"";position:absolute;width:7px;height:2px;background:var(--jf-muted);transform:rotate(45deg);left:12px;top:13px;border-radius:2px}
+.shell-search input{height:42px!important;padding:0 14px 0 42px!important;border:0!important;border-radius:24px!important;background:#f0f2f5!important;color:#1c1e21!important}
+body.jf-dark .shell-search input{background:#3a3b3c!important;color:#e4e6eb!important}
+.shell-actions{grid-column:3;grid-row:1;display:flex!important;align-items:center!important;gap:8px!important}
+.admin-shell .nav{grid-column:1/-1!important;grid-row:2!important;display:flex!important;align-items:stretch!important;justify-content:center!important;gap:clamp(8px,3vw,40px)!important;width:100%!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.admin-shell .nav a{position:relative!important;flex:1 1 0!important;max-width:180px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:8px 10px 10px!important;border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;background:transparent!important;color:var(--jf-muted)!important;font-weight:650!important}
+.admin-shell .nav a.active{background:transparent!important;color:#0866ff!important;border-bottom-color:#0866ff!important;box-shadow:none!important}
+body.jf-dark .admin-shell .nav a.active{color:#2d88ff!important;border-bottom-color:#2d88ff!important}
+@media(max-width:700px){.admin-shell{grid-template-columns:auto minmax(0,1fr) auto!important;grid-template-rows:52px 52px!important;gap:0 8px!important;padding:5px 10px 0!important}.shell-brand{font-size:20px!important}.shell-search button{display:none!important}.shell-search input{height:38px!important;font-size:12px!important;padding-left:36px!important}.shell-actions{gap:4px!important}.shell-actions>a,.shell-actions>button:not(#jf-theme-toggle){display:none!important}#jf-theme-toggle{font-size:0!important;padding:8px!important;width:36px;height:36px}.admin-shell .nav{gap:2px!important}.admin-shell .nav a{font-size:11px!important;padding:6px 2px 8px!important}}
+
 </style></head><body>
 
 <header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
