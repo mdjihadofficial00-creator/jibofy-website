@@ -1199,7 +1199,17 @@ body.jf-dark .top nav a.active,body.jf-dark .top nav a[aria-current="page"],body
     <label for="avatar-file">Profile Photo</label><input id="avatar-file" type="file" accept="image/png,image/jpeg,image/webp" disabled>
     <label for="profile-name">Full Name</label><input id="profile-name" type="text" maxlength="80" required disabled>
     <label for="profile-about">About Me</label><textarea id="profile-about" maxlength="500" placeholder="Write a short introduction about yourself" disabled></textarea>
+    <div class="profile-social-fields" style="margin-top:18px;padding-top:16px;border-top:1px solid var(--jf-line)">
+     <strong>Social Media Links</strong><p class="edit-hint">Add your own social profile URLs. Leave a field empty if you do not use that platform.</p>
+     <label for="social-facebook">Facebook Profile URL</label><input id="social-facebook" type="url" placeholder="https://facebook.com/your-profile" disabled>
+     <label for="social-instagram">Instagram Profile URL</label><input id="social-instagram" type="url" placeholder="https://instagram.com/your-profile" disabled>
+     <label for="social-youtube">YouTube Channel URL</label><input id="social-youtube" type="url" placeholder="https://youtube.com/@your-channel" disabled>
+     <label for="social-whatsapp">WhatsApp Link</label><input id="social-whatsapp" type="url" placeholder="https://wa.me/8801XXXXXXXXX" disabled>
+     <label for="social-tiktok">TikTok Profile URL</label><input id="social-tiktok" type="url" placeholder="https://tiktok.com/@your-profile" disabled>
+     <label for="social-linkedin">LinkedIn Profile URL</label><input id="social-linkedin" type="url" placeholder="https://linkedin.com/in/your-profile" disabled>
+    </div>
     <div class="profile-meta" id="profile-contact" style="margin-top:14px"></div>
+    <div id="profile-social-preview" class="profile-social-preview" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:14px"></div>
     <div class="profile-actions"><button class="btn" id="edit-profile-btn" type="button">Edit Profile</button><button class="btn" id="save-profile-btn" type="submit" style="display:none">Save Changes</button><button class="btn-secondary" id="cancel-profile-btn" type="button" style="display:none">Cancel</button></div>
     <p class="edit-hint" id="profile-hint">Your personal information is visible here. Select Edit Profile to make changes.</p>
     <div class="dash-message" id="profile-message" role="status"></div>
@@ -1352,7 +1362,7 @@ function formatJibofyMemberId(memberCode){
     document.getElementById("member-id").textContent = "Not assigned";
     document.getElementById("member-joined").textContent = user.created_at ? new Date(user.created_at).toLocaleDateString() : "—";
     const { data: profile, error: profileError } = await client.from("profiles")
-      .select("id,full_name,phone,avatar_url,about_me,role,created_at,member_code").eq("id", user.id).maybeSingle();
+      .select("id,full_name,phone,avatar_url,about_me,social_links,role,created_at,member_code").eq("id", user.id).maybeSingle();
     if (profileError || !profile) {
       document.getElementById("profile-message").textContent =
         "Dashboard opened, but profile details could not be loaded: " + (profileError?.message || "Profile record not found");
@@ -1367,6 +1377,7 @@ function formatJibofyMemberId(memberCode){
     if (headerAvatar && profile.avatar_url) { headerAvatar.src = profile.avatar_url; headerAvatar.hidden = false; }
     document.getElementById("profile-name").value = profile.full_name || user.user_metadata?.full_name || "";
     document.getElementById("profile-about").value = profile.about_me || user.user_metadata?.about_me || "";
+    setProfileSocialLinks(profile.social_links || {});
     document.getElementById("profile-heading").textContent = profile.full_name || "JIBOFY Member";
     document.getElementById("profile-avatar").src = profile.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
     document.getElementById("profile-contact").textContent =
@@ -1395,7 +1406,11 @@ function formatJibofyMemberId(memberCode){
     document.getElementById("stat-withdrawn").textContent = money(paid);
   }
 
-  const profileFields = ["avatar-file","profile-name","profile-about"].map(id=>document.getElementById(id));
+  const profileSocialIds = ["facebook","instagram","youtube","whatsapp","tiktok","linkedin"];
+  const profileFields = ["avatar-file","profile-name","profile-about",...profileSocialIds.map(name=>"social-"+name)].map(id=>document.getElementById(id));
+  function readProfileSocialLinks(){return Object.fromEntries(profileSocialIds.map(name=>[name,document.getElementById("social-"+name).value.trim()]).filter(([,url])=>url));}
+  function setProfileSocialLinks(links){const values=links&&typeof links==="object"?links:{};profileSocialIds.forEach(name=>{document.getElementById("social-"+name).value=values[name]||"";});renderProfileSocialPreview(values);}
+  function renderProfileSocialPreview(links){const host=document.getElementById("profile-social-preview");if(!host)return;const labels={facebook:"Facebook",instagram:"Instagram",youtube:"YouTube",whatsapp:"WhatsApp",tiktok:"TikTok",linkedin:"LinkedIn"};host.replaceChildren();Object.entries(labels).forEach(([key,label])=>{const url=links?.[key];if(!url)return;const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent=label;a.className="btn-secondary";a.style.textDecoration="none";a.style.padding="8px 12px";host.appendChild(a);});host.style.display=host.childElementCount?"flex":"none";}
   const editBtn = document.getElementById("edit-profile-btn");
   const saveBtn = document.getElementById("save-profile-btn");
   const cancelBtn = document.getElementById("cancel-profile-btn");
@@ -1411,6 +1426,7 @@ function formatJibofyMemberId(memberCode){
   cancelBtn.addEventListener("click",()=>{
     document.getElementById("profile-name").value = currentProfile?.full_name || currentUser?.user_metadata?.full_name || "";
     document.getElementById("profile-about").value = currentProfile?.about_me || "";
+    setProfileSocialLinks(currentProfile?.social_links || {});
     document.getElementById("profile-avatar").src = currentProfile?.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
     document.getElementById("avatar-file").value = "";
     document.getElementById("profile-message").textContent = "";
@@ -1447,12 +1463,15 @@ function formatJibofyMemberId(memberCode){
       const { data: publicData } = client.storage.from("avatars").getPublicUrl(path);
       avatarUrl = publicData.publicUrl;
     }
-    const updates = { full_name: document.getElementById("profile-name").value.trim(), about_me: document.getElementById("profile-about").value.trim(), avatar_url: avatarUrl };
+    const socialLinks = readProfileSocialLinks();
+    for (const [platform,url] of Object.entries(socialLinks)) { try { const parsed = new URL(url); if (!["http:","https:"].includes(parsed.protocol)) throw new Error(); } catch { msg.textContent = "Enter a valid http:// or https:// URL for " + platform + "."; return; } }
+    const updates = { full_name: document.getElementById("profile-name").value.trim(), about_me: document.getElementById("profile-about").value.trim(), avatar_url: avatarUrl, social_links: socialLinks };
     const { data, error } = await client.from("profiles").update(updates).eq("id",currentUser.id).select("id,full_name,phone,avatar_url,about_me,role,created_at").maybeSingle();
     if (error) { msg.textContent = "Could not save profile: " + error.message; return; }
     currentProfile = data || {...currentProfile,...updates};
     document.getElementById("profile-heading").textContent = updates.full_name || "JIBOFY Member";
     document.getElementById("profile-about").value = updates.about_me;
+    setProfileSocialLinks(updates.social_links);
     document.getElementById("profile-avatar").src = avatarUrl || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
     document.getElementById("avatar-file").value = "";
     setProfileEditing(false);
