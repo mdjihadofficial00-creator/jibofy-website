@@ -473,6 +473,13 @@ body.jf-dark :where(p,.sub,.muted,.note,.meta,.auth-note,.auth-card>p){color:#b0
 body.jf-dark :where(input,select,textarea){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
 body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
 </style>
+
+<style id="jibofy-footer-social-links-style">
+.footer-social-links{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:18px auto 4px;max-width:760px}
+.footer-social-links a{display:inline-flex;align-items:center;justify-content:center;padding:9px 15px;border:1px solid rgba(120,140,170,.35);border-radius:999px;background:rgba(120,140,170,.10);color:var(--jf-blue,#1877f2)!important;text-decoration:none;font-size:13px;font-weight:700;transition:background .18s ease,transform .18s ease}
+.footer-social-links a:hover{background:rgba(24,119,242,.14);transform:translateY(-1px)}
+body.jf-dark .footer-social-links a{color:#8ab4ff!important;border-color:#46566b;background:#303b4a}
+</style>
 </head>
 <body>
 <nav class="jf-public-header jf-home-header"><div class="logo">JIBOFY</div><div class="jf-public-links"><a href="#home">Home</a><a href="#features">Features</a><a href="sponsor.html">For Sponsors</a><a href="account.html">Account</a></div><button id="jf-theme-toggle" type="button">🌙 Dark mode</button></nav>
@@ -606,6 +613,7 @@ body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
 <span>FOUNDER &amp; OWNER</span>
 <h3>Muhammad Jihad</h3>
 </div>
+<div id="footer-social-links" class="footer-social-links" aria-label="JIBOFY social links"></div>
 <p class="copyright">&copy; 2026 JIBOFY. All rights reserved.</p>
 </footer>
 
@@ -869,18 +877,22 @@ body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
 </script>
 
 <script>
-(()=>{const track=document.getElementById("homepage-talent-track");if(!track||!window.supabase)return;
+(()=>{if(!window.supabase)return;
+ const track=document.getElementById("homepage-talent-track"),social=document.getElementById("footer-social-links");
  const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");
  const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
- db.from("homepage_showcase").select("cards").eq("id",1).maybeSingle().then(({data,error})=>{
-  if(error||!Array.isArray(data?.cards)||!data.cards.length)return;
-  const cards=data.cards.filter(x=>x&&typeof x.image==="string"&&/^https:\/\//i.test(x.image)&&x.title);
-  if(!cards.length)return;
-  const one=cards.map(x=>'<article class="talent-card"><img loading="lazy" src="'+esc(x.image)+'" alt="Sample profile photo"><div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>'+esc(x.title)+'</h3><p>'+esc(x.description||"Discovering opportunities")+'</p></div></article>').join("");
-  track.innerHTML=one+one;
+ db.from("homepage_showcase").select("cards,social_links").eq("id",1).maybeSingle().then(({data,error})=>{
+  if(error||!data)return;
+  if(track&&Array.isArray(data.cards)&&data.cards.length){
+   const cards=data.cards.filter(x=>x&&typeof x.image==="string"&&/^https:\/\//i.test(x.image)&&x.title);
+   if(cards.length){const one=cards.map(x=>'<article class="talent-card"><img loading="lazy" src="'+esc(x.image)+'" alt="Sample profile photo"><div class="talent-caption"><span class="talent-label">SAMPLE PROFILE</span><h3>'+esc(x.title)+'</h3><p>'+esc(x.description||"Discovering opportunities")+'</p></div></article>').join("");track.innerHTML=one+one;}
+  }
+  if(social&&Array.isArray(data.social_links)){
+   const links=data.social_links.filter(x=>x&&x.name&&typeof x.url==="string"&&/^https:\/\//i.test(x.url));
+   social.innerHTML=links.map(x=>'<a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.name)+'</a>').join("");
+  }
  });
 })();
-</script>
 <script>
 (()=>{const key="jibofy-theme",body=document.body,btn=document.getElementById("jf-theme-toggle")||document.getElementById("theme-toggle");if(!btn)return;let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}
 function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light":"🌙 Dark";btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");btn.setAttribute("aria-pressed",String(dark))}
