@@ -355,6 +355,25 @@ body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab
 body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"])::after{display:none!important;content:none!important;border:0!important;box-shadow:none!important}
 body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"]) :where(svg,i,span){color:#0866ff!important;stroke:#0866ff!important}
 
+
+/* FINAL FIX: admin navigation active state uses blue text/icons only */
+body .admin-shell .nav a,
+body .admin-shell .nav a:link,
+body .admin-shell .nav a:visited{background:transparent!important;background-image:none!important;border:0!important;border-bottom:0!important;box-shadow:none!important}
+body .admin-shell .nav a.active,
+body .admin-shell .nav a[aria-current="page"],
+body .admin-shell .nav a.active:hover{background:transparent!important;background-image:none!important;border:0!important;border-bottom:0!important;box-shadow:none!important;color:#0866ff!important}
+body .admin-shell .nav a.active::before,
+body .admin-shell .nav a.active::after,
+body .admin-shell .nav a[aria-current="page"]::before,
+body .admin-shell .nav a[aria-current="page"]::after{display:none!important;content:none!important}
+body .admin-shell .nav a.active :where(span,svg,i),
+body .admin-shell .nav a[aria-current="page"] :where(span,svg,i){color:#0866ff!important;stroke:#0866ff!important}
+body.jf-dark .admin-shell .nav a.active,
+body.jf-dark .admin-shell .nav a[aria-current="page"],
+body.jf-dark .admin-shell .nav a.active :where(span,svg,i),
+body.jf-dark .admin-shell .nav a[aria-current="page"] :where(span,svg,i){color:#2d88ff!important;stroke:#2d88ff!important}
+
 </style></head><body>
 
 <header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
