@@ -541,6 +541,32 @@ body.jf-dark :where(.jibofy-member-tabs a,.admin-nav a,.nav a,.top a,.tabs a){co
 body.jf-dark :where(.jibofy-member-tabs a.active,.jibofy-member-tabs a[aria-current="page"],.admin-nav a.active,.nav a.active,.tabs a.active,.top nav a.active,.filters button.active){background:#0866ff!important;color:#fff!important;border-color:#0866ff!important}
 body.jf-dark :where(.secondary,.btn-secondary,button.secondary){background:#263951!important;color:#e4e6eb!important;border-color:#3e4042!important}
 body.jf-dark :where(#jf-theme-toggle,#theme-toggle){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+
+/* Facebook-style top bar and navigation; iOS system typography */
+html,body,button,input,select,textarea{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
+.member-shell{display:grid!important;grid-template-columns:auto minmax(240px,1fr) auto auto!important;grid-template-rows:58px 58px!important;align-items:center!important;gap:0 22px!important;padding:6px clamp(14px,3vw,38px) 0!important;background:var(--jf-card,#242526)!important;border-bottom:1px solid var(--jf-line)!important;box-shadow:none!important}
+.member-brand{grid-column:1;grid-row:1;font-size:25px!important;letter-spacing:-.8px!important}
+.member-search{grid-column:2;grid-row:1;position:relative!important;display:flex!important;align-items:center!important;max-width:100%!important;margin:0!important}
+.member-search>span{position:absolute!important;left:14px!important;z-index:1!important;font-size:0!important;width:18px;height:18px}
+.member-search>span:before{content:"";position:absolute;width:11px;height:11px;border:2px solid var(--jf-muted);border-radius:50%;left:1px;top:0}
+.member-search>span:after{content:"";position:absolute;width:7px;height:2px;background:var(--jf-muted);transform:rotate(45deg);left:12px;top:13px;border-radius:2px}
+.member-search input{width:100%!important;height:42px!important;padding:0 14px 0 42px!important;border:0!important;border-radius:24px!important;background:#f0f2f5!important;color:#1c1e21!important;font-size:15px!important}
+body.jf-dark .member-search input{background:#3a3b3c!important;color:#e4e6eb!important}
+.member-search button{height:40px!important;margin-left:8px!important;border-radius:22px!important}
+#jf-theme-toggle{grid-column:3;grid-row:1;white-space:nowrap!important;border-radius:22px!important;padding:10px 14px!important}
+.member-account{grid-column:4!important;grid-row:1!important;justify-self:end!important}
+.member-account summary{border:0!important;background:transparent!important;border-radius:50px!important;padding:4px!important}
+.member-account .account-word,.member-account summary>span:last-child{display:none!important}
+.member-avatar{width:40px!important;height:40px!important;border-radius:50%!important;overflow:hidden!important;background:#3a3b3c!important}
+.member-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.jibofy-member-tabs{grid-column:1/-1!important;grid-row:2!important;position:static!important;display:flex!important;align-items:stretch!important;justify-content:center!important;gap:clamp(10px,3vw,46px)!important;width:100%!important;min-height:58px!important;padding:0!important;margin:0!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+.jibofy-member-tabs a{position:relative!important;flex:1 1 0!important;max-width:170px!important;min-width:0!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:8px 12px 10px!important;border:0!important;border-radius:0!important;border-bottom:3px solid transparent!important;background:transparent!important;color:var(--jf-muted)!important;font-size:14px!important;font-weight:650!important}
+.jibofy-member-tabs a:hover{background:transparent!important;color:var(--jf-text)!important}
+.jibofy-member-tabs a.active{background:transparent!important;color:#0866ff!important;border-bottom-color:#0866ff!important;box-shadow:none!important}
+body.jf-dark .jibofy-member-tabs a.active{color:#2d88ff!important;border-bottom-color:#2d88ff!important}
+.jibofy-member-tabs .tab-icon svg{width:25px!important;height:25px!important;stroke:currentColor!important;fill:none!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+@media(max-width:700px){.member-shell{grid-template-columns:auto minmax(0,1fr) auto auto!important;grid-template-rows:54px 54px!important;gap:0 8px!important;padding:5px 10px 0!important}.member-brand{font-size:21px!important}.member-search button{display:none!important}.member-search input{height:38px!important;font-size:13px!important;padding-left:36px!important}#jf-theme-toggle{font-size:0!important;padding:9px!important;width:38px;height:38px}#jf-theme-toggle:after{content:"☼";font-size:18px}.member-avatar{width:36px!important;height:36px!important}.jibofy-member-tabs{gap:2px!important;min-height:54px!important}.jibofy-member-tabs a{font-size:11px!important;gap:4px!important;padding:6px 2px 8px!important}.jibofy-member-tabs .tab-icon svg{width:22px!important;height:22px!important}}
+
 </style>
 </head>
 <body data-page="earnings">
@@ -549,7 +575,7 @@ body.jf-dark :where(#jf-theme-toggle,#theme-toggle){background:#3a3b3c!important
 <a class="member-brand" href="dashboard.html">JIBOFY</a>
 <form class="member-search" action="tasks.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search tasks" aria-label="Search tasks"><button type="submit">Search</button></form>
 <button id="jf-theme-toggle" type="button">🌙 Dark mode</button>
-<details class="member-account"><summary aria-label="Account menu"><span class="member-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.3"/><path d="M5 20c.6-3.5 3.2-5.5 7-5.5s6.4 2 7 5.5"/></svg></span><span class="account-word">Profile</span><span aria-hidden="true">⌄</span></summary><div class="account-pop"><a href="account.html">Add Another Account</a><button type="button" id="header-logout">Log Out</button></div></details>
+<details class="member-account"><summary aria-label="Account menu"><span class="member-avatar"><img id="header-profile-avatar" alt="Profile photo" src="" hidden></span><span class="account-word">Profile</span><span aria-hidden="true">⌄</span></summary><div class="account-pop"><a href="account.html">Add Another Account</a><button type="button" id="header-logout">Log Out</button></div></details>
 
 <nav class="jibofy-member-tabs" aria-label="Member navigation"><a href="dashboard.html" data-tab="dashboard" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span>Home</span></a>
 <a href="tasks.html" data-tab="tasks" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h4"/></svg></span><span>Workspace</span></a>
@@ -842,6 +868,9 @@ function formatJibofyMemberId(memberCode){
       return;
     }
     currentProfile = profile;
+    /* header-profile-avatar-hydration */
+    const headerAvatar = document.getElementById('header-profile-avatar');
+    if (headerAvatar && profile.avatar_url) { headerAvatar.src = profile.avatar_url; headerAvatar.hidden = false; }
     document.getElementById("profile-name").value = profile.full_name || user.user_metadata?.full_name || "";
     document.getElementById("profile-about").value = profile.about_me || user.user_metadata?.about_me || "";
     document.getElementById("profile-heading").textContent = profile.full_name || "JIBOFY Member";
