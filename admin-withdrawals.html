@@ -331,6 +331,17 @@ body.jf-dark :where(.jibofy-member-tabs a.active,.jibofy-member-tabs a[aria-curr
 body.jf-dark :where(.jibofy-member-tabs a.active,.jibofy-member-tabs a[aria-current="page"],.admin-shell .nav a.active,.admin-shell .nav a[aria-current="page"],.nav a.active,.nav a[aria-current="page"],.top nav a.active,.admin-nav a.active,.tabs a.active) :where(svg,i,.tab-icon,.ico){color:#2d88ff!important;stroke:#2d88ff!important;fill:none!important}
 body.jf-dark :where(.jibofy-member-tabs a:hover,.admin-shell .nav a:hover,.nav a:hover,.top nav a:hover,.admin-nav a:hover,.tabs a:hover){background:transparent!important;color:#2d88ff!important}
 
+
+/* Final global consistency pass: light canvas and text/icon-only active navigation */
+body:not(.jf-dark){background:#f0f2f5!important;color:#1c1e21!important}
+body:not(.jf-dark)::before,body:not(.jf-dark)::after{background:transparent!important;content:none!important}
+body:not(.jf-dark) :where(.admin-content,.admin-main,.admin-page,.admin-layout,.admin-wrap,.page-wrap,.page-layout,.main-wrap,.site-main,.content-wrap,.content-area,.layout,.layout-main,#app,#root){background:#f0f2f5!important;color:#1c1e21!important}
+body:not(.jf-dark) :where(.admin-card,.profile-card,.summary-card,.stat-card,.panel,.content-card,.section-card,.form-card,.widget-card){color:#1c1e21}
+body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"]){background:transparent!important;border:0!important;border-bottom:0!important;box-shadow:none!important;color:#0866ff!important}
+body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"])::before,
+body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"])::after{display:none!important;content:none!important;border:0!important;box-shadow:none!important}
+body:not(.jf-dark) :where(a.active,button.active,.active>a,.nav-item.active,.tab.active,.nav-link.active,[aria-current="page"]) :where(svg,i,span){color:#0866ff!important;stroke:#0866ff!important}
+
 </style></head><body>
 
 <header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
