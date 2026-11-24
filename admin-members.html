@@ -136,6 +136,22 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 @media(max-width:700px){#jf-theme-toggle,#theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}
 
 #jf-theme-toggle,#theme-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;position:static!important;inset:auto!important;min-height:42px!important;padding:9px 15px!important;border:1px solid var(--jf-line,var(--line,#dce5f2))!important;border-radius:12px!important;background:var(--jf-card,var(--card,#fff))!important;color:var(--jf-text,var(--text,#172033))!important;font:750 14px/1.1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;white-space:nowrap!important;box-shadow:0 2px 8px rgba(15,35,65,.08)!important;cursor:pointer!important}body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-card,var(--card,#242526))!important;color:var(--jf-text,var(--text,#e4e6eb))!important;border-color:var(--jf-line,var(--line,#3e4042))!important}@media(max-width:700px){#jf-theme-toggle,#theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}/* JIBOFY unified theme control */
+
+/* Consistent active member tab highlight */
+body .jibofy-member-tabs a.active,body .jibofy-member-tabs a[aria-current="page"]{color:#1877f2!important;background:rgba(24,119,242,.13)!important;border-bottom:3px solid #1877f2!important;box-shadow:inset 0 0 0 1px rgba(24,119,242,.10)!important}
+body .jibofy-member-tabs a.active .tab-icon,body .jibofy-member-tabs a[aria-current="page"] .tab-icon{color:#1877f2!important}
+/* Profile screen centered composition */
+body[data-page="profile"] .dashboard-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;justify-items:center!important}
+body[data-page="profile"] #profile-form{width:100%!important;max-width:780px!important;margin:0 auto!important;box-sizing:border-box!important;text-align:center!important}
+body[data-page="profile"] #profile-form .profile-head{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important;gap:12px!important}
+body[data-page="profile"] #profile-form .profile-head>div{text-align:center!important}
+body[data-page="profile"] #profile-form .avatar{display:block!important;margin:0 auto!important}
+body[data-page="profile"] #profile-form>div[style*="justify-content:space-between"]{justify-content:center!important;gap:18px!important}
+body[data-page="profile"] #profile-form label{text-align:left!important}
+body[data-page="profile"] #profile-contact,body[data-page="profile"] #profile-hint,body[data-page="profile"] #profile-message{text-align:center!important}
+body[data-page="profile"] #profile-form .profile-actions{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important}
+@media(max-width:700px){body[data-page="profile"] #profile-form{padding:20px!important}body[data-page="profile"] #profile-form .profile-head .avatar{width:104px!important;height:104px!important}}
+
 </style></head><body>
 
 <header class="admin-shell"><a class="shell-brand" href="admin.html">JIBOFY <span>ADMIN</span></a><form class="shell-search" action="admin-members.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form><div class="shell-actions"><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><a href="dashboard.html">Member site</a><button id="logout" type="button">Sign out</button></div></header>
@@ -146,7 +162,7 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 <h2 style="margin:0">Member Directory &amp; Earnings</h2>
 <button class="btn secondary" id="refresh-members" type="button">Refresh Members</button>
 </div>
-<p class="muted" style="font-size:13px;margin:8px 0 12px">Search members by name, 8-digit Member ID, phone number or email. Review task counts and wallet balance.</p>
+<p class="muted" style="font-size:13px;margin:8px 0 12px">Search members by name, 6-digit Member ID, phone number or email. Review task counts and wallet balance.</p>
 <div class="field"><label for="member-search">Search members</label><input id="member-search" type="search" placeholder="Name, Member ID, phone or email"></div>
 <div id="member-directory"><div class="empty">Member list will load here.</div></div>
 <div id="member-directory-message" class="message" role="status"></div>
@@ -154,6 +170,12 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 <script>
 (()=>{const db=window.supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");const $=id=>document.getElementById(id);const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let campaigns=[],memberSummaries=[];
+
+function formatJibofyMemberId(memberCode){
+ const digits=String(memberCode??"").replace(/\D/g,"");
+ return digits ? digits.slice(-6).padStart(6,"0") : "Not assigned";
+}
+
 async function init(){const {data:{session},error:se}=await db.auth.getSession();if(se||!session){location.replace("account.html");return}const {data:p,error}=await db.from("profiles").select("role").eq("id",session.user.id).single();if(error||p?.role!=="admin"){$("loading").textContent="Access denied. This page is only available to JIBOFY administrators.";return}$("loading").classList.add("hidden");$("app").classList.remove("hidden");async function loadMemberDirectory(){
  $("member-directory").innerHTML='<div class="empty">Loading member summaries…</div>';
  $("member-directory-message").textContent="";
@@ -177,9 +199,9 @@ async function init(){const {data:{session},error:se}=await db.auth.getSession()
 }
 function renderMemberDirectory(){
  const q=$("member-search").value.trim().toLowerCase();
- const rows=memberSummaries.filter(m=>[m.full_name,m.member_code,m.phone,m.email,m.id].some(v=>String(v||"").toLowerCase().includes(q)));
+ const rows=memberSummaries.filter(m=>[m.full_name,formatJibofyMemberId(m.member_code),m.member_code,m.phone,m.email,m.id].some(v=>String(v||"").toLowerCase().includes(q)));
  if(!rows.length){$("member-directory").innerHTML='<div class="empty">No matching members found.</div>';return}
- $("member-directory").innerHTML=rows.map(m=>'<article class="withdrawal-request"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><div><h3>'+esc(m.full_name||"Unnamed Member")+'</h3><div class="withdrawal-meta">Member ID: <strong>'+esc(m.member_code||"Not assigned — run Member ID SQL")+'</strong><br>Phone: '+esc(m.phone||"Not added")+'<br>Email: '+esc(m.email||"Not available")+'</div></div><span class="pill">Member</span></div><div class="withdrawal-stats"><div class="withdrawal-stat"><span>Total Tasks</span><strong>'+m.totalTasks+'</strong></div><div class="withdrawal-stat"><span>Task Approved</span><strong>'+m.approvedTasks+'</strong></div><div class="withdrawal-stat"><span>Task Rejected</span><strong>'+m.rejectedTasks+'</strong></div><div class="withdrawal-stat"><span>Total Earned</span><strong>৳'+m.earned.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>Already Paid</span><strong>৳'+m.withdrawn.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>Available Balance</span><strong>৳'+m.balance.toFixed(2)+'</strong></div></div><div class="withdrawal-meta">Account UUID: '+esc(m.id)+'</div></article>').join("");
+ $("member-directory").innerHTML=rows.map(m=>'<article class="withdrawal-request"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><div><h3>'+esc(m.full_name||"Unnamed Member")+'</h3><div class="withdrawal-meta">Member ID: <strong>'+esc(formatJibofyMemberId(m.member_code))+'</strong><br>Phone: '+esc(m.phone||"Not added")+'<br>Email: '+esc(m.email||"Not available")+'</div></div><span class="pill">Member</span></div><div class="withdrawal-stats"><div class="withdrawal-stat"><span>Total Tasks</span><strong>'+m.totalTasks+'</strong></div><div class="withdrawal-stat"><span>Task Approved</span><strong>'+m.approvedTasks+'</strong></div><div class="withdrawal-stat"><span>Task Rejected</span><strong>'+m.rejectedTasks+'</strong></div><div class="withdrawal-stat"><span>Total Earned</span><strong>৳'+m.earned.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>Already Paid</span><strong>৳'+m.withdrawn.toFixed(2)+'</strong></div><div class="withdrawal-stat"><span>Available Balance</span><strong>৳'+m.balance.toFixed(2)+'</strong></div></div></article>').join("");
 }
 const initialSearch=new URLSearchParams(location.search).get("search");if(initialSearch)$("member-search").value=initialSearch;$("refresh-members").addEventListener("click",loadMemberDirectory);$("member-search").addEventListener("input",renderMemberDirectory);await loadMemberDirectory();}
 $("logout").addEventListener("click",async()=>{await db.auth.signOut();location.replace("account.html")});init();
