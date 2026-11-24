@@ -531,6 +531,86 @@ body.jf-dark :where(.secondary,.btn-secondary,button.secondary){background:#2639
 body :where(#jf-theme-toggle,#theme-toggle){background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;box-shadow:var(--jf-shadow)!important}
 body.jf-dark :where(#jf-theme-toggle,#theme-toggle){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
 
+
+/* PROFILE PAGE FINAL POLISH — consistent Facebook-style surfaces and navigation */
+:root{
+ --jf-bg:#f0f2f5;--jf-card:#ffffff;--jf-text:#1c1e21;--jf-muted:#65676b;
+ --jf-line:#dddfe2;--jf-blue:#0866ff;--jf-soft:#e7f3ff;
+}
+body{background:var(--jf-bg)!important;color:var(--jf-text)!important}
+body.jf-dark{
+ --jf-bg:#18191a;--jf-card:#242526;--jf-text:#e4e6eb;--jf-muted:#b0b3b8;
+ --jf-line:#3e4042;--jf-blue:#2d88ff;--jf-soft:#263951;
+}
+body,body #member-dashboard,body .dashboard,body .dashboard-inner,
+body[data-page="profile"] main,body[data-page="profile"] .app-screen{
+ background:var(--jf-bg)!important;color:var(--jf-text)!important;
+}
+body .member-shell{
+ display:flex!important;align-items:center!important;flex-wrap:wrap!important;
+ gap:12px!important;padding:12px clamp(14px,4vw,56px)!important;
+ background:var(--jf-card)!important;border:0!important;
+ border-bottom:1px solid var(--jf-line)!important;box-shadow:0 1px 2px rgba(0,0,0,.08)!important;
+}
+body .member-brand{color:var(--jf-blue)!important;font-weight:800!important;letter-spacing:-.5px}
+body .member-search{flex:1 1 420px!important;max-width:680px!important;margin:0 auto!important}
+body .member-search input{background:var(--jf-bg)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:22px!important}
+body .member-search button{background:var(--jf-blue)!important;color:#fff!important;border:0!important;border-radius:22px!important}
+body #jf-theme-toggle{position:static!important;flex:0 0 auto!important;margin-left:auto!important;background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;box-shadow:none!important}
+body .member-account summary{background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:24px!important}
+body .member-account .account-pop{background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;box-shadow:0 8px 24px rgba(0,0,0,.16)!important}
+body .member-account .account-pop a,body .member-account .account-pop button{color:var(--jf-text)!important}
+body .jibofy-member-tabs{
+ flex:0 0 100%!important;width:100%!important;max-width:none!important;
+ min-height:66px!important;margin:0!important;padding:0 clamp(4px,5vw,64px)!important;
+ display:flex!important;align-items:stretch!important;justify-content:space-around!important;
+ gap:4px!important;background:var(--jf-card)!important;
+ border:0!important;border-top:1px solid var(--jf-line)!important;
+ border-bottom:1px solid var(--jf-line)!important;box-shadow:none!important;
+}
+body .jibofy-member-tabs a{
+ flex:1 1 0!important;width:20%!important;max-width:none!important;min-width:0!important;
+ display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;
+ gap:9px!important;padding:12px 8px 10px!important;margin:0!important;
+ color:var(--jf-muted)!important;background:transparent!important;
+ border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;
+ font-size:14px!important;font-weight:700!important;white-space:nowrap!important;
+}
+body .jibofy-member-tabs a:hover{background:var(--jf-bg)!important;color:var(--jf-blue)!important}
+body .jibofy-member-tabs a.active,body .jibofy-member-tabs a[aria-current="page"]{
+ color:var(--jf-blue)!important;background:transparent!important;
+ border:0!important;border-bottom:3px solid var(--jf-blue)!important;
+}
+body .jibofy-member-tabs .tab-icon{width:24px!important;height:24px!important;flex:0 0 24px!important;display:grid!important;place-items:center!important}
+body .jibofy-member-tabs .tab-icon svg{width:22px!important;height:22px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+body .dashboard{min-height:calc(100vh - 150px)!important;padding:42px 18px 72px!important}
+body .dashboard-inner{max-width:1120px!important;margin:0 auto!important}
+body .dashboard-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:20px!important}
+body #profile-form{grid-column:1/-1!important;width:100%!important;max-width:900px!important;margin:0 auto!important;padding:32px!important;background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:14px!important;box-shadow:0 1px 2px rgba(0,0,0,.10)!important}
+body #profile-form .profile-head{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:12px!important}
+body #profile-form .avatar{width:104px!important;height:104px!important;border-radius:50%!important;border:3px solid var(--jf-blue)!important;box-shadow:none!important}
+body #profile-form .profile-title{color:var(--jf-text)!important;font-size:22px!important}
+body #profile-form .profile-subtitle{color:var(--jf-muted)!important}
+body #profile-form>div:nth-of-type(2){justify-content:center!important;gap:18px!important;padding-top:18px!important;border-top:1px solid var(--jf-line)!important}
+body #profile-form label{color:var(--jf-text)!important}
+body #profile-form input,body #profile-form textarea{background:var(--jf-bg)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;border-radius:8px!important}
+body #profile-form input:focus,body #profile-form textarea:focus{border-color:var(--jf-blue)!important;outline:2px solid var(--jf-soft)!important}
+body #profile-form .profile-meta,body #profile-form .edit-hint{color:var(--jf-muted)!important}
+body #profile-form .summary-kicker{color:var(--jf-blue)!important}
+body #profile-form .btn{background:var(--jf-blue)!important;color:#fff!important;border:0!important;border-radius:8px!important}
+body #profile-form .btn-secondary{background:var(--jf-soft)!important;color:var(--jf-blue)!important;border:1px solid var(--jf-line)!important}
+@media(max-width:700px){
+ body .member-shell{gap:9px!important;padding:10px 12px!important}
+ body .member-search{order:4!important;flex:1 1 100%!important;max-width:none!important}
+ body #jf-theme-toggle{margin-left:auto!important}
+ body .jibofy-member-tabs{min-height:62px!important;padding:0 3px!important;gap:0!important}
+ body .jibofy-member-tabs a{flex-direction:column!important;gap:3px!important;padding:7px 1px 5px!important;font-size:10px!important}
+ body .jibofy-member-tabs .tab-icon{width:22px!important;height:22px!important;flex-basis:22px!important}
+ body .jibofy-member-tabs .tab-icon svg{width:20px!important;height:20px!important}
+ body .dashboard{padding:24px 10px 48px!important}
+ body #profile-form{padding:22px 16px!important;border-radius:12px!important}
+}
+
 </style>
 </head>
 <body data-page="profile">
