@@ -1153,4 +1153,38 @@ html body.jf-dark nav.jibofy-member-tabs a.active,html body.jf-dark nav.jibofy-m
 html body nav.jibofy-member-tabs a.active :is(span,svg,path,rect,circle),html body nav.jibofy-member-tabs a[aria-current="page"] :is(span,svg,path,rect,circle),html body .member-shell .nav a.active :is(span,svg,path,rect,circle),html body .admin-shell .nav a.active :is(span,svg,path,rect,circle),html body nav.nav a.active :is(span,svg,path,rect,circle),html body .top nav a.active :is(span,svg,path,rect,circle),html body nav.admin-nav a.active :is(span,svg,path,rect,circle),html body .tabs a.active :is(span,svg,path,rect,circle){color:inherit!important;stroke:currentColor!important;fill:none!important}
 html body nav.jibofy-member-tabs a.active::before,html body nav.jibofy-member-tabs a.active::after,html body nav.jibofy-member-tabs a[aria-current="page"]::before,html body nav.jibofy-member-tabs a[aria-current="page"]::after,html body .member-shell .nav a.active::before,html body .member-shell .nav a.active::after,html body .admin-shell .nav a.active::before,html body .admin-shell .nav a.active::after,html body nav.nav a.active::before,html body nav.nav a.active::after,html body .top nav a.active::before,html body .top nav a.active::after{content:none!important;display:none!important}
 </style>
+
+<style id="jibofy-verified-navigation-footer-override">
+/* Admin navigation: active item is text-only, no colored tile */
+html body .nav a.active,html body nav.nav a.active,html body .nav a.active:hover{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border:0!important;border-color:transparent!important;border-bottom:0!important;
+ border-radius:0!important;box-shadow:none!important;outline:0!important;
+}
+/* Member navigation: remove the original purple gradient and underline */
+html body nav.jibofy-member-tabs a.active,html body nav.jibofy-member-tabs a[aria-current="page"],
+html body nav.jibofy-member-tabs a.active:hover,html body nav.jibofy-member-tabs a[aria-current="page"]:hover{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border:0!important;border-bottom:0!important;border-color:transparent!important;
+ border-radius:0!important;box-shadow:none!important;outline:0!important;
+}
+html body nav.jibofy-member-tabs a.active .tab-icon,html body nav.jibofy-member-tabs a[aria-current="page"] .tab-icon,
+html body nav.jibofy-member-tabs a.active .tab-icon svg,html body nav.jibofy-member-tabs a[aria-current="page"] .tab-icon svg,
+html body nav.jibofy-member-tabs a.active .tab-icon svg *,html body nav.jibofy-member-tabs a[aria-current="page"] .tab-icon svg *{color:#1877f2!important;stroke:#1877f2!important}
+html body.jf-dark .nav a.active,html body.jf-dark nav.jibofy-member-tabs a.active,html body.jf-dark nav.jibofy-member-tabs a[aria-current="page"],html body.jf-dark nav.jibofy-member-tabs a.active .tab-icon svg *{color:#8ab4ff!important;stroke:#8ab4ff!important}
+/* Center footer content as a vertical stack, including text and social links */
+html body footer,html body footer.jibofy-site-footer{
+ box-sizing:border-box!important;width:100%!important;max-width:none!important;float:none!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ text-align:center!important;padding:36px 20px!important;margin:0 auto!important;
+}
+html body footer>*{box-sizing:border-box!important;float:none!important;position:static!important;left:auto!important;right:auto!important;
+ width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+html body footer .footer-brand{display:block!important;text-align:center!important;margin:0 auto 8px!important}
+html body footer .footer-description{display:block!important;text-align:center!important;margin:0 auto 14px!important}
+html body footer .footer-owner{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:7px!important;margin:10px auto 14px!important}
+html body footer .footer-owner span,html body footer .footer-owner h3{display:block!important;width:100%!important;text-align:center!important;margin:0 auto!important}
+html body footer .footer-social-links{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;flex-wrap:wrap!important;gap:10px!important;width:100%!important;margin:12px auto!important}
+html body footer .copyright{display:block!important;text-align:center!important;margin:12px auto 0!important}
+</style>
 </body></html>
