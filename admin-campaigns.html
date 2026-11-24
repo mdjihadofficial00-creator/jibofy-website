@@ -1187,4 +1187,33 @@ html body footer > .footer-owner{display:flex!important;flex-direction:column!im
 html body footer > #footer-social-links{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;gap:12px!important}
 html body footer .footer-owner span,html body footer .footer-owner h3{display:block!important;width:100%!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important}
 </style>
+
+<style id="jibofy-admin-active-tab-text-only">
+/* Same proven text-only active-tab treatment used by the member panel */
+body .top nav a.active,
+body .top nav a[aria-current="page"]{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  color:#1877f2!important;
+  border-color:transparent!important;
+  border-bottom-color:transparent!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
+body .top nav a.active:hover,
+body .top nav a[aria-current="page"]:hover{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+}
+body .top nav a.active::before,
+body .top nav a.active::after,
+body .top nav a[aria-current="page"]::before,
+body .top nav a[aria-current="page"]::after{content:none!important;display:none!important}
+body.jf-dark .top nav a.active,
+body.jf-dark .top nav a[aria-current="page"]{color:#8ab4ff!important}
+body .top nav a.active :is(span,i,svg),
+body .top nav a[aria-current="page"] :is(span,i,svg){color:inherit!important;stroke:currentColor!important;fill:none!important}
+</style>
 </body></html>
