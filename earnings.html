@@ -1760,5 +1760,31 @@ html body footer .footer-owner span,html body footer .footer-owner h3{display:bl
 html body footer .footer-social-links{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;flex-wrap:wrap!important;gap:10px!important;width:100%!important;margin:12px auto!important}
 html body footer .copyright{display:block!important;text-align:center!important;margin:12px auto 0!important}
 </style>
+
+<style id="jibofy-final-specific-fix-2026">
+/* Exact real admin markup is a plain nav (no .nav class). */
+html body nav > a.active,html body nav > a.active:hover,html body nav > a[aria-current="page"]{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border:0!important;border-bottom:0!important;border-color:transparent!important;
+ border-radius:0!important;box-shadow:none!important;outline:0!important;
+}
+/* Exact member tab markup */
+html body nav.jibofy-member-tabs > a.active,html body nav.jibofy-member-tabs > a[aria-current="page"],
+html body nav.jibofy-member-tabs > a.active:hover,html body nav.jibofy-member-tabs > a[aria-current="page"]:hover{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border:0!important;border-bottom:0!important;border-color:transparent!important;
+ border-radius:0!important;box-shadow:none!important;outline:0!important;
+}
+html body nav.jibofy-member-tabs > a.active > span,html body nav.jibofy-member-tabs > a[aria-current="page"] > span,
+html body nav.jibofy-member-tabs > a.active svg,html body nav.jibofy-member-tabs > a[aria-current="page"] svg,
+html body nav.jibofy-member-tabs > a.active svg *,html body nav.jibofy-member-tabs > a[aria-current="page"] svg *{color:#1877f2!important;stroke:#1877f2!important}
+html body.jf-dark nav > a.active,html body.jf-dark nav.jibofy-member-tabs > a.active,html body.jf-dark nav.jibofy-member-tabs > a[aria-current="page"],html body.jf-dark nav.jibofy-member-tabs > a.active > span,html body.jf-dark nav.jibofy-member-tabs > a.active svg *{color:#8ab4ff!important;stroke:#8ab4ff!important}
+/* Footer content centered on the page, not aligned to the left */
+html body footer{box-sizing:border-box!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;padding:36px 20px!important;margin-left:auto!important;margin-right:auto!important}
+html body footer > .footer-brand,html body footer > .footer-description,html body footer > .footer-owner,html body footer > #footer-social-links,html body footer > .copyright{float:none!important;position:static!important;left:auto!important;right:auto!important;width:100%!important;max-width:100%!important;margin-left:auto!important;margin-right:auto!important;text-align:center!important;align-self:center!important}
+html body footer > .footer-owner{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:7px!important}
+html body footer > #footer-social-links{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important;justify-content:center!important;gap:12px!important}
+html body footer .footer-owner span,html body footer .footer-owner h3{display:block!important;width:100%!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important}
+</style>
 </body>
 </html>
