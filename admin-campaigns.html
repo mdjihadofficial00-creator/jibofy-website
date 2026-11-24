@@ -922,7 +922,32 @@ header.member-shell button#jf-theme-toggle{grid-column:3!important;grid-row:1!im
  header.member-shell nav.jibofy-member-tabs a{flex-basis:94px!important}
 }
 
-</style></head><body>
+</style>
+<style id="jibofy-unified-navigation-v1">
+/* One shared JIBOFY search + navigation system */
+:root{--jf-ui-blue:#0866ff;--jf-ui-blue-soft:#e7f0ff;--jf-ui-line:#d9dee7;--jf-ui-muted:#656b75}
+body .top-search,body .member-search{box-sizing:border-box!important;display:flex!important;align-items:center!important;gap:9px!important;height:42px!important;min-width:0!important;padding:0 12px!important;border:1px solid var(--jf-ui-line)!important;border-radius:24px!important;background:#f0f2f5!important;box-shadow:none!important}
+body .top-search>span,body .member-search>span{position:relative!important;display:inline-flex!important;flex:0 0 18px!important;width:18px!important;height:18px!important;align-items:center!important;justify-content:center!important;margin:0!important;font-size:0!important}
+body .top-search>span:before,body .member-search>span:before{content:"";position:absolute;width:10px;height:10px;border:2px solid #687385;border-radius:50%;left:1px;top:0}
+body .top-search>span:after,body .member-search>span:after{content:"";position:absolute;width:7px;height:2px;background:#687385;transform:rotate(45deg);left:12px;top:13px;border-radius:2px}
+body .top-search input,body .member-search input{box-sizing:border-box!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;height:40px!important;padding:0 4px!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;color:#1c1e21!important;font:500 14px/1.2 inherit!important}
+body .top-search input::placeholder,body .member-search input::placeholder{color:#656b75!important;opacity:1!important}
+body .member-search button{height:34px!important;min-width:76px!important;flex:0 0 auto!important;margin:0!important;padding:0 14px!important;border:0!important;border-radius:18px!important;background:#0866ff!important;color:#fff!important;font-weight:700!important}
+body .top nav a,body .jibofy-member-tabs a{box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;border-radius:10px!important;color:var(--jf-text,#30343b)!important;text-decoration:none!important;transition:background .16s ease,color .16s ease!important}
+body .top nav a:hover,body .jibofy-member-tabs a:hover{background:#f0f2f5!important;color:#0866ff!important}
+body .top nav a.active,body .top nav a[aria-current="page"],body .jibofy-member-tabs a.active,body .jibofy-member-tabs a[aria-current="page"]{background:#e7f0ff!important;color:#0866ff!important;border:0!important;box-shadow:inset 0 0 0 1px #cfe0ff!important;font-weight:700!important}
+body .top nav a.active:after,body .top nav a[aria-current="page"]:after{display:none!important}
+body .jibofy-member-tabs a .tab-icon{display:grid!important;place-items:center!important;flex:0 0 21px!important;width:21px!important;height:21px!important;color:inherit!important}
+body .jibofy-member-tabs a .tab-icon svg{display:block!important;width:20px!important;height:20px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.9!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+body.jf-dark .top-search,body.jf-dark .member-search{background:#3a3b3c!important;border-color:#55585c!important}
+body.jf-dark .top-search input,body.jf-dark .member-search input{color:#e4e6eb!important}
+body.jf-dark .top-search input::placeholder,body.jf-dark .member-search input::placeholder{color:#b0b3b8!important}
+body.jf-dark .top nav a,body.jf-dark .jibofy-member-tabs a{color:#e4e6eb!important}
+body.jf-dark .top nav a:hover,body.jf-dark .jibofy-member-tabs a:hover{background:#3a3b3c!important;color:#7daeff!important}
+body.jf-dark .top nav a.active,body.jf-dark .top nav a[aria-current="page"],body.jf-dark .jibofy-member-tabs a.active,body.jf-dark .jibofy-member-tabs a[aria-current="page"]{background:#263b59!important;color:#8ab4ff!important;box-shadow:inset 0 0 0 1px #365987!important}
+@media(max-width:760px){body .top-search,body .member-search{width:100%!important;max-width:none!important;height:42px!important}body .top nav{width:100%!important;overflow-x:auto!important;white-space:nowrap!important}body .jibofy-member-tabs{width:100%!important;overflow-x:auto!important;white-space:nowrap!important}body .jibofy-member-tabs a{flex:1 0 auto!important}}
+</style>
+</head><body>
 
 <header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a href="admin.html">Overview</a><a class="active" href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a href="admin-withdrawals.html">Withdrawals</a><a href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header>
 <main class="wrap"><div class="eyebrow">CONTROL CENTER</div><h1>Campaign Management</h1>
