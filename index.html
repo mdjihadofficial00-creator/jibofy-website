@@ -418,6 +418,41 @@ body.jf-dark :where(.secondary,.btn-secondary,button.secondary){background:#2639
 body :where(#jf-theme-toggle,#theme-toggle){background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;box-shadow:var(--jf-shadow)!important}
 body.jf-dark :where(#jf-theme-toggle,#theme-toggle){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
 
+
+/* GLOBAL FACEBOOK PALETTE FIX — remove navy surfaces across all JIBOFY pages */
+:root{
+ --jf-bg:#f0f2f5;--jf-card:#ffffff;--jf-text:#1c1e21;--jf-muted:#65676b;
+ --jf-line:#dddfe2;--jf-blue:#0866ff;--jf-blue-hover:#075ce5;--jf-soft:#e7f3ff;
+ --jf-field:#ffffff;--jf-shadow:0 1px 2px rgba(0,0,0,.10);
+}
+html,body{background:var(--jf-bg)!important;color:var(--jf-text)!important}
+body.jf-dark{
+ --jf-bg:#18191a!important;--jf-card:#242526!important;--jf-text:#e4e6eb!important;
+ --jf-muted:#b0b3b8!important;--jf-line:#3e4042!important;--jf-blue:#2d88ff!important;
+ --jf-blue-hover:#4595ff!important;--jf-soft:#263951!important;--jf-field:#3a3b3c!important;
+ --jf-shadow:0 1px 2px rgba(0,0,0,.28)!important;
+}
+body.jf-dark,body.jf-dark html{background:#18191a!important;color:#e4e6eb!important}
+body.jf-dark :where(main,.main,.main-content,.content,.page,.page-content,.dashboard,.dashboard-grid,.dashboard-inner,.admin-main,.admin-content,.app,.app-shell,.workspace,.container-fluid){
+ background:transparent!important;color:var(--jf-text)!important;
+}
+body.jf-dark :where(.member-shell,.admin-header,.admin-nav,.admin-sidebar,.topbar,.top-bar,.toolbar,.nav,.top,nav,.dashboard-top,.jibofy-member-tabs){
+ background:#242526!important;color:#e4e6eb!important;border-color:#3e4042!important;
+}
+body.jf-dark :where(.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.dialog,.modal,.features,.cta,.summary-card,.profile-card,.admin-card,.content-card,.table-wrap,.table-container){
+ background:#242526!important;color:#e4e6eb!important;border-color:#3e4042!important;
+}
+body.jf-dark :where(h1,h2,h3,h4,h5,h6,strong,b,label,.title){color:#e4e6eb}
+body.jf-dark :where(p,.muted,.sub,.note,.meta,.description,.profile-subtitle){color:#b0b3b8}
+body.jf-dark :where(input,select,textarea){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
+body.jf-dark :where(.jibofy-member-tabs a,.admin-nav a,.nav a,.top a,.tabs a){color:#e4e6eb!important}
+body.jf-dark :where(.jibofy-member-tabs a.active,.jibofy-member-tabs a[aria-current="page"],.admin-nav a.active,.nav a.active,.tabs a.active,.top nav a.active,.filters button.active){
+ background:#0866ff!important;color:#fff!important;border-color:#0866ff!important;
+}
+body.jf-dark :where(.secondary,.btn-secondary,button.secondary){background:#263951!important;color:#e4e6eb!important;border-color:#3e4042!important}
+body.jf-dark :where(#jf-theme-toggle,#theme-toggle){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+
 </style>
 </head>
 <body>
