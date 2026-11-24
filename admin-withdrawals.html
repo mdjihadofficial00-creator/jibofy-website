@@ -605,6 +605,112 @@ body.jf-dark .btn.secondary,body.jf-dark .secondary,body.jf-dark button.secondar
  body .wrap{padding:24px 13px 48px!important}
 }
 
+
+/* Match the Sponsor page header/navigation exactly across all admin sections */
+html,body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif!important}
+header.top{
+ position:sticky!important;top:0!important;z-index:1000!important;
+ display:flex!important;align-items:center!important;gap:15px!important;flex-wrap:wrap!important;
+ width:100%!important;margin:0!important;padding:13px clamp(14px,4vw,48px)!important;
+ background:var(--card,#242526)!important;color:var(--text,#e4e6eb)!important;
+ border:0!important;border-bottom:1px solid var(--line,#3e4042)!important;
+ border-radius:0!important;box-shadow:0 1px 4px #00000012!important;
+}
+header.top>a.brand{
+ flex:0 0 auto!important;padding:0!important;margin:0!important;
+ background:transparent!important;border:0!important;border-radius:0!important;
+ color:#1877f2!important;font-size:21px!important;font-weight:850!important;
+ letter-spacing:.2px!important;text-decoration:none!important;white-space:nowrap!important;
+}
+header.top nav{
+ display:flex!important;align-items:center!important;gap:6px!important;
+ flex:0 1 auto!important;flex-wrap:wrap!important;width:auto!important;
+ margin:0!important;padding:0!important;background:transparent!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+header.top nav a,header.top nav a:link,header.top nav a:visited{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-height:42px!important;padding:9px 12px!important;margin:0!important;
+ background:transparent!important;color:var(--muted,#b0b3b8)!important;
+ border:0!important;border-radius:8px!important;box-shadow:none!important;
+ font-size:13px!important;font-weight:700!important;line-height:1.2!important;
+ text-decoration:none!important;white-space:nowrap!important;
+}
+header.top nav a:hover{background:var(--blue-soft,#263951)!important;color:#1877f2!important}
+header.top nav a.active,header.top nav a[aria-current="page"]{
+ background:#1877f2!important;color:#fff!important;border:0!important;
+ box-shadow:none!important;
+}
+header.top form.top-search{
+ position:relative!important;display:flex!important;align-items:center!important;
+ flex:1 1 190px!important;max-width:340px!important;min-width:160px!important;
+ margin:0 0 0 auto!important;padding:0!important;background:transparent!important;
+ border:0!important;box-shadow:none!important;
+}
+header.top form.top-search span{
+ position:absolute!important;left:14px!important;top:50%!important;
+ transform:translateY(-54%)!important;z-index:1!important;
+ color:var(--muted,#b0b3b8)!important;font-size:0!important;
+}
+header.top form.top-search span:before{
+ content:""!important;display:block!important;width:11px!important;height:11px!important;
+ border:2px solid currentColor!important;border-radius:50%!important;
+}
+header.top form.top-search span:after{
+ content:""!important;position:absolute!important;width:7px!important;height:2px!important;
+ left:10px!important;top:12px!important;background:currentColor!important;
+ transform:rotate(45deg)!important;border-radius:2px!important;
+}
+header.top form.top-search input{
+ display:block!important;width:100%!important;min-width:0!important;height:42px!important;
+ margin:0!important;padding:0 14px 0 38px!important;
+ background:var(--bg,#f0f2f5)!important;color:var(--text,#1c1e21)!important;
+ border:1px solid var(--line,#dddfe2)!important;border-radius:24px!important;
+ box-shadow:none!important;font:500 14px/1.2 inherit!important;
+}
+header.top form.top-search input::placeholder{color:var(--muted,#65676b)!important;opacity:1!important}
+header.top button#jf-theme-toggle,header.top button#theme-toggle{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 auto!important;min-height:42px!important;margin:0!important;padding:9px 15px!important;
+ background:var(--blue-soft,#263951)!important;color:var(--text,#e4e6eb)!important;
+ border:1px solid var(--line,#3e4042)!important;border-radius:12px!important;
+ box-shadow:none!important;font:750 14px/1.1 inherit!important;white-space:nowrap!important;
+ cursor:pointer!important;position:static!important;inset:auto!important;transform:none!important;
+}
+header.top button#logout{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 auto!important;min-height:42px!important;margin:0!important;padding:10px 14px!important;
+ background:#1877f2!important;color:#fff!important;border:1px solid #1877f2!important;
+ border-radius:8px!important;font:700 14px/1.1 inherit!important;white-space:nowrap!important;
+ cursor:pointer!important;
+}
+body:not(.jf-dark) header.top{background:#fff!important;border-bottom-color:#dddfe2!important}
+body:not(.jf-dark) header.top nav a,body:not(.jf-dark) header.top nav a:link,body:not(.jf-dark) header.top nav a:visited{color:#65676b!important}
+body:not(.jf-dark) header.top nav a.active,body:not(.jf-dark) header.top nav a[aria-current="page"]{background:#1877f2!important;color:#fff!important}
+body:not(.jf-dark) header.top nav a:hover{background:#e7f3ff!important;color:#145dbf!important}
+body:not(.jf-dark) header.top form.top-search input{background:#f0f2f5!important;color:#1c1e21!important}
+body:not(.jf-dark) header.top button#jf-theme-toggle,body:not(.jf-dark) header.top button#theme-toggle{background:#e7f3ff!important;color:#145dbf!important;border-color:#cfe3ff!important}
+body.jf-dark header.top{background:#242526!important;border-bottom-color:#3e4042!important}
+body.jf-dark header.top nav a,body.jf-dark header.top nav a:link,body.jf-dark header.top nav a:visited{color:#b0b3b8!important}
+body.jf-dark header.top nav a.active,body.jf-dark header.top nav a[aria-current="page"]{background:#1877f2!important;color:#fff!important}
+body.jf-dark header.top nav a:hover{background:#263951!important;color:#fff!important}
+body.jf-dark header.top form.top-search input{background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+body.jf-dark header.top button#jf-theme-toggle,body.jf-dark header.top button#theme-toggle{background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+@media(max-width:900px){
+ header.top{gap:9px!important}
+ header.top nav{order:3!important;flex:1 0 100%!important;overflow-x:auto!important;flex-wrap:nowrap!important;padding-bottom:2px!important}
+ header.top form.top-search{margin-left:auto!important;max-width:none!important;flex:1 1 180px!important}
+}
+@media(max-width:560px){
+ header.top{padding:10px 12px!important;gap:8px!important}
+ header.top>a.brand{font-size:19px!important}
+ header.top nav{gap:3px!important}
+ header.top nav a,header.top nav a:link,header.top nav a:visited{padding:9px 10px!important;font-size:12px!important}
+ header.top form.top-search{order:4!important;flex:1 0 100%!important;max-width:none!important}
+ header.top button#jf-theme-toggle,header.top button#theme-toggle{min-height:39px!important;padding:8px 10px!important;font-size:12px!important}
+ header.top button#logout{min-height:39px!important;padding:8px 11px!important;font-size:12px!important}
+}
+
 </style></head><body>
 
 <header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a href="admin.html">Overview</a><a href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a class="active" href="admin-withdrawals.html">Withdrawals</a><a href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header>
