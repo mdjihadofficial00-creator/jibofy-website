@@ -506,6 +506,22 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
  .member-shell>.jibofy-member-tabs>a .tab-icon svg{width:18px!important;height:18px!important}
 }
 
+
+/* Consistent active member tab highlight */
+body .jibofy-member-tabs a.active,body .jibofy-member-tabs a[aria-current="page"]{color:#1877f2!important;background:rgba(24,119,242,.13)!important;border-bottom:3px solid #1877f2!important;box-shadow:inset 0 0 0 1px rgba(24,119,242,.10)!important}
+body .jibofy-member-tabs a.active .tab-icon,body .jibofy-member-tabs a[aria-current="page"] .tab-icon{color:#1877f2!important}
+/* Profile screen centered composition */
+body[data-page="profile"] .dashboard-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;justify-items:center!important}
+body[data-page="profile"] #profile-form{width:100%!important;max-width:780px!important;margin:0 auto!important;box-sizing:border-box!important;text-align:center!important}
+body[data-page="profile"] #profile-form .profile-head{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;text-align:center!important;gap:12px!important}
+body[data-page="profile"] #profile-form .profile-head>div{text-align:center!important}
+body[data-page="profile"] #profile-form .avatar{display:block!important;margin:0 auto!important}
+body[data-page="profile"] #profile-form>div[style*="justify-content:space-between"]{justify-content:center!important;gap:18px!important}
+body[data-page="profile"] #profile-form label{text-align:left!important}
+body[data-page="profile"] #profile-contact,body[data-page="profile"] #profile-hint,body[data-page="profile"] #profile-message{text-align:center!important}
+body[data-page="profile"] #profile-form .profile-actions{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important}
+@media(max-width:700px){body[data-page="profile"] #profile-form{padding:20px!important}body[data-page="profile"] #profile-form .profile-head .avatar{width:104px!important;height:104px!important}}
+
 </style>
 </head>
 <body data-page="dashboard">
@@ -730,6 +746,12 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
   }
 
 
+
+function formatJibofyMemberId(memberCode){
+ const digits=String(memberCode??"").replace(/\D/g,"");
+ return digits ? digits.slice(-6).padStart(6,"0") : "Not assigned";
+}
+
   async function loadDashboard(user) {
     currentUser = user;
     // Reveal the member area immediately after authentication, even if profile data
@@ -739,10 +761,10 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
     document.getElementById("profile-about").value = user.user_metadata?.about_me || "";
     document.getElementById("profile-contact").textContent =
       "Email: " + (user.email || "Not available") + " | Phone: " + (user.user_metadata?.phone || "Not added");
-    document.getElementById("member-id").textContent = user.id;
+    document.getElementById("member-id").textContent = "Not assigned";
     document.getElementById("member-joined").textContent = user.created_at ? new Date(user.created_at).toLocaleDateString() : "—";
     const { data: profile, error: profileError } = await client.from("profiles")
-      .select("id,full_name,phone,avatar_url,about_me,role,created_at").eq("id", user.id).maybeSingle();
+      .select("id,full_name,phone,avatar_url,about_me,role,created_at,member_code").eq("id", user.id).maybeSingle();
     if (profileError || !profile) {
       document.getElementById("profile-message").textContent =
         "Dashboard opened, but profile details could not be loaded: " + (profileError?.message || "Profile record not found");
@@ -758,7 +780,7 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
     document.getElementById("profile-avatar").src = profile.avatar_url || "https://placehold.co/160x160/29334d/ffffff?text=Photo";
     document.getElementById("profile-contact").textContent =
       "Email: " + (user.email || "Not available") + " | Phone: " + (profile.phone || user.user_metadata?.phone || "Not added");
-    document.getElementById("member-id").textContent = user.id;
+    document.getElementById("member-id").textContent = formatJibofyMemberId(profile.member_code);
     document.getElementById("member-joined").textContent = profile.created_at ? new Date(profile.created_at).toLocaleDateString() : "—";
     const [submissions, wallet, withdrawals] = await Promise.all([
       client.from("task_submissions").select("id,status").eq("user_id", user.id),
