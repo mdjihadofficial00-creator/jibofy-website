@@ -1668,5 +1668,36 @@ body.jf-dark .member-shell nav.jibofy-member-tabs a.active{color:#2d88ff!importa
 body.jf-dark .member-shell nav.jibofy-member-tabs a[aria-current="page"] .tab-icon svg,
 body.jf-dark .member-shell nav.jibofy-member-tabs a.active .tab-icon svg{stroke:#2d88ff!important}
 </style>
+
+<style id="jibofy-member-nav-real-root-fix">
+/* Real active-state selectors from the original member navigation */
+.member-shell .jibofy-member-tabs a[aria-current=page],
+.member-shell .nav a.active,
+.jibofy-member-tabs a.active,
+.jibofy-member-tabs a[aria-current="page"]{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border:0!important;border-bottom:0!important;box-shadow:none!important;
+}
+.member-shell .jibofy-member-tabs a[aria-current=page] .tab-icon,
+.member-shell .nav a.active .tab-icon,
+.jibofy-member-tabs a.active .tab-icon,
+.jibofy-member-tabs a[aria-current="page"] .tab-icon{color:#1877f2!important}
+.member-shell .jibofy-member-tabs a[aria-current=page] svg,
+.member-shell .nav a.active svg,
+.jibofy-member-tabs a.active svg,
+.jibofy-member-tabs a[aria-current="page"] svg{color:#1877f2!important;stroke:#1877f2!important}
+body.jf-dark .member-shell .jibofy-member-tabs a[aria-current=page],
+body.jf-dark .member-shell .nav a.active,
+body.jf-dark .jibofy-member-tabs a.active,
+body.jf-dark .jibofy-member-tabs a[aria-current="page"]{background:transparent!important;background-color:transparent!important;background-image:none!important;color:#8ab4ff!important;box-shadow:none!important}
+body.jf-dark .member-shell .jibofy-member-tabs a[aria-current=page] .tab-icon,
+body.jf-dark .member-shell .nav a.active .tab-icon,
+body.jf-dark .jibofy-member-tabs a.active .tab-icon,
+body.jf-dark .jibofy-member-tabs a[aria-current="page"] .tab-icon,
+body.jf-dark .member-shell .jibofy-member-tabs a[aria-current=page] svg,
+body.jf-dark .member-shell .nav a.active svg,
+body.jf-dark .jibofy-member-tabs a.active svg,
+body.jf-dark .jibofy-member-tabs a[aria-current="page"] svg{color:#8ab4ff!important;stroke:#8ab4ff!important}
+</style>
 </body>
 </html>
