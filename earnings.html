@@ -480,6 +480,9 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
  .member-shell>.jibofy-member-tabs>a .tab-icon svg{width:18px!important;height:18px!important}
 }
 
+
+body[data-page="earnings"] .dashboard-grid{grid-template-columns:minmax(0,1fr)!important;justify-items:center!important}
+body[data-page="earnings"] .earnings-overview{width:100%;max-width:900px!important;box-sizing:border-box}
 </style>
 </head>
 <body data-page="earnings">
@@ -714,10 +717,11 @@ body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:
 
   function formatMemberCode(code, fallback) {
     if (code !== null && code !== undefined && String(code).trim() !== "") {
-      const digits = String(code).replace(/\\D/g,"");
+      const digits = String(code).replace(/\D/g,"");
       return digits.length >= 6 ? digits.slice(-6) : digits.padStart(6,"0");
     }
-    return fallback || "—";
+    const fallbackDigits = String(fallback || "").replace(/\D/g,"");
+    return fallbackDigits ? fallbackDigits.slice(-6).padStart(6,"0") : "—";
   }
 
   function renderEarningsSummary(customFrom, customTo) {
