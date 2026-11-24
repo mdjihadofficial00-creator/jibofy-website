@@ -503,6 +503,34 @@ body[data-page="profile"] #profile-contact,body[data-page="profile"] #profile-hi
 body[data-page="profile"] #profile-form .profile-actions{display:flex!important;justify-content:center!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important}
 @media(max-width:700px){body[data-page="profile"] #profile-form{padding:20px!important}body[data-page="profile"] #profile-form .profile-head .avatar{width:104px!important;height:104px!important}}
 
+
+/* JIBOFY — unified Facebook-inspired color system */
+:root{--jf-bg:#f0f2f5;--jf-card:#fff;--jf-text:#1c1e21;--jf-muted:#65676b;--jf-line:#dddfe2;--jf-blue:#0866ff;--jf-blue-hover:#075ce5;--jf-soft:#e7f3ff;--jf-field:#fff;--jf-shadow:0 1px 2px rgba(0,0,0,.10)}
+body{background:var(--jf-bg)!important;color:var(--jf-text)!important}
+body.jf-dark{--jf-bg:#18191a;--jf-card:#242526;--jf-text:#e4e6eb;--jf-muted:#b0b3b8;--jf-line:#3e4042;--jf-blue:#0866ff;--jf-blue-hover:#1877f2;--jf-soft:#263951;--jf-field:#3a3b3c;--jf-shadow:0 1px 2px rgba(0,0,0,.28)}
+body,body *{accent-color:var(--jf-blue)}
+body :where(nav,.top,.nav,.member-shell,.member-header,.dashboard-top,header,footer){background:var(--jf-card)!important;color:var(--jf-text)!important;border-color:var(--jf-line)!important}
+body :where(.card,.panel,.stat,.stat-card,.auth-card,.task,.campaign,.withdrawal-request,.withdrawal-stat,.dialog,.modal,.features,.cta,.hero,.dashboard-top,.profile-card,.form-card,.content-card,.request-card){background:var(--jf-card)!important;color:var(--jf-text)!important;border-color:var(--jf-line)!important;box-shadow:var(--jf-shadow)!important}
+body :where(h1,h2,h3,h4,h5,h6,strong,b,.brand,.logo,.member-brand,.shell-brand,.footer-brand){color:var(--jf-text)!important}
+body :where(p,label,small,li,.muted,.sub,.note,.meta,.eyebrow,.description,.footer-description,.copyright){color:var(--jf-muted)!important}
+body :where(a){color:var(--jf-blue)}
+body :where(.btn,.primary,.btn-primary,.start-campaign,.complete-campaign,button.primary,.search-button,.member-search button,.shell-search button){background:var(--jf-blue)!important;color:#fff!important;border:1px solid var(--jf-blue)!important;border-radius:8px!important}
+body :where(.secondary,.btn-secondary,button.secondary){background:var(--jf-soft)!important;color:var(--jf-blue)!important;border:1px solid var(--jf-line)!important}
+body :where(input,select,textarea){background:var(--jf-field)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important}
+body :where(input,select,textarea)::placeholder{color:var(--jf-muted)!important;opacity:1}
+body :where(input,select,textarea):focus{border-color:var(--jf-blue)!important;outline:2px solid color-mix(in srgb,var(--jf-blue) 22%,transparent)!important}
+body :where(.jibofy-member-tabs a,.nav a,.top nav a,.admin-nav a,.tabs a){color:var(--jf-text)!important;border-color:transparent!important}
+body :where(.jibofy-member-tabs a.active,.jibofy-member-tabs a[aria-current="page"],.nav a.active,.admin-nav a.active,.tabs a.active,.top nav a.active){background:var(--jf-blue)!important;color:#fff!important;border-color:var(--jf-blue)!important;box-shadow:none!important}
+body :where(.tag,.pill,.state,.badge){background:var(--jf-soft)!important;color:var(--jf-blue)!important;border:0!important}
+body :where(.stat strong,.stat-card strong,.reward,.summary-heading){color:var(--jf-blue)!important}
+body.jf-dark :where(.hero h1,.hero h2,.hero p,.hero .muted,.hero .eyebrow){color:var(--jf-text)!important}
+body.jf-dark :where(.empty,.message,.notice){color:var(--jf-muted)!important}
+body.jf-dark :where(input,select,textarea){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
+body.jf-dark :where(.secondary,.btn-secondary,button.secondary){background:#263951!important;color:#e4e6eb!important;border-color:#3e4042!important}
+body :where(#jf-theme-toggle,#theme-toggle){background:var(--jf-card)!important;color:var(--jf-text)!important;border:1px solid var(--jf-line)!important;box-shadow:var(--jf-shadow)!important}
+body.jf-dark :where(#jf-theme-toggle,#theme-toggle){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+
 </style>
 </head>
 <body data-page="profile">
