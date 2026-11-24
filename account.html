@@ -595,6 +595,31 @@ body.jf-dark :where(p,.sub,.muted,.note,.meta,.auth-note,.auth-card>p){color:#b0
 body.jf-dark :where(input,select,textarea){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
 body.jf-dark :where(input,select,textarea)::placeholder{color:#b0b3b8!important}
 </style>
+
+<style id="jibofy-account-background-final-fix">
+/* Account page uses the same site-wide surfaces as every other JIBOFY page */
+html:has(body[data-page="account"]),body[data-page="account"]{background:#f0f2f5!important;color:#1c1e21!important}
+body[data-page="account"]>nav.jf-public-header{background:#fff!important;color:#1c1e21!important;border-color:#dddfe2!important}
+body[data-page="account"] .auth-section{background:#f0f2f5!important;color:#1c1e21!important}
+body[data-page="account"] .auth-section>div:first-child h2{color:#1c1e21!important}
+body[data-page="account"] .auth-section .sub,body[data-page="account"] .auth-note{color:#65676b!important}
+body[data-page="account"] .auth-card{background:#fff!important;color:#1c1e21!important;border:1px solid #dddfe2!important;box-shadow:0 1px 2px rgba(0,0,0,.10)!important}
+body[data-page="account"] .auth-card h2{color:#1c1e21!important}
+body[data-page="account"] .auth-card>p,body[data-page="account"] .auth-card label{color:#65676b!important}
+body[data-page="account"] .auth-card input{background:#fff!important;color:#1c1e21!important;border-color:#ccd0d5!important}
+body[data-page="account"] .auth-card input::placeholder{color:#8a8d91!important}
+body[data-page="account"].jf-dark,html:has(body[data-page="account"].jf-dark){background:#18191a!important;color:#e4e6eb!important}
+body[data-page="account"].jf-dark>nav.jf-public-header{background:#242526!important;color:#e4e6eb!important;border-color:#3e4042!important}
+body[data-page="account"].jf-dark .auth-section{background:#18191a!important;color:#e4e6eb!important}
+body[data-page="account"].jf-dark .auth-section>div:first-child h2{color:#e4e6eb!important}
+body[data-page="account"].jf-dark .auth-section .sub,body[data-page="account"].jf-dark .auth-note{color:#b0b3b8!important}
+body[data-page="account"].jf-dark .auth-card{background:#242526!important;color:#e4e6eb!important;border-color:#3e4042!important}
+body[data-page="account"].jf-dark .auth-card h2,body[data-page="account"].jf-dark .auth-card label{color:#e4e6eb!important}
+body[data-page="account"].jf-dark .auth-card>p{color:#b0b3b8!important}
+body[data-page="account"].jf-dark .auth-card input{background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+body[data-page="account"].jf-dark .auth-card input::placeholder{color:#b0b3b8!important}
+@media(max-width:700px){body[data-page="account"] .auth-section{background:#f0f2f5!important}body[data-page="account"].jf-dark .auth-section{background:#18191a!important}}
+</style>
 </head>
 <body data-page="account">
 <nav class="jf-public-header jf-account-header"><a class="logo" href="index.html" aria-label="JIBOFY Home">JIBOFY</a><button id="jf-theme-toggle" type="button">🌙 Dark mode</button></nav>
