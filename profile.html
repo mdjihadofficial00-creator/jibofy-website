@@ -375,6 +375,42 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 @media(max-width:700px){#jf-theme-toggle,#theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}
 
 #jf-theme-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;position:static!important;inset:auto!important;min-height:42px!important;padding:9px 15px!important;border:1px solid var(--jf-line,#dce5f2)!important;border-radius:12px!important;background:var(--jf-card,#fff)!important;color:var(--jf-text,#172033)!important;font:750 14px/1.1 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;white-space:nowrap!important;box-shadow:0 2px 8px rgba(15,35,65,.08)!important}body.jf-dark #jf-theme-toggle{background:var(--jf-card)!important;color:var(--jf-text)!important;border-color:var(--jf-line)!important}@media(max-width:700px){#jf-theme-toggle{min-height:40px!important;padding:8px 12px!important;font-size:13px!important}}/* One consistent JIBOFY theme pill */
+
+/* JIBOFY consistent member header: logo > centered search > theme > real profile photo */
+.member-shell{
+ display:grid!important;
+ grid-template-columns:auto minmax(260px,1fr) auto auto!important;
+ grid-template-rows:56px auto!important;
+ align-items:center!important;
+ column-gap:clamp(12px,2vw,28px)!important;
+ row-gap:8px!important;
+ padding:10px clamp(16px,4vw,54px) 0!important;
+ position:relative!important;
+ top:auto!important;
+ flex-wrap:initial!important;
+}
+.member-brand{grid-column:1!important;grid-row:1!important;justify-self:start!important}
+.member-search{grid-column:2!important;grid-row:1!important;width:100%!important;max-width:620px!important;min-width:0!important;margin:0 auto!important;justify-self:center!important}
+#jf-theme-toggle{grid-column:3!important;grid-row:1!important;position:static!important;inset:auto!important;justify-self:end!important;min-height:42px!important;padding:9px 15px!important;border:1px solid var(--jf-line,#dce5f2)!important;border-radius:12px!important;background:var(--jf-card,#fff)!important;color:var(--jf-text,#172033)!important;font:700 13px system-ui,-apple-system,sans-serif!important;white-space:nowrap!important;box-shadow:0 2px 8px rgba(15,35,65,.08)!important;cursor:pointer!important}
+body.jf-dark #jf-theme-toggle{background:var(--jf-card,#242526)!important;color:var(--jf-text,#e4e6eb)!important;border-color:var(--jf-line,#3e4042)!important}
+.member-account{grid-column:4!important;grid-row:1!important;position:relative!important;justify-self:end!important}
+.member-account summary{display:flex!important;align-items:center!important;gap:8px!important;min-height:42px!important;padding:5px 9px!important;border:1px solid var(--jf-line,#dce5f2)!important;border-radius:14px!important;background:var(--jf-bg,#f4f6fa)!important;color:var(--jf-text,#172033)!important}
+.member-avatar{display:block!important;width:34px!important;height:34px!important;flex:0 0 34px!important;border-radius:50%!important;object-fit:cover!important;background:#1877f2!important;color:#fff!important}
+.member-shell>.jibofy-member-tabs{grid-column:1/-1!important;grid-row:2!important;width:100%!important;min-width:0!important;margin:0!important;position:static!important;display:flex!important;justify-content:space-around!important}
+.member-account .account-pop{z-index:1500!important;right:0!important;left:auto!important}
+@media(max-width:700px){
+ .member-shell{grid-template-columns:minmax(0,1fr) auto auto!important;grid-template-rows:48px 48px auto!important;column-gap:9px!important;padding:8px 12px 0!important}
+ .member-brand{grid-column:1!important;grid-row:1!important;font-size:22px!important}
+ .member-search{grid-column:1/-1!important;grid-row:2!important;max-width:none!important;width:100%!important}
+ #jf-theme-toggle{grid-column:2!important;grid-row:1!important;min-height:38px!important;padding:7px 10px!important;font-size:12px!important}
+ .member-account{grid-column:3!important;grid-row:1!important}
+ .member-account summary{padding:4px!important;min-height:38px!important}
+ .member-account .account-word,.member-account summary>span:last-child{display:none!important}
+ .member-avatar{width:32px!important;height:32px!important;flex-basis:32px!important}
+ .member-shell>.jibofy-member-tabs{grid-column:1/-1!important;grid-row:3!important;overflow-x:auto!important;justify-content:flex-start!important;gap:6px!important;padding:0 0 6px!important}
+ .member-shell>.jibofy-member-tabs a{flex:1 0 auto!important;min-width:72px!important;padding:10px 12px!important}
+}
+
 </style>
 </head>
 <body data-page="profile">
@@ -383,7 +419,7 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 <a class="member-brand" href="dashboard.html">JIBOFY</a>
 <form class="member-search" action="tasks.html" method="get"><span aria-hidden="true">⌕</span><input type="search" name="q" placeholder="Search tasks" aria-label="Search tasks"><button type="submit">Search</button></form>
 <button id="jf-theme-toggle" type="button">🌙 Dark mode</button>
-<details class="member-account"><summary aria-label="Account menu"><span class="member-avatar">♙</span><span class="account-word">Profile</span><span aria-hidden="true">⌄</span></summary><div class="account-pop"><a href="account.html">＋ Add Another Account</a><button type="button" id="header-logout">↪ Log Out</button></div></details>
+<details class="member-account"><summary aria-label="Account menu"><span class="member-avatar" aria-hidden="true">♙</span><span class="account-word">Profile</span><span aria-hidden="true">⌄</span></summary><div class="account-pop"><a href="account.html">＋ Add Another Account</a><button type="button" id="header-logout">↪ Log Out</button></div></details>
 
 <nav class="jibofy-member-tabs" aria-label="Member navigation"><a href="dashboard.html" data-tab="dashboard" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span>Home</span></a>
 <a href="tasks.html" data-tab="tasks" ><span class="tab-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h4"/></svg></span><span>Workspace</span></a>
@@ -792,6 +828,22 @@ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{background:var(--jf-car
 function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light":"🌙 Dark";btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");btn.setAttribute("aria-pressed",String(dark))}
 btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();
 </script>
-<script>(()=>{const key="jibofy-theme",body=document.body,btn=document.getElementById("jf-theme-toggle");if(!btn)return;let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(dark))}btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();</script>
+
+<script>
+(()=>{const SUPABASE_URL="https://patuusolvptevgnpdizg.supabase.co",SUPABASE_KEY="sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5",key="jibofy-theme",body=document.body,theme=document.getElementById("jf-theme-toggle"),avatar=document.querySelector(".member-avatar"),logout=document.getElementById("header-logout");
+ let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}
+ function paint(){body.classList.toggle("jf-dark",dark);if(theme){theme.textContent=dark?"☀️ Light mode":"🌙 Dark mode";theme.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");theme.setAttribute("aria-pressed",String(dark))}}
+ if(theme){theme.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()}
+ if(!window.supabase)return;
+ const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+ db.auth.getUser().then(async({data,error})=>{
+  if(error||!data?.user)return;
+  const {data:profile}=await db.from("profiles").select("avatar_url,full_name").eq("id",data.user.id).maybeSingle();
+  if(avatar&&profile?.avatar_url){const img=document.createElement("img");img.className="member-avatar";img.alt="Your profile photo";img.src=profile.avatar_url;avatar.replaceWith(img)}
+  else if(avatar&&profile?.full_name){avatar.textContent=profile.full_name.trim().charAt(0).toUpperCase()}
+ });
+ if(logout)logout.addEventListener("click",async()=>{logout.disabled=true;logout.textContent="Signing out…";const{error}=await db.auth.signOut();if(error){alert(error.message);logout.disabled=false;logout.textContent="↪ Log Out";return}location.href="account.html"});
+})();
+</script>
 </body>
 </html>
