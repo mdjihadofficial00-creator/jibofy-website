@@ -946,6 +946,33 @@ body.jf-dark .top nav a.active,body.jf-dark .top nav a[aria-current="page"],body
 body.jf-dark .footer-social-links a.footer-social-icon{color:#8ab4ff!important;border-color:#46566b;background:#303b4a}
 </style>
 
+
+<style id="jibofy-member-active-tab-text-only">
+/* Active member tab: highlight icon and label only, never fill the whole tab */
+.member-shell .jibofy-member-tabs a.active,
+.member-shell .jibofy-member-tabs a[aria-current="page"],
+.jibofy-member-tabs a.active,
+.jibofy-member-tabs a[aria-current="page"],
+.member-shell .nav a.active{
+  background:transparent!important;
+  background-image:none!important;
+  color:#1877f2!important;
+  border-color:transparent!important;
+  border-bottom-color:transparent!important;
+  box-shadow:none!important;
+}
+.member-shell .jibofy-member-tabs a.active .tab-icon,
+.member-shell .jibofy-member-tabs a[aria-current="page"] .tab-icon,
+.jibofy-member-tabs a.active .tab-icon,
+.jibofy-member-tabs a[aria-current="page"] .tab-icon,
+.member-shell .nav a.active .ico{color:#1877f2!important}
+.jibofy-member-tabs a .tab-icon svg{stroke:currentColor!important;fill:none!important}
+.jibofy-member-tabs a .tab-icon svg path,
+.jibofy-member-tabs a .tab-icon svg rect,
+.jibofy-member-tabs a .tab-icon svg circle{stroke:currentColor!important;fill:none!important}
+.jibofy-member-tabs a.active:hover,
+.jibofy-member-tabs a[aria-current="page"]:hover{background:transparent!important}
+</style>
 </head><body>
 <div id="jibofy-toast" role="status" aria-live="polite"></div>
 <header class="member-shell">
