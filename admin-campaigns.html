@@ -1246,4 +1246,24 @@ html body header.top nav > a.active :is(span,i,svg) *,
 html body header.top nav > a[aria-current="page"] :is(span,i,svg),
 html body header.top nav > a[aria-current="page"] :is(span,i,svg) *{color:inherit!important;stroke:currentColor!important}
 </style>
+
+<style id="jibofy-professional-motion-system">
+:root{--jibofy-motion-ease:cubic-bezier(.2,.75,.25,1)}
+@keyframes jibofyPageEnter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes jibofySoftPop{0%{opacity:0;transform:translateY(12px) scale(.985)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes jibofyShimmer{0%{background-position:120% 0}100%{background-position:-120% 0}}
+html body main{animation:jibofyPageEnter .48s var(--jibofy-motion-ease) both}
+html body main :is(.panel,.card,.stat-card,.summary-card,.task,.campaign,.withdrawal-request,.feature-card,.talent-card,.profile-card,.wallet-card){transition:transform .24s var(--jibofy-motion-ease),box-shadow .24s var(--jibofy-motion-ease),border-color .24s ease}
+html body main :is(.panel,.card,.stat-card,.summary-card,.task,.campaign,.withdrawal-request,.feature-card,.talent-card,.profile-card,.wallet-card):hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(20,35,60,.09)}
+html body :is(button,.btn,a.top-action,.top nav a,nav.jibofy-member-tabs a){transition:color .2s ease,background-color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s var(--jibofy-motion-ease)}
+html body button:active,html body .btn:active{transform:scale(.98)}
+html body .jibofy-reveal{opacity:0;transform:translateY(16px);transition:opacity .55s var(--jibofy-motion-ease),transform .55s var(--jibofy-motion-ease)}
+html body .jibofy-reveal.jibofy-in-view{opacity:1;transform:translateY(0)}
+html body .jibofy-reveal:nth-child(2){transition-delay:.05s}html body .jibofy-reveal:nth-child(3){transition-delay:.1s}html body .jibofy-reveal:nth-child(4){transition-delay:.15s}
+html body :is(.toast,.notification,.modal,.popup){animation:jibofySoftPop .24s var(--jibofy-motion-ease) both}
+@media(prefers-reduced-motion:reduce){html body *,html body *::before,html body *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.jibofy-reveal{opacity:1!important;transform:none!important}}
+</style>
+<script id="jibofy-professional-motion-controller">
+(()=>{const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;const start=()=>{const selectors='main > section,main > .panel,main > .card,main > article,main .stat-card,main .summary-card,main .task,main .campaign,main .withdrawal-request,main .talent-card';const items=[...document.querySelectorAll(selectors)].filter(el=>!el.closest('[hidden]')&&getComputedStyle(el).display!=='none');if(!('IntersectionObserver'in window)){items.forEach(el=>el.classList.add('jibofy-in-view'));return}const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('jibofy-in-view');io.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -24px 0px'});items.forEach(el=>{el.classList.add('jibofy-reveal');io.observe(el)})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()})();
+</script>
 </body></html>
