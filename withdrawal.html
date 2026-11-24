@@ -1023,6 +1023,42 @@ body.jf-dark .footer-social-links a.footer-social-icon{color:#8ab4ff!important;b
 .jibofy-member-tabs a.active:hover,
 .jibofy-member-tabs a[aria-current="page"]:hover{background:transparent!important}
 </style>
+
+<style id="jibofy-global-nav-footer-final-fix">
+/* JIBOFY: active navigation uses blue icon/text only; never a filled tab */
+html body :is(nav,.nav,.admin-nav,.tabs,.jibofy-member-tabs,.top nav,.admin-tabs) a:is(.active,[aria-current="page"],[aria-selected="true"],:focus,:focus-visible),
+html body :is(nav,.nav,.admin-nav,.tabs,.jibofy-member-tabs,.top nav,.admin-tabs) a:is(.active,[aria-current="page"],[aria-selected="true"]):hover{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#1877f2!important;border-color:transparent!important;border-bottom-color:transparent!important;
+ box-shadow:none!important;outline:none!important;text-decoration:none!important;
+}
+html body :is(nav,.nav,.admin-nav,.tabs,.jibofy-member-tabs,.top nav,.admin-tabs) a:is(.active,[aria-current="page"],[aria-selected="true"],:focus,:focus-visible) :is(span,i,svg,svg *){
+ color:#1877f2!important;fill:none!important;stroke:#1877f2!important;
+}
+html body.jf-dark :is(nav,.nav,.admin-nav,.tabs,.jibofy-member-tabs,.top nav,.admin-tabs) a:is(.active,[aria-current="page"],[aria-selected="true"],:focus,:focus-visible),
+html body.jf-dark :is(nav,.nav,.admin-nav,.tabs,.jibofy-member-tabs,.top nav,.admin-tabs) a:is(.active,[aria-current="page"],[aria-selected="true"]):hover,
+html body.jf-dark :is(nav,.nav,.admin-nav,.tabs,.jibofy-member-tabs,.top nav,.admin-tabs) a:is(.active,[aria-current="page"],[aria-selected="true"],:focus,:focus-visible) :is(span,i,svg,svg *){
+ color:#8ab4ff!important;stroke:#8ab4ff!important;
+}
+/* Center the complete JIBOFY footer on every page */
+html body footer:has(.footer-brand), html body .jibofy-site-footer{
+ width:100%!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important;
+ padding:32px 20px!important;display:flex!important;flex-direction:column!important;
+ align-items:center!important;justify-content:center!important;text-align:center!important;
+}
+html body footer:has(.footer-brand) > *, html body .jibofy-site-footer > *{
+ float:none!important;position:static;left:auto!important;right:auto!important;
+ margin-left:auto!important;margin-right:auto!important;text-align:center!important;
+}
+html body footer:has(.footer-brand) .footer-owner, html body .jibofy-site-footer .footer-owner,
+html body footer:has(.footer-brand) .footer-social-links, html body .jibofy-site-footer .footer-social-links{
+ display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+}
+html body footer:has(.footer-brand) .footer-social-links,html body .jibofy-site-footer .footer-social-links{
+ flex-direction:row!important;flex-wrap:wrap!important;gap:12px!important;
+}
+html body footer:has(.footer-brand) .footer-brand,html body .jibofy-site-footer .footer-brand{font-weight:900!important;text-align:center!important}
+</style>
 </head>
 <body data-page="withdrawal">
 <div id="jibofy-toast" role="status" aria-live="polite"></div>
