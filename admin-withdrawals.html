@@ -1932,4 +1932,107 @@ html body :is(.toast,.notification,.modal,.popup){animation:jibofySoftPop .24s v
  body.jf-dark>header.top>nav>a.active,body.jf-dark>header.top>nav>a[aria-current="page"]{color:#2d88ff!important}
 }
 </style>
+<style id="jibofy-admin-header-exact-layout-v9">
+@media(max-width:700px){
+ .admin-shell{
+  position:sticky!important;top:0!important;z-index:15000!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:46px 44px 52px!important;
+  grid-template-areas:"brand actions" "search search" "nav nav"!important;
+  align-items:center!important;gap:8px 10px!important;
+  width:100%!important;box-sizing:border-box!important;
+  padding:8px 12px 0!important;margin:0!important;overflow:visible!important;
+ }
+ .admin-shell>.shell-brand{grid-area:brand!important;justify-self:start!important;min-width:0!important;margin:0!important;font-size:20px!important;line-height:1!important}
+ .admin-shell>.shell-actions{
+  grid-area:actions!important;justify-self:end!important;display:flex!important;
+  flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;
+  flex-wrap:nowrap!important;gap:8px!important;width:auto!important;min-width:0!important;
+  margin:0!important;padding:0!important
+ }
+ .admin-shell>.shell-actions>#jf-theme-toggle{
+  position:static!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 88px!important;width:88px!important;min-width:88px!important;max-width:88px!important;
+  height:38px!important;min-height:38px!important;margin:0!important;padding:0 7px!important;
+  border:1px solid var(--jf-line,#dce5f2)!important;border-radius:10px!important;
+  background:var(--jf-soft,#edf4ff)!important;color:var(--jf-blue,#1769e0)!important;
+  box-shadow:none!important;font:700 12px/1 system-ui,Arial,sans-serif!important;white-space:nowrap!important
+ }
+ .admin-shell>.shell-actions>a,.admin-shell>.shell-actions>#logout,.admin-shell>.shell-actions>button:not(#jf-theme-toggle){
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 76px!important;width:76px!important;min-width:76px!important;height:38px!important;min-height:38px!important;
+  margin:0!important;padding:0 6px!important;border-radius:10px!important;
+  font:700 12px/1 system-ui,Arial,sans-serif!important;white-space:nowrap!important
+ }
+ .admin-shell>.shell-search{
+  grid-area:search!important;position:relative!important;display:flex!important;align-items:center!important;
+  flex-wrap:nowrap!important;gap:8px!important;width:100%!important;max-width:none!important;min-width:0!important;
+  height:42px!important;margin:0!important;padding:0 7px 0 13px!important;box-sizing:border-box!important;
+  border:1px solid var(--jf-line,#dce5f2)!important;border-radius:12px!important;background:var(--jf-bg,#f3f6fb)!important
+ }
+ .admin-shell>.shell-search>span{
+  position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 20px!important;width:20px!important;height:20px!important;margin:0!important;padding:0!important;
+  font-size:0!important;line-height:0!important;transform:none!important
+ }
+ .admin-shell>.shell-search>span:before{
+  content:""!important;position:absolute!important;width:11px!important;height:11px!important;
+  left:2px!important;top:2px!important;border:2px solid var(--jf-muted,#667085)!important;
+  border-radius:50%!important
+ }
+ .admin-shell>.shell-search>span:after{
+  content:""!important;position:absolute!important;width:7px!important;height:2px!important;
+  left:13px!important;top:14px!important;background:var(--jf-muted,#667085)!important;
+  transform:rotate(45deg)!important;border-radius:2px!important
+ }
+ .admin-shell>.shell-search>input{
+  display:block!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;
+  height:38px!important;margin:0!important;padding:0 5px!important;border:0!important;border-radius:0!important;
+  outline:0!important;box-shadow:none!important;background:transparent!important;
+  color:var(--jf-text,#172033)!important;font:400 14px/1.2 system-ui,Arial,sans-serif!important
+ }
+ .admin-shell>.shell-search>button{
+  display:inline-flex!important;flex:0 0 70px!important;align-items:center!important;justify-content:center!important;
+  width:70px!important;min-width:70px!important;height:34px!important;min-height:34px!important;
+  margin:0!important;padding:0 8px!important;border:0!important;border-radius:9px!important;
+  background:#1877f2!important;color:#fff!important;font:700 12px/1 system-ui,Arial,sans-serif!important;
+  white-space:nowrap!important
+ }
+ .admin-shell>.nav{
+  grid-area:nav!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  align-items:center!important;justify-items:stretch!important;gap:0!important;
+  width:100%!important;min-width:0!important;height:52px!important;margin:0!important;padding:0!important;
+  overflow:hidden!important;background:transparent!important;border:0!important;box-shadow:none!important
+ }
+ .admin-shell>.nav>a{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  flex:initial!important;width:100%!important;min-width:0!important;max-width:none!important;height:50px!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;
+  background:transparent!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;
+  color:var(--jf-muted,#667085)!important;font-size:0!important;line-height:0!important
+ }
+ .admin-shell>.nav>a>span:not(.tab-icon){display:none!important}
+ .admin-shell>.nav>a .tab-icon,.admin-shell>.nav>a svg,.admin-shell>.nav>a i{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:27px!important;height:27px!important;min-width:27px!important;min-height:27px!important;
+  margin:0!important;font-size:25px!important;line-height:1!important;color:currentColor!important;
+  opacity:1!important;visibility:visible!important
+ }
+ .admin-shell>.nav>a svg{stroke:currentColor!important;fill:none!important}
+ .admin-shell>.nav>a.active,.admin-shell>.nav>a[aria-current="page"]{
+  color:#1877f2!important;background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important
+ }
+ .admin-shell>.nav>a:hover,.admin-shell>.nav>a:focus,.admin-shell>.nav>a:focus-visible{
+  background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important
+ }
+ body.jf-dark .admin-shell{background:#242526!important;border-color:#3e4042!important}
+ body.jf-dark .admin-shell>.shell-actions>#jf-theme-toggle{background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+ body.jf-dark .admin-shell>.shell-search{background:#3a3b3c!important;border-color:#55585c!important}
+ body.jf-dark .admin-shell>.shell-search>input{color:#e4e6eb!important}
+ body.jf-dark .admin-shell>.shell-search>span:before{border-color:#b0b3b8!important}
+ body.jf-dark .admin-shell>.shell-search>span:after{background:#b0b3b8!important}
+ body.jf-dark .admin-shell>.nav>a{color:#b0b3b8!important}
+ body.jf-dark .admin-shell>.nav>a.active,body.jf-dark .admin-shell>.nav>a[aria-current="page"]{color:#2d88ff!important}
+}
+</style>
 </body></html>
