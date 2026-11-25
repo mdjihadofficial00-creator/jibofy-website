@@ -1829,4 +1829,81 @@ html body :is(.toast,.notification,.modal,.popup){animation:jibofySoftPop .24s v
  body.jf-dark header.top>nav>a.active,body.jf-dark header.top>nav>a[aria-current="page"]{color:#2d88ff!important;background:transparent!important;border:0!important;box-shadow:none!important}
 }
 </style>
+<style id="jibofy-admin-mobile-structure-override-v7">
+@media screen and (max-width:760px){
+ html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+ body{padding-bottom:72px!important}
+ body>header.top{
+  position:sticky!important;top:0!important;z-index:10000!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto auto!important;
+  grid-template-rows:44px 42px!important;grid-template-areas:"brand theme logout" "search search search"!important;
+  align-items:center!important;gap:8px!important;
+  width:100%!important;max-width:100%!important;min-height:0!important;
+  margin:0!important;padding:8px 12px 10px!important;
+  box-sizing:border-box!important;overflow:visible!important;
+ }
+ body>header.top>a.brand{grid-area:brand!important;min-width:0!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:clamp(17px,4.8vw,22px)!important;line-height:1!important}
+ body>header.top>button#jf-theme-toggle,body>header.top>button#theme-toggle{
+  grid-area:theme!important;position:static!important;inset:auto!important;float:none!important;transform:none!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:76px!important;min-width:76px!important;max-width:76px!important;height:40px!important;min-height:40px!important;
+  margin:0!important;padding:0 4px!important;border-radius:9px!important;
+  font-size:12px!important;line-height:1!important;white-space:nowrap!important;
+  background:transparent!important;box-shadow:none!important
+ }
+ body>header.top>button#jf-theme-toggle:before,body>header.top>button#jf-theme-toggle:after,
+ body>header.top>button#theme-toggle:before,body>header.top>button#theme-toggle:after{content:none!important;display:none!important}
+ body>header.top>button#logout{
+  grid-area:logout!important;position:static!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  width:76px!important;min-width:76px!important;height:40px!important;min-height:40px!important;
+  margin:0!important;padding:0 5px!important;font-size:12px!important;line-height:1!important;white-space:nowrap!important
+ }
+ body>header.top>form.top-search{
+  grid-area:search!important;position:static!important;display:flex!important;align-items:center!important;
+  width:100%!important;max-width:none!important;min-width:0!important;height:42px!important;min-height:42px!important;
+  margin:0!important;padding:0 12px!important;box-sizing:border-box!important;
+ }
+ body>header.top>form.top-search input{width:100%!important;min-width:0!important;height:38px!important;font-size:14px!important}
+ body>header.top>nav{
+  position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+  z-index:11000!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  grid-template-rows:60px!important;align-items:center!important;justify-items:stretch!important;
+  width:100%!important;max-width:100%!important;height:60px!important;min-height:60px!important;
+  margin:0!important;padding:0!important;gap:0!important;box-sizing:border-box!important;
+  overflow:hidden!important;overflow-x:hidden!important;
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important
+ }
+ body>header.top>nav>a,body>header.top>nav>a:link,body>header.top>nav>a:visited{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  position:static!important;box-sizing:border-box!important;
+  width:100%!important;min-width:0!important;max-width:none!important;height:60px!important;min-height:60px!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  border:0!important;border-width:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important;
+  text-decoration:none!important;font-size:0!important;line-height:0!important;color:#73777d!important
+ }
+ body>header.top>nav>a:before{display:block!important;position:static!important;content:""!important;font-family:Arial,sans-serif!important;font-size:27px!important;line-height:1!important;font-weight:400!important}
+ body>header.top>nav>a:nth-child(1):before{content:"⌂"!important}
+ body>header.top>nav>a:nth-child(2):before{content:"▤"!important}
+ body>header.top>nav>a:nth-child(3):before{content:"♙"!important}
+ body>header.top>nav>a:nth-child(4):before{content:"⇄"!important}
+ body>header.top>nav>a:nth-child(5):before{content:"◎"!important}
+ body>header.top>nav>a.active,body>header.top>nav>a[aria-current="page"]{
+  color:#1877f2!important;background:transparent!important;background-color:transparent!important;
+  border:0!important;outline:0!important;box-shadow:none!important
+ }
+ body>header.top>nav>a:hover,body>header.top>nav>a:focus,body>header.top>nav>a:focus-visible{
+  color:inherit!important;background:transparent!important;background-color:transparent!important;
+  border:0!important;outline:0!important;box-shadow:none!important
+ }
+ body.jf-dark>header.top{background:#242526!important;color:#e4e6eb!important;border-bottom:1px solid #3e4042!important}
+ body.jf-dark>header.top>button#jf-theme-toggle,body.jf-dark>header.top>button#theme-toggle{color:#e4e6eb!important;border:1px solid #55585c!important}
+ body.jf-dark>header.top>form.top-search{background:#3a3b3c!important;border-color:#55585c!important}
+ body.jf-dark>header.top>form.top-search input{color:#e4e6eb!important}
+ body.jf-dark>header.top>nav,body.jf-dark>header.top>nav>a{background:transparent!important;background-color:transparent!important;border:0!important;box-shadow:none!important}
+ body.jf-dark>header.top>nav>a{color:#b0b3b8!important}
+ body.jf-dark>header.top>nav>a.active,body.jf-dark>header.top>nav>a[aria-current="page"]{color:#2d88ff!important}
+}
+</style>
 </body></html>
