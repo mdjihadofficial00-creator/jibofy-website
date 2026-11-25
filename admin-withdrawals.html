@@ -1096,6 +1096,110 @@ html body footer:has(.footer-brand) .footer-brand,html body .jibofy-site-footer 
 }
 </style>
 
+
+<style id="jibofy-mobile-icon-navigation-final-v3">
+@media (max-width:700px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
+  /* Member: five equal icon-only destinations, no labels and no horizontal scrolling. */
+  header.member-shell nav.jibofy-member-tabs{
+    position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+    z-index:9999!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    width:100%!important;height:64px!important;min-height:64px!important;max-width:none!important;
+    margin:0!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom))!important;
+    gap:0!important;overflow:hidden!important;white-space:normal!important;
+    background:var(--jf-card,#fff)!important;border:0!important;border-top:1px solid var(--jf-line,#dddfe2)!important;
+    border-radius:0!important;box-shadow:0 -2px 12px rgba(0,0,0,.08)!important;
+  }
+  header.member-shell nav.jibofy-member-tabs>a{
+    display:flex!important;min-width:0!important;width:100%!important;height:52px!important;min-height:52px!important;
+    margin:0!important;padding:0!important;gap:0!important;flex:none!important;
+    align-items:center!important;justify-content:center!important;flex-direction:column!important;
+    color:var(--jf-muted,#65676b)!important;background:transparent!important;border:0!important;
+    border-radius:0!important;box-shadow:none!important;font-size:0!important;line-height:0!important;
+  }
+  header.member-shell nav.jibofy-member-tabs>a>span:not(.tab-icon){display:none!important}
+  header.member-shell nav.jibofy-member-tabs>a .tab-icon{
+    display:grid!important;place-items:center!important;width:28px!important;height:28px!important;
+    flex:0 0 28px!important;margin:0!important;color:currentColor!important
+  }
+  header.member-shell nav.jibofy-member-tabs>a .tab-icon svg{
+    display:block!important;width:26px!important;height:26px!important;fill:none!important;
+    stroke:currentColor!important;stroke-width:2!important
+  }
+  header.member-shell nav.jibofy-member-tabs>a:is(.active,[aria-current="page"]){
+    color:#0866ff!important;background:transparent!important;background-image:none!important;
+    border:0!important;box-shadow:none!important;outline:0!important
+  }
+  header.member-shell nav.jibofy-member-tabs>a:hover,
+  header.member-shell nav.jibofy-member-tabs>a:focus,
+  header.member-shell nav.jibofy-member-tabs>a:focus-visible{
+    background:transparent!important;box-shadow:none!important;outline:none!important
+  }
+  body.jf-dark header.member-shell nav.jibofy-member-tabs{
+    background:#242526!important;border-top-color:#3e4042!important
+  }
+  body.jf-dark header.member-shell nav.jibofy-member-tabs>a{color:#b0b3b8!important}
+  body.jf-dark header.member-shell nav.jibofy-member-tabs>a:is(.active,[aria-current="page"]){color:#2d88ff!important}
+
+  /* Compact, readable top header and theme switch on phones. */
+  header.member-shell{
+    display:grid!important;grid-template-columns:auto minmax(0,1fr) 42px 42px!important;
+    align-items:center!important;column-gap:7px!important;row-gap:8px!important;
+    padding:10px 12px!important
+  }
+  header.member-shell>.member-brand{grid-column:1!important;grid-row:1!important;min-width:0!important;font-size:22px!important}
+  header.member-shell>.member-search{grid-column:2!important;grid-row:1!important;width:100%!important;min-width:0!important}
+  header.member-shell>#jf-theme-toggle{grid-column:3!important;grid-row:1!important}
+  header.member-shell>.member-account{grid-column:4!important;grid-row:1!important;justify-self:end!important}
+  #jf-theme-toggle,#theme-toggle{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    width:42px!important;min-width:42px!important;height:42px!important;min-height:42px!important;
+    margin:0!important;padding:0!important;border-radius:12px!important;
+    font-size:0!important;line-height:0!important;flex:0 0 42px!important;
+    color:var(--jf-text,#1c1e21)!important;background:var(--jf-card,#fff)!important;
+    border:1px solid var(--jf-line,#dddfe2)!important;box-shadow:none!important
+  }
+  #jf-theme-toggle:before,#theme-toggle:before{content:"☀";font-size:23px!important;line-height:1!important}
+  body.jf-dark #jf-theme-toggle:before,body.jf-dark #theme-toggle:before{content:"☾"}
+  body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{
+    color:#e4e6eb!important;background:#3a3b3c!important;border-color:#55585c!important
+  }
+
+  /* Admin: same fixed icon-only bottom navigation pattern. */
+  header.top nav{
+    position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+    z-index:9999!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    width:100%!important;height:64px!important;min-height:64px!important;max-width:none!important;
+    margin:0!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom))!important;
+    gap:0!important;overflow:hidden!important;white-space:normal!important;
+    background:var(--jf-card,#fff)!important;border:0!important;border-top:1px solid var(--jf-line,#dddfe2)!important;
+    border-radius:0!important;box-shadow:0 -2px 12px rgba(0,0,0,.08)!important
+  }
+  header.top nav>a{
+    display:flex!important;align-items:center!important;justify-content:center!important;flex-direction:column!important;
+    min-width:0!important;width:100%!important;height:52px!important;min-height:52px!important;
+    margin:0!important;padding:0!important;gap:0!important;border:0!important;border-radius:0!important;
+    background:transparent!important;box-shadow:none!important;color:var(--jf-muted,#65676b)!important;
+    font-size:0!important;line-height:0!important;text-decoration:none!important
+  }
+  header.top nav>a:before{display:block!important;font-size:25px!important;line-height:1!important;font-weight:400!important}
+  header.top nav>a[href="admin.html"]:before{content:"⌂"}
+  header.top nav>a[href="admin-campaigns.html"]:before{content:"▤"}
+  header.top nav>a[href="admin-members.html"]:before{content:"♙"}
+  header.top nav>a[href="admin-withdrawals.html"]:before{content:"⇄"}
+  header.top nav>a[href="admin-sponsors.html"]:before{content:"◎"}
+  header.top nav>a:is(.active,[aria-current="page"]){color:#0866ff!important;background:transparent!important;box-shadow:none!important}
+  header.top nav>a:hover,header.top nav>a:focus{background:transparent!important;box-shadow:none!important;outline:none!important}
+  body.jf-dark header.top nav{background:#242526!important;border-top-color:#3e4042!important}
+  body.jf-dark header.top nav>a{color:#b0b3b8!important}
+  body.jf-dark header.top nav>a:is(.active,[aria-current="page"]){color:#2d88ff!important}
+  header.top{display:grid!important;grid-template-columns:minmax(0,1fr) 42px 42px!important;gap:8px!important;align-items:center!important;padding:10px 12px!important}
+  header.top>.brand{grid-column:1!important;grid-row:1!important}
+  header.top>.top-search{grid-column:1/-1!important;grid-row:2!important;width:100%!important;max-width:none!important}
+  header.top>#jf-theme-toggle,header.top>#theme-toggle{grid-column:2!important;grid-row:1!important}
+  header.top>#logout{grid-column:3!important;grid-row:1!important;min-width:42px!important;padding:8px 5px!important;font-size:11px!important}
+}
+</style>
 </head><body>
 
 <header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a href="admin.html">Overview</a><a href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a class="active" href="admin-withdrawals.html">Withdrawals</a><a href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header>
