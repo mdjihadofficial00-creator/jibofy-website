@@ -622,6 +622,110 @@ body.jf-dark{--jfs-page:#18191a;--jfs-card:#242526;--jfs-text:#e4e6eb;--jfs-mute
 body.jf-dark .footer-social-links a.footer-social-icon{color:#8ab4ff!important;border-color:#46566b;background:#303b4a}
 </style>
 
+
+<style id="jibofy-mobile-icon-navigation-final-v3">
+@media (max-width:700px){
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))!important}
+  /* Member: five equal icon-only destinations, no labels and no horizontal scrolling. */
+  header.member-shell nav.jibofy-member-tabs{
+    position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+    z-index:9999!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    width:100%!important;height:64px!important;min-height:64px!important;max-width:none!important;
+    margin:0!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom))!important;
+    gap:0!important;overflow:hidden!important;white-space:normal!important;
+    background:var(--jf-card,#fff)!important;border:0!important;border-top:1px solid var(--jf-line,#dddfe2)!important;
+    border-radius:0!important;box-shadow:0 -2px 12px rgba(0,0,0,.08)!important;
+  }
+  header.member-shell nav.jibofy-member-tabs>a{
+    display:flex!important;min-width:0!important;width:100%!important;height:52px!important;min-height:52px!important;
+    margin:0!important;padding:0!important;gap:0!important;flex:none!important;
+    align-items:center!important;justify-content:center!important;flex-direction:column!important;
+    color:var(--jf-muted,#65676b)!important;background:transparent!important;border:0!important;
+    border-radius:0!important;box-shadow:none!important;font-size:0!important;line-height:0!important;
+  }
+  header.member-shell nav.jibofy-member-tabs>a>span:not(.tab-icon){display:none!important}
+  header.member-shell nav.jibofy-member-tabs>a .tab-icon{
+    display:grid!important;place-items:center!important;width:28px!important;height:28px!important;
+    flex:0 0 28px!important;margin:0!important;color:currentColor!important
+  }
+  header.member-shell nav.jibofy-member-tabs>a .tab-icon svg{
+    display:block!important;width:26px!important;height:26px!important;fill:none!important;
+    stroke:currentColor!important;stroke-width:2!important
+  }
+  header.member-shell nav.jibofy-member-tabs>a:is(.active,[aria-current="page"]){
+    color:#0866ff!important;background:transparent!important;background-image:none!important;
+    border:0!important;box-shadow:none!important;outline:0!important
+  }
+  header.member-shell nav.jibofy-member-tabs>a:hover,
+  header.member-shell nav.jibofy-member-tabs>a:focus,
+  header.member-shell nav.jibofy-member-tabs>a:focus-visible{
+    background:transparent!important;box-shadow:none!important;outline:none!important
+  }
+  body.jf-dark header.member-shell nav.jibofy-member-tabs{
+    background:#242526!important;border-top-color:#3e4042!important
+  }
+  body.jf-dark header.member-shell nav.jibofy-member-tabs>a{color:#b0b3b8!important}
+  body.jf-dark header.member-shell nav.jibofy-member-tabs>a:is(.active,[aria-current="page"]){color:#2d88ff!important}
+
+  /* Compact, readable top header and theme switch on phones. */
+  header.member-shell{
+    display:grid!important;grid-template-columns:auto minmax(0,1fr) 42px 42px!important;
+    align-items:center!important;column-gap:7px!important;row-gap:8px!important;
+    padding:10px 12px!important
+  }
+  header.member-shell>.member-brand{grid-column:1!important;grid-row:1!important;min-width:0!important;font-size:22px!important}
+  header.member-shell>.member-search{grid-column:2!important;grid-row:1!important;width:100%!important;min-width:0!important}
+  header.member-shell>#jf-theme-toggle{grid-column:3!important;grid-row:1!important}
+  header.member-shell>.member-account{grid-column:4!important;grid-row:1!important;justify-self:end!important}
+  #jf-theme-toggle,#theme-toggle{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    width:42px!important;min-width:42px!important;height:42px!important;min-height:42px!important;
+    margin:0!important;padding:0!important;border-radius:12px!important;
+    font-size:0!important;line-height:0!important;flex:0 0 42px!important;
+    color:var(--jf-text,#1c1e21)!important;background:var(--jf-card,#fff)!important;
+    border:1px solid var(--jf-line,#dddfe2)!important;box-shadow:none!important
+  }
+  #jf-theme-toggle:before,#theme-toggle:before{content:"☀";font-size:23px!important;line-height:1!important}
+  body.jf-dark #jf-theme-toggle:before,body.jf-dark #theme-toggle:before{content:"☾"}
+  body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{
+    color:#e4e6eb!important;background:#3a3b3c!important;border-color:#55585c!important
+  }
+
+  /* Admin: same fixed icon-only bottom navigation pattern. */
+  header.top nav{
+    position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+    z-index:9999!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    width:100%!important;height:64px!important;min-height:64px!important;max-width:none!important;
+    margin:0!important;padding:5px 8px calc(5px + env(safe-area-inset-bottom))!important;
+    gap:0!important;overflow:hidden!important;white-space:normal!important;
+    background:var(--jf-card,#fff)!important;border:0!important;border-top:1px solid var(--jf-line,#dddfe2)!important;
+    border-radius:0!important;box-shadow:0 -2px 12px rgba(0,0,0,.08)!important
+  }
+  header.top nav>a{
+    display:flex!important;align-items:center!important;justify-content:center!important;flex-direction:column!important;
+    min-width:0!important;width:100%!important;height:52px!important;min-height:52px!important;
+    margin:0!important;padding:0!important;gap:0!important;border:0!important;border-radius:0!important;
+    background:transparent!important;box-shadow:none!important;color:var(--jf-muted,#65676b)!important;
+    font-size:0!important;line-height:0!important;text-decoration:none!important
+  }
+  header.top nav>a:before{display:block!important;font-size:25px!important;line-height:1!important;font-weight:400!important}
+  header.top nav>a[href="admin.html"]:before{content:"⌂"}
+  header.top nav>a[href="admin-campaigns.html"]:before{content:"▤"}
+  header.top nav>a[href="admin-members.html"]:before{content:"♙"}
+  header.top nav>a[href="admin-withdrawals.html"]:before{content:"⇄"}
+  header.top nav>a[href="admin-sponsors.html"]:before{content:"◎"}
+  header.top nav>a:is(.active,[aria-current="page"]){color:#0866ff!important;background:transparent!important;box-shadow:none!important}
+  header.top nav>a:hover,header.top nav>a:focus{background:transparent!important;box-shadow:none!important;outline:none!important}
+  body.jf-dark header.top nav{background:#242526!important;border-top-color:#3e4042!important}
+  body.jf-dark header.top nav>a{color:#b0b3b8!important}
+  body.jf-dark header.top nav>a:is(.active,[aria-current="page"]){color:#2d88ff!important}
+  header.top{display:grid!important;grid-template-columns:minmax(0,1fr) 42px 42px!important;gap:8px!important;align-items:center!important;padding:10px 12px!important}
+  header.top>.brand{grid-column:1!important;grid-row:1!important}
+  header.top>.top-search{grid-column:1/-1!important;grid-row:2!important;width:100%!important;max-width:none!important}
+  header.top>#jf-theme-toggle,header.top>#theme-toggle{grid-column:2!important;grid-row:1!important}
+  header.top>#logout{grid-column:3!important;grid-row:1!important;min-width:42px!important;padding:8px 5px!important;font-size:11px!important}
+}
+</style>
 </head><body><header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a href="admin.html">Overview</a><a href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a href="admin-withdrawals.html">Withdrawals</a><a class="active" href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header><main class="wrap"><div class="eyebrow">BUSINESS PARTNERSHIPS</div><h1>Sponsor Management</h1><p class="muted">Review incoming business enquiries. Confirm the sponsor, scope, budget and payment terms before creating or activating a member campaign.</p><section class="panel"><div class="stats"><div class="stat"><span>Total requests</span><strong id="total">—</strong></div><div class="stat"><span>Pending</span><strong id="pending">—</strong></div><div class="stat"><span>Approved</span><strong id="approved">—</strong></div><div class="stat"><span>Proposed budget</span><strong id="budget">—</strong></div></div></section><section class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h2>Incoming requests</h2><button class="btn secondary" id="refresh">Refresh</button></div><div id="requests"><div class="empty">Loading sponsor requests…</div></div><div id="msg" class="msg"></div></section></main>
 <script>(()=>{const db=supabase.createClient("https://patuusolvptevgnpdizg.supabase.co","sb_publishable_Yw-qBkZg1T35QTvY7E502w_raeaPHy5");const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));const safeLink=v=>{try{const u=new URL(String(v));return ["http:","https:"].includes(u.protocol)?esc(u.href):""}catch(e){return""}};let rows=[];const themeKey="jibofy-theme";function applyTheme(){let dark=false;try{dark=localStorage.getItem(themeKey)==="dark"}catch(e){}document.body.classList.toggle("jf-dark",dark);$("theme-toggle").textContent=dark?"☀️ Light mode":"🌙 Dark mode"}$("theme-toggle").addEventListener("click",()=>{const dark=!document.body.classList.contains("jf-dark");document.body.classList.toggle("jf-dark",dark);try{localStorage.setItem(themeKey,dark?"dark":"light")}catch(e){}$("theme-toggle").textContent=dark?"☀️ Light mode":"🌙 Dark mode"});applyTheme();async function init(){const {data:{session}}=await db.auth.getSession();if(!session){location.replace("account.html");return}const {data:p,error}=await db.from("profiles").select("role").eq("id",session.user.id).single();if(error||p?.role!=="admin"){$("requests").textContent="Access denied.";return}await load()}async function load(){ $("requests").innerHTML='<div class="empty">Loading…</div>';const {data,error}=await db.from("sponsor_requests").select("*").order("created_at",{ascending:false});if(error){$("requests").innerHTML='<div class="empty">Could not load requests: '+esc(error.message)+'. Confirm the sponsor SQL setup has been run.</div>';return}rows=data||[];$("total").textContent=rows.length;$("pending").textContent=rows.filter(x=>x.status==="pending").length;$("approved").textContent=rows.filter(x=>x.status==="approved").length;$("budget").textContent="৳"+rows.reduce((n,x)=>n+Number(x.budget_bdt||0),0).toLocaleString("en-BD");if(!rows.length){$("requests").innerHTML='<div class="empty">No sponsor requests yet. Share sponsor.html with potential business partners.</div>';return}$("requests").innerHTML=rows.map(x=>'<article class="request" data-id="'+esc(x.id)+'"><h3>'+esc(x.company_name)+' <span class="status">'+esc(x.status)+'</span></h3><div class="request-grid"><div class="meta"><b>Contact:</b> '+esc(x.contact_name)+'<br><b>Email:</b> '+esc(x.email)+'<br><b>Phone:</b> '+esc(x.phone)+'<br><b>Website:</b> '+(safeLink(x.website)?'<a href="'+safeLink(x.website)+'" target="_blank" rel="noopener noreferrer">Open website</a>':'Not supplied or invalid link')+'</div><div class="meta"><b>Goal:</b> '+esc(x.campaign_type)+'<br><b>Proposed budget:</b> ৳'+esc(x.budget_bdt)+'<br><b>Submitted:</b> '+esc(new Date(x.created_at).toLocaleString())+'</div></div><p>'+esc(x.campaign_details)+'</p><div class="field"><label>Admin notes</label><textarea class="notes" maxlength="2000">'+esc(x.admin_notes||"")+'</textarea></div><div class="field"><label>Request status</label><select class="state"><option value="pending" '+(x.status==="pending"?"selected":"")+'>Pending</option><option value="contacted" '+(x.status==="contacted"?"selected":"")+'>Contacted</option><option value="approved" '+(x.status==="approved"?"selected":"")+'>Approved</option><option value="rejected" '+(x.status==="rejected"?"selected":"")+'>Rejected</option></select></div><div class="actions"><button class="btn save">Save changes</button></div></article>').join("");$("requests").querySelectorAll(".save").forEach(b=>b.addEventListener("click",async()=>{const el=b.closest(".request"),id=el.dataset.id;b.disabled=true;$("msg").textContent="Saving…";const {error}=await db.from("sponsor_requests").update({status:el.querySelector(".state").value,admin_notes:el.querySelector(".notes").value.trim()||null,updated_at:new Date().toISOString()}).eq("id",id);b.disabled=false;if(error){$("msg").textContent="Save failed: "+error.message;return}$("msg").textContent="Request updated.";await load()}))}$("refresh").addEventListener("click",load);$("logout").addEventListener("click",async()=>{await db.auth.signOut();location.replace("account.html")});init()})();</script><script>
 (()=>{const key="jibofy-theme",body=document.body,btn=document.getElementById("jf-theme-toggle")||document.getElementById("theme-toggle");if(!btn)return;let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}
