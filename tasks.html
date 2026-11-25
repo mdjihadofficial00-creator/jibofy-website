@@ -1207,6 +1207,125 @@ html body footer:has(.footer-brand) .footer-brand,html body .jibofy-site-footer 
   header.top>#logout{grid-column:3!important;grid-row:1!important;min-width:42px!important;padding:8px 5px!important;font-size:11px!important}
 }
 </style>
+
+<style id="jibofy-mobile-fixed-header-five-tabs-v4">
+@media (max-width:760px){
+ html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+ /* Keep the existing top controls visible while the page scrolls. */
+ header.member-shell,header.top{
+   position:sticky!important;position:-webkit-sticky!important;top:0!important;z-index:12000!important;
+   box-sizing:border-box!important;width:100%!important;max-width:100%!important;
+   background:var(--jf-card,#fff)!important;color:var(--jf-text,#1c1e21)!important;
+   isolation:isolate!important;
+ }
+ header.member-shell{
+   display:grid!important;grid-template-columns:auto minmax(0,1fr) 42px 42px!important;
+   grid-template-rows:44px auto!important;align-items:center!important;
+   gap:8px!important;padding:8px 10px!important;
+ }
+ header.member-shell>.member-brand{grid-column:1!important;grid-row:1!important;font-size:clamp(16px,4.5vw,21px)!important;white-space:nowrap!important}
+ header.member-shell>.member-search{grid-column:2!important;grid-row:1!important;min-width:0!important;width:100%!important;margin:0!important}
+ header.member-shell>.member-search input{width:100%!important;min-width:0!important;height:38px!important;font-size:13px!important}
+ header.member-shell>#jf-theme-toggle,header.member-shell>#theme-toggle{grid-column:3!important;grid-row:1!important}
+ header.member-shell>.member-account{grid-column:4!important;grid-row:1!important;min-width:0!important}
+ /* Five equal icon-only tabs: no horizontal scrolling and no hidden fifth item. */
+ header.member-shell nav.jibofy-member-tabs{
+   position:fixed!important;position: -webkit-sticky!important;
+   left:0!important;right:0!important;bottom:0!important;top:auto!important;
+   z-index:13000!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+   width:100%!important;max-width:100%!important;height:62px!important;min-height:62px!important;
+   margin:0!important;padding:4px 3px calc(4px + env(safe-area-inset-bottom))!important;
+   gap:0!important;overflow:hidden!important;overflow-x:hidden!important;
+   background:var(--jf-card,#fff)!important;border:0!important;
+   border-top:1px solid var(--jf-line,#dddfe2)!important;border-radius:0!important;
+   box-shadow:0 -2px 12px rgba(0,0,0,.09)!important;
+ }
+ header.member-shell nav.jibofy-member-tabs>a{
+   box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;
+   flex-direction:column!important;width:100%!important;min-width:0!important;max-width:none!important;
+   height:52px!important;min-height:52px!important;flex:none!important;margin:0!important;padding:0!important;
+   gap:0!important;overflow:hidden!important;white-space:nowrap!important;
+   color:var(--jf-muted,#65676b)!important;background:transparent!important;
+   border:0!important;border-radius:0!important;box-shadow:none!important;
+   font-size:0!important;line-height:0!important;
+ }
+ header.member-shell nav.jibofy-member-tabs>a>span:not(.tab-icon){display:none!important}
+ header.member-shell nav.jibofy-member-tabs>a .tab-icon{
+   display:grid!important;place-items:center!important;width:30px!important;height:30px!important;
+   margin:0!important;flex:0 0 30px!important;color:currentColor!important
+ }
+ header.member-shell nav.jibofy-member-tabs>a .tab-icon svg{
+   display:block!important;width:26px!important;height:26px!important;max-width:26px!important;
+   stroke:currentColor!important;fill:none!important;stroke-width:2!important
+ }
+ header.member-shell nav.jibofy-member-tabs>a:is(.active,[aria-current="page"]){
+   color:#0866ff!important;background:transparent!important;background-image:none!important;
+   border:0!important;box-shadow:none!important
+ }
+ header.member-shell nav.jibofy-member-tabs>a:hover,
+ header.member-shell nav.jibofy-member-tabs>a:focus,
+ header.member-shell nav.jibofy-member-tabs>a:focus-visible{background:transparent!important;box-shadow:none!important;outline:none!important}
+ body.jf-dark header.member-shell nav.jibofy-member-tabs{background:#242526!important;border-top-color:#3e4042!important}
+ body.jf-dark header.member-shell nav.jibofy-member-tabs>a{color:#b0b3b8!important}
+ body.jf-dark header.member-shell nav.jibofy-member-tabs>a:is(.active,[aria-current="page"]){color:#2d88ff!important}
+ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
+
+ /* Admin: fixed five-icon bottom bar; the header controls stay at the top. */
+ header.top{
+   display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;
+   padding:8px 10px!important;
+ }
+ header.top>.brand{flex:1 1 auto!important;min-width:0!important;white-space:nowrap!important}
+ header.top>nav{
+   position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+   z-index:13000!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+   width:100%!important;max-width:100%!important;height:62px!important;min-height:62px!important;
+   margin:0!important;padding:4px 3px calc(4px + env(safe-area-inset-bottom))!important;
+   gap:0!important;overflow:hidden!important;background:var(--jf-card,#fff)!important;
+   border:0!important;border-top:1px solid var(--jf-line,#dddfe2)!important;border-radius:0!important;
+   box-shadow:0 -2px 12px rgba(0,0,0,.09)!important;
+ }
+ header.top>nav>a{
+   box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;
+   width:100%!important;min-width:0!important;height:52px!important;min-height:52px!important;
+   margin:0!important;padding:0!important;overflow:hidden!important;white-space:nowrap!important;
+   color:var(--jf-muted,#65676b)!important;background:transparent!important;
+   border:0!important;border-radius:0!important;box-shadow:none!important;
+   font-size:0!important;line-height:0!important;
+ }
+ header.top>nav>a:before{display:block!important;font-size:25px!important;line-height:1!important;font-weight:400!important}
+ header.top>nav>a[href="admin.html"]:before{content:"⌂"!important}
+ header.top>nav>a[href="admin-campaigns.html"]:before{content:"▤"!important}
+ header.top>nav>a[href="admin-members.html"]:before{content:"♙"!important}
+ header.top>nav>a[href="admin-withdrawals.html"]:before{content:"⇄"!important}
+ header.top>nav>a[href="admin-sponsors.html"]:before{content:"◎"!important}
+ header.top>nav>a:is(.active,[aria-current="page"]){color:#0866ff!important;background:transparent!important;box-shadow:none!important}
+ header.top>nav>a:hover,header.top>nav>a:focus{background:transparent!important;box-shadow:none!important;outline:none!important}
+ body.jf-dark header.top>nav{background:#242526!important;border-top-color:#3e4042!important}
+ body.jf-dark header.top>nav>a{color:#b0b3b8!important}
+ body.jf-dark header.top>nav>a:is(.active,[aria-current="page"]){color:#2d88ff!important}
+ header.top .top-search{flex:1 1 100%!important;width:100%!important;max-width:none!important;min-width:0!important;order:5!important;margin:0!important}
+ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))!important}
+
+ /* Always-visible, compact and readable theme switch in the top row. */
+ #jf-theme-toggle,#theme-toggle{
+   position:static!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
+   box-sizing:border-box!important;width:42px!important;min-width:42px!important;height:42px!important;min-height:42px!important;
+   margin:0!important;padding:0!important;flex:0 0 42px!important;
+   border:1px solid var(--jf-line,#dddfe2)!important;border-radius:12px!important;
+   background:var(--jf-card,#fff)!important;color:var(--jf-text,#1c1e21)!important;
+   box-shadow:0 1px 5px rgba(0,0,0,.08)!important;font-size:0!important;line-height:0!important;
+ }
+ #jf-theme-toggle:before,#theme-toggle:before{content:"☼";font-size:24px!important;line-height:1!important}
+ body.jf-dark #jf-theme-toggle:before,body.jf-dark #theme-toggle:before{content:"☾"!important}
+ body.jf-dark #jf-theme-toggle,body.jf-dark #theme-toggle{
+   background:#3a3b3c!important;color:#f0f2f5!important;border-color:#55585c!important
+ }
+}
+@media(min-width:761px){
+ header.member-shell,header.top{position:sticky!important;top:0!important}
+}
+</style>
 </head><body>
 <div id="jibofy-toast" role="status" aria-live="polite"></div>
 <header class="member-shell">
