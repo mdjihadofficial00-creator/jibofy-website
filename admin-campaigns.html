@@ -1011,6 +1011,100 @@ html body footer:has(.footer-brand) .footer-social-links,html body .jibofy-site-
 }
 html body footer:has(.footer-brand) .footer-brand,html body .jibofy-site-footer .footer-brand{font-weight:900!important;text-align:center!important}
 </style>
+
+<style id="jibofy-mobile-facebook-nav">
+@media (max-width: 700px) {
+  /* Mobile-only icon navigation: preserve the desktop navigation layout. */
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)) !important; }
+  .member-shell .jibofy-member-tabs,
+  .top nav,
+  .admin-shell .nav {
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important;
+    z-index: 5000 !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    align-items: center !important;
+    justify-content: stretch !important;
+    gap: 0 !important;
+    width: 100% !important; max-width: none !important;
+    min-height: 62px !important; height: 62px !important;
+    margin: 0 !important; padding: 5px 4px calc(5px + env(safe-area-inset-bottom)) !important;
+    border: 0 !important; border-top: 1px solid var(--jf-line, #dddfe2) !important;
+    border-radius: 0 !important; box-shadow: 0 -2px 12px rgba(0,0,0,.08) !important;
+    background: var(--jf-card, #fff) !important;
+  }
+  .member-shell .jibofy-member-tabs a,
+  .top nav a,
+  .admin-shell .nav a {
+    display: flex !important; flex-direction: column !important;
+    align-items: center !important; justify-content: center !important;
+    min-width: 0 !important; min-height: 50px !important;
+    margin: 0 !important; padding: 5px 2px !important;
+    gap: 0 !important; border: 0 !important; border-radius: 0 !important;
+    background: transparent !important; box-shadow: none !important;
+    color: var(--jf-muted, #65676b) !important;
+    font-size: 0 !important; line-height: 1 !important;
+    text-decoration: none !important;
+  }
+  .member-shell .jibofy-member-tabs a > span:not(.tab-icon),
+  .top nav a > span:not(.tab-icon),
+  .admin-shell .nav a > span:not(.tab-icon) { display: none !important; }
+  .member-shell .jibofy-member-tabs .tab-icon,
+  .top nav a svg,
+  .admin-shell .nav a svg,
+  .member-shell .jibofy-member-tabs a svg {
+    display: grid !important; place-items: center !important;
+    width: 26px !important; height: 26px !important;
+    flex: 0 0 26px !important; margin: 0 !important;
+    color: currentColor !important; stroke: currentColor !important;
+  }
+  .member-shell .jibofy-member-tabs a:is(.active,[aria-current="page"]),
+  .top nav a:is(.active,[aria-current="page"]),
+  .admin-shell .nav a:is(.active,[aria-current="page"]) {
+    color: #0866ff !important; background: transparent !important;
+    border: 0 !important; box-shadow: none !important;
+  }
+  .member-shell .jibofy-member-tabs a:hover,
+  .top nav a:hover,
+  .admin-shell .nav a:hover { background: transparent !important; }
+  body.jf-dark .member-shell .jibofy-member-tabs,
+  body.jf-dark .top nav,
+  body.jf-dark .admin-shell .nav {
+    background: #242526 !important; border-top-color: #3e4042 !important;
+  }
+  body.jf-dark .member-shell .jibofy-member-tabs a,
+  body.jf-dark .top nav a,
+  body.jf-dark .admin-shell .nav a { color: #b0b3b8 !important; }
+  body.jf-dark .member-shell .jibofy-member-tabs a:is(.active,[aria-current="page"]),
+  body.jf-dark .top nav a:is(.active,[aria-current="page"]),
+  body.jf-dark .admin-shell .nav a:is(.active,[aria-current="page"]) { color: #2d88ff !important; }
+
+  /* Keep the theme control visible in the top row as a compact icon button. */
+  #jf-theme-toggle, #theme-toggle {
+    position: static !important; inset: auto !important;
+    min-width: 40px !important; width: 40px !important; height: 40px !important;
+    min-height: 40px !important; padding: 0 !important; margin: 0 !important;
+    display: inline-flex !important; align-items: center !important; justify-content: center !important;
+    border-radius: 12px !important; font-size: 0 !important; line-height: 1 !important;
+    background: var(--jf-card, #fff) !important; color: var(--jf-text, #1c1e21) !important;
+    border: 1px solid var(--jf-line, #dddfe2) !important; box-shadow: none !important;
+  }
+  #jf-theme-toggle::before, #theme-toggle::before {
+    content: "☼"; font-size: 22px !important; line-height: 1 !important;
+  }
+  body.jf-dark #jf-theme-toggle::before, body.jf-dark #theme-toggle::before { content: "☾"; }
+  body.jf-dark #jf-theme-toggle, body.jf-dark #theme-toggle {
+    background: #3a3b3c !important; color: #e4e6eb !important; border-color: #55585c !important;
+  }
+}
+@media (max-width: 700px) and (prefers-reduced-motion: no-preference) {
+  .member-shell .jibofy-member-tabs a,
+  .top nav a,
+  .admin-shell .nav a { transition: color .16s ease, transform .16s ease !important; }
+}
+</style>
+
 </head><body>
 
 <header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a href="admin.html">Overview</a><a class="active" href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a href="admin-withdrawals.html">Withdrawals</a><a href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header>
