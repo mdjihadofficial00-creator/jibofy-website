@@ -999,7 +999,7 @@ body.jf-dark>header.top.admin-header>nav.admin-tabs>a[aria-current="page"]{color
 function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light":"🌙 Dark";btn.setAttribute("aria-label",dark?"Switch to light mode":"Switch to dark mode");btn.setAttribute("aria-pressed",String(dark))}
 btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();
 </script>
-<script>(()=>{const key="jibofy-theme",body=document.body,btn=document.getElementById("jf-theme-toggle")||document.getElementById("theme-toggle");if(!btn)return;let dark=false;try{dark=localStorage.getItem(key)==="dark"}catch(e){}function paint(){body.classList.toggle("jf-dark",dark);btn.textContent=dark?"☀️ Light mode":"🌙 Dark mode";btn.setAttribute("aria-pressed",String(dark))}btn.addEventListener("click",()=>{dark=!dark;try{localStorage.setItem(key,dark?"dark":"light")}catch(e){}paint()});paint()})();</script>
+
 <footer class="jibofy-site-footer"><div class="footer-brand">JIBOFY</div><p class="footer-description">Smart Rewards &amp; Digital Earning Platform</p><div class="footer-owner"><span>FOUNDER &amp; OWNER</span><h3>Muhammad Jihad</h3></div><div id="footer-social-links" class="footer-social-links" aria-label="JIBOFY social links"></div><p class="copyright">&copy; 2026 JIBOFY. All rights reserved.</p></footer>
 <script id="jibofy-shared-social-renderer">
 (()=>{if(!window.supabase)return;
@@ -1503,6 +1503,61 @@ html body nav.jibofy-member-tabs a.active::before,html body nav.jibofy-member-ta
  body.jf-dark .admin-shell>.shell-search>span:after{background:#b0b3b8!important}
  body.jf-dark .admin-shell>.nav>a{color:#b0b3b8!important}
  body.jf-dark .admin-shell>.nav>a.active,body.jf-dark .admin-shell>.nav>a[aria-current="page"]{color:#2d88ff!important}
+}
+</style>
+<style id="jibofy-admin-header-conflict-fix">
+/* Final overrides: disable legacy fixed-bottom nav and legacy pseudo-icons */
+body>header.top.admin-header{
+ position:sticky!important;position:-webkit-sticky!important;top:0!important;bottom:auto!important;
+ z-index:15000!important;display:grid!important;
+ grid-template-columns:minmax(0,1fr) auto!important;
+ grid-template-areas:"brand actions" "search search" "nav nav"!important;
+ grid-template-rows:auto auto auto!important;
+ align-items:center!important;justify-content:stretch!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+ height:auto!important;min-height:0!important;box-sizing:border-box!important;
+ gap:9px 12px!important;padding:10px 14px 0!important;margin:0!important;
+ overflow:visible!important;transform:none!important;
+}
+body>header.top.admin-header>.admin-header-row{display:contents!important}
+body>header.top.admin-header .brand{grid-area:brand!important;position:static!important;min-width:0!important;margin:0!important}
+body>header.top.admin-header>.admin-header-actions{grid-area:actions!important;position:static!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:flex-end!important;gap:8px!important;width:auto!important;min-width:0!important;margin:0!important;padding:0!important}
+body>header.top.admin-header .admin-header-actions button{position:static!important;display:inline-flex!important;flex:none!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;height:38px!important;min-height:38px!important;margin:0!important}
+body>header.top.admin-header .admin-header-actions #jf-theme-toggle,
+body>header.top.admin-header .admin-header-actions #theme-toggle{width:40px!important;min-width:40px!important;max-width:40px!important;height:40px!important;min-height:40px!important;padding:0!important;font-size:0!important}
+body>header.top.admin-header .admin-header-actions #jf-theme-toggle:before,
+body>header.top.admin-header .admin-header-actions #theme-toggle:before{content:"☀"!important;display:block!important;font:normal 23px/1 Arial,sans-serif!important}
+body.jf-dark>header.top.admin-header .admin-header-actions #jf-theme-toggle:before,
+body.jf-dark>header.top.admin-header .admin-header-actions #theme-toggle:before{content:"☾"!important}
+body>header.top.admin-header>form.top-search{grid-area:search!important;position:static!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:stretch!important;gap:8px!important;width:100%!important;max-width:none!important;min-width:0!important;height:43px!important;min-height:43px!important;margin:0!important;padding:0 6px 0 12px!important;box-sizing:border-box!important}
+body>header.top.admin-header>form.top-search>input{flex:1 1 auto!important;width:1px!important;min-width:0!important;height:39px!important;min-height:0!important;margin:0!important;padding:0 4px!important}
+body>header.top.admin-header>form.top-search>button{flex:0 0 66px!important;width:66px!important;min-width:66px!important;max-width:66px!important;height:32px!important;min-height:32px!important;margin:0!important;padding:0 7px!important;font-size:12px!important;line-height:1!important}
+body>header.top.admin-header>nav.admin-tabs{
+ grid-area:nav!important;position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;
+ display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;
+ margin:0!important;padding:0!important;gap:0!important;overflow:hidden!important;transform:none!important;
+ background:transparent!important;border:0!important;box-shadow:none!important;
+}
+body>header.top.admin-header>nav.admin-tabs>a{position:static!important;display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;width:100%!important;height:46px!important;min-height:46px!important;margin:0!important;padding:0!important;font-size:0!important;line-height:0!important;background:transparent!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important}
+body>header.top.admin-header>nav.admin-tabs>a:before,
+body>header.top.admin-header>nav.admin-tabs>a:after{content:none!important;display:none!important}
+body>header.top.admin-header>nav.admin-tabs>a svg{display:block!important;visibility:visible!important;opacity:1!important;width:25px!important;height:25px!important;min-width:25px!important;min-height:25px!important;stroke:currentColor!important;fill:none!important}
+body>header.top.admin-header>nav.admin-tabs>a .tab-label{display:none!important}
+body>header.top.admin-header>nav.admin-tabs>a.active,
+body>header.top.admin-header>nav.admin-tabs>a[aria-current=page]{color:#1877f2!important;background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important}
+@media(max-width:760px){
+ body>header.top.admin-header{position:sticky!important;top:0!important;grid-template-rows:40px 42px 46px!important;gap:8px 7px!important;padding:8px 10px 0!important}
+ body>header.top.admin-header .brand{font-size:18px!important;line-height:1.1!important}
+ body>header.top.admin-header .admin-header-actions{gap:6px!important}
+ body>header.top.admin-header .admin-header-actions #jf-theme-toggle,
+ body>header.top.admin-header .admin-header-actions #theme-toggle{width:36px!important;min-width:36px!important;max-width:36px!important;height:36px!important;min-height:36px!important}
+ body>header.top.admin-header .admin-header-actions #logout{height:36px!important;min-height:36px!important;min-width:64px!important;padding:0 9px!important;font-size:12px!important}
+ body>header.top.admin-header>form.top-search{height:40px!important;min-height:40px!important}
+ body>header.top.admin-header>form.top-search>input{height:36px!important}
+ body>header.top.admin-header>form.top-search>button{height:30px!important;min-height:30px!important;flex-basis:60px!important;width:60px!important;min-width:60px!important;max-width:60px!important}
+ body>header.top.admin-header>nav.admin-tabs{height:44px!important;min-height:44px!important}
+ body>header.top.admin-header>nav.admin-tabs>a{height:42px!important;min-height:42px!important}
 }
 </style>
 </body></html>
