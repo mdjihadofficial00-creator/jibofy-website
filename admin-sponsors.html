@@ -807,6 +807,52 @@ body>header.top.admin-header{
 @media(max-width:700px){
  body>header.top.admin-header{position:sticky!important;top:0!important;z-index:15000!important}
 }</style>
+<style id="jibofy-admin-brand-clean-sticky-v2">
+/* Keep the admin header pinned while the page scrolls */
+html body>header.top.admin-header{
+ position:-webkit-sticky!important;
+ position:sticky!important;
+ top:0!important;
+ z-index:2147482000!important;
+ align-self:start!important;
+ transform:none!important;
+}
+/* JIBOFY ADMIN should be plain blue text only */
+html body>header.top.admin-header>.admin-header-row>.brand,
+html body>header.top.admin-header>.admin-header-row>.brand:link,
+html body>header.top.admin-header>.admin-header-row>.brand:visited,
+html body>header.top.admin-header>.admin-header-row>.brand:hover,
+html body>header.top.admin-header>.admin-header-row>.brand:focus,
+html body>header.top.admin-header>.admin-header-row>.brand:focus-visible,
+html body>header.top.admin-header>.admin-header-row>.brand:active{
+ display:inline!important;
+ color:#1877f2!important;
+ background:transparent!important;
+ background-color:transparent!important;
+ background-image:none!important;
+ border:0!important;
+ border-width:0!important;
+ outline:0!important;
+ box-shadow:none!important;
+ border-radius:0!important;
+ text-decoration:none!important;
+ padding:0!important;
+ margin:0!important;
+}
+/* Do not let global anchor focus styling draw a square around the logo */
+html body>header.top.admin-header>.admin-header-row>.brand::before,
+html body>header.top.admin-header>.admin-header-row>.brand::after{
+ content:none!important;
+ display:none!important;
+}
+@media(max-width:700px){
+ html body>header.top.admin-header{
+  position:-webkit-sticky!important;
+  position:sticky!important;
+  top:0!important;
+  z-index:2147482000!important;
+ }
+}
 </head><body><header class="top admin-header">
  <div class="admin-header-row">
   <a class="brand" href="admin.html">JIBOFY ADMIN</a>
