@@ -1228,6 +1228,39 @@ html body>header.top.admin-header>.admin-header-row>.brand::after{
  }
 }
 </style>
+
+<style id="jibofy-admin-footer-center-blue-brand-v1">
+/* Keep the shared footer centered beneath the admin content and tabs */
+html body footer.jibofy-site-footer{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:calc(100% - 32px)!important;
+  max-width:1180px!important;
+  margin:32px auto 0!important;
+  padding:28px 16px 24px!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+}
+html body footer.jibofy-site-footer>*{text-align:center!important;max-width:100%!important}
+html body footer.jibofy-site-footer .footer-brand,
+html body header.top.admin-header .admin-header-row>.brand{
+  color:#1877f2!important;
+}
+html body footer.jibofy-site-footer .footer-social-links{
+  width:100%!important;
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  flex-wrap:wrap!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+@media(max-width:600px){
+ html body footer.jibofy-site-footer{width:calc(100% - 20px)!important;margin-top:24px!important;padding:22px 10px!important}
+}
+</style>
 </head><body>
 
 <header class="top admin-header">
