@@ -1319,9 +1319,157 @@ html body footer:has(.footer-brand) .footer-brand,html body .jibofy-site-footer 
  header.member-shell,header.top{position:sticky!important;top:0!important}
 }
 </style>
+<style id="jibofy-admin-header-layout-fixed">
+/* One shared, real header layout for every admin page */
+body>header.top.admin-header{
+ position:sticky!important;top:0!important;z-index:15000!important;
+ box-sizing:border-box!important;width:100%!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+ grid-template-areas:"brand actions" "search search" "nav nav"!important;
+ align-items:center!important;gap:10px 14px!important;
+ padding:12px 18px 0!important;margin:0!important;
+ background:var(--jf-card,var(--card,#fff))!important;
+ border-bottom:1px solid var(--jf-line,var(--line,#dce1e8))!important;
+ box-shadow:0 2px 8px rgba(0,0,0,.05)!important;
+}
+body>header.top.admin-header>.admin-header-row{
+ grid-area:brand!important;display:contents!important;
+}
+body>header.top.admin-header .brand{
+ grid-area:brand!important;justify-self:start!important;
+ display:inline-flex!important;align-items:center!important;
+ margin:0!important;padding:0!important;font-size:21px!important;
+ font-weight:800!important;line-height:1.15!important;
+ text-decoration:none!important;white-space:nowrap!important;
+}
+body>header.top.admin-header>.admin-header-actions{
+ grid-area:actions!important;justify-self:end!important;
+ display:flex!important;align-items:center!important;
+ justify-content:flex-end!important;flex-wrap:nowrap!important;
+ gap:9px!important;margin:0!important;padding:0!important;
+}
+body>header.top.admin-header .admin-header-actions button{
+ box-sizing:border-box!important;display:inline-flex!important;
+ align-items:center!important;justify-content:center!important;
+ height:40px!important;min-height:40px!important;
+ margin:0!important;padding:0 13px!important;
+ border:1px solid var(--jf-line,var(--line,#dce1e8))!important;
+ border-radius:10px!important;background:var(--jf-card,var(--card,#fff))!important;
+ color:var(--jf-text,var(--text,#172033))!important;
+ box-shadow:none!important;font:650 13px/1 Arial,sans-serif!important;
+ white-space:nowrap!important;cursor:pointer!important;
+}
+body>header.top.admin-header .admin-header-actions #jf-theme-toggle,
+body>header.top.admin-header .admin-header-actions #theme-toggle{
+ flex:0 0 40px!important;width:40px!important;min-width:40px!important;
+ padding:0!important;font-size:0!important;
+}
+body>header.top.admin-header .admin-header-actions #jf-theme-toggle:before,
+body>header.top.admin-header .admin-header-actions #theme-toggle:before{
+ content:"☼";font:normal 22px/1 Arial,sans-serif!important;
+}
+body.jf-dark>header.top.admin-header .admin-header-actions #jf-theme-toggle:before,
+body.jf-dark>header.top.admin-header .admin-header-actions #theme-toggle:before{content:"☾"!important}
+body>header.top.admin-header .admin-header-actions #logout{
+ min-width:76px!important;background:#1877f2!important;
+ border-color:#1877f2!important;color:#fff!important;
+}
+body>header.top.admin-header>form.top-search{
+ grid-area:search!important;box-sizing:border-box!important;
+ display:flex!important;align-items:center!important;flex-wrap:nowrap!important;
+ gap:9px!important;width:100%!important;max-width:none!important;min-width:0!important;
+ height:44px!important;margin:0!important;padding:0 6px 0 13px!important;
+ border:1px solid var(--jf-line,var(--line,#dce1e8))!important;
+ border-radius:11px!important;background:var(--jf-bg,var(--bg,#f0f2f5))!important;
+ box-shadow:none!important;
+}
+body>header.top.admin-header>form.top-search>span{
+ position:relative!important;display:block!important;flex:0 0 18px!important;
+ width:18px!important;height:18px!important;margin:0!important;
+ font-size:0!important;line-height:0!important;
+}
+body>header.top.admin-header>form.top-search>span:before{
+ content:"";position:absolute;left:1px;top:1px;width:10px;height:10px;
+ border:2px solid var(--jf-muted,var(--muted,#687385));border-radius:50%;
+}
+body>header.top.admin-header>form.top-search>span:after{
+ content:"";position:absolute;left:12px;top:12px;width:7px;height:2px;
+ background:var(--jf-muted,var(--muted,#687385));border-radius:2px;transform:rotate(45deg);
+}
+body>header.top.admin-header>form.top-search>input{
+ box-sizing:border-box!important;display:block!important;flex:1 1 auto!important;
+ width:100%!important;min-width:0!important;height:40px!important;
+ margin:0!important;padding:0 4px!important;border:0!important;border-radius:0!important;
+ outline:0!important;box-shadow:none!important;background:transparent!important;
+ color:var(--jf-text,var(--text,#172033))!important;
+ font:400 14px/1.2 Arial,sans-serif!important;
+}
+body>header.top.admin-header>form.top-search>input::placeholder{color:var(--jf-muted,var(--muted,#687385))!important;opacity:1!important}
+body>header.top.admin-header>form.top-search>button{
+ box-sizing:border-box!important;display:inline-flex!important;flex:0 0 68px!important;
+ align-items:center!important;justify-content:center!important;
+ width:68px!important;min-width:68px!important;height:34px!important;min-height:34px!important;
+ margin:0!important;padding:0 8px!important;border:0!important;border-radius:8px!important;
+ background:#1877f2!important;color:#fff!important;
+ font:700 12px/1 Arial,sans-serif!important;white-space:nowrap!important;cursor:pointer!important;
+}
+body>header.top.admin-header>nav.admin-tabs{
+ grid-area:nav!important;display:grid!important;
+ grid-template-columns:repeat(5,minmax(0,1fr))!important;
+ align-items:center!important;justify-items:stretch!important;
+ width:100%!important;height:52px!important;min-height:52px!important;
+ margin:0!important;padding:0!important;gap:0!important;overflow:hidden!important;
+ background:transparent!important;border:0!important;box-shadow:none!important;
+}
+body>header.top.admin-header>nav.admin-tabs>a{
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ width:100%!important;min-width:0!important;height:50px!important;
+ margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
+ outline:0!important;box-shadow:none!important;background:transparent!important;
+ color:var(--jf-muted,var(--muted,#687385))!important;text-decoration:none!important;
+}
+body>header.top.admin-header>nav.admin-tabs>a svg{
+ display:block!important;width:25px!important;height:25px!important;
+ fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;
+ stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+body>header.top.admin-header>nav.admin-tabs>a .tab-label{display:none!important}
+body>header.top.admin-header>nav.admin-tabs>a.active,
+body>header.top.admin-header>nav.admin-tabs>a[aria-current="page"]{
+ color:#1877f2!important;background:transparent!important;border:0!important;
+ outline:0!important;box-shadow:none!important;
+}
+body.jf-dark>header.top.admin-header{background:#242526!important;border-color:#3e4042!important}
+body.jf-dark>header.top.admin-header .admin-header-actions button:not(#logout){background:#3a3b3c!important;color:#e4e6eb!important;border-color:#55585c!important}
+body.jf-dark>header.top.admin-header>form.top-search{background:#3a3b3c!important;border-color:#55585c!important}
+body.jf-dark>header.top.admin-header>form.top-search>input{color:#e4e6eb!important}
+body.jf-dark>header.top.admin-header>form.top-search>span:before{border-color:#b0b3b8!important}
+body.jf-dark>header.top.admin-header>form.top-search>span:after{background:#b0b3b8!important}
+body.jf-dark>header.top.admin-header>nav.admin-tabs>a{color:#b0b3b8!important}
+body.jf-dark>header.top.admin-header>nav.admin-tabs>a.active,
+body.jf-dark>header.top.admin-header>nav.admin-tabs>a[aria-current="page"]{color:#2d88ff!important}
+@media(max-width:700px){
+ body>header.top.admin-header{gap:9px 8px!important;padding:9px 11px 0!important}
+ body>header.top.admin-header .brand{font-size:18px!important}
+ body>header.top.admin-header .admin-header-actions{gap:7px!important}
+ body>header.top.admin-header .admin-header-actions button{height:38px!important;min-height:38px!important;font-size:12px!important}
+ body>header.top.admin-header .admin-header-actions #jf-theme-toggle,
+ body>header.top.admin-header .admin-header-actions #theme-toggle{width:38px!important;min-width:38px!important;flex-basis:38px!important}
+ body>header.top.admin-header .admin-header-actions #logout{min-width:68px!important}
+ body>header.top.admin-header>form.top-search{height:42px!important}
+ body>header.top.admin-header>form.top-search>button{height:32px!important;min-height:32px!important;flex-basis:64px!important;width:64px!important;min-width:64px!important}
+ body>header.top.admin-header>nav.admin-tabs{height:48px!important;min-height:48px!important}
+ body>header.top.admin-header>nav.admin-tabs>a{height:46px!important}
+}
+</style>
 </head><body>
 
-<header class="top"><a class="brand" href="admin.html">JIBOFY ADMIN</a><nav><a href="admin.html">Overview</a><a href="admin-campaigns.html">Campaigns</a><a href="admin-members.html">Members</a><a class="active" href="admin-withdrawals.html">Withdrawals</a><a href="admin-sponsors.html">Sponsors</a></nav><form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true">⌕</span><input type="search" name="search" placeholder="Search members" aria-label="Search members"></form><button id="jf-theme-toggle" type="button">🌙 Dark mode</button><button id="logout" type="button">Sign out</button></header>
+<header class="top admin-header">
+ <div class="admin-header-row"><a class="brand" href="admin.html">JIBOFY ADMIN</a>
+ <div class="admin-header-actions"><button id="jf-theme-toggle" type="button" aria-label="Toggle light and dark mode">🌙 Dark mode</button><button id="logout" type="button">Log out</button></div></div>
+ <form class="top-search" action="admin-members.html" method="get" role="search"><span aria-hidden="true"></span><input type="search" name="search" placeholder="Search members" aria-label="Search members"><button type="submit">Search</button></form>
+ <nav class="admin-tabs" aria-label="Admin navigation"><a href="admin.html" aria-label="Overview" title="Overview"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg><span class="tab-label">Overview</span></a><a href="admin-campaigns.html" aria-label="Campaigns" title="Campaigns"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v14H4z M8 9h8 M8 13h5"/></svg><span class="tab-label">Campaigns</span></a><a href="admin-members.html" aria-label="Members" title="Members"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2 M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M17 11a4 4 0 0 0 0-8 M17 15h1a3 3 0 0 1 3 3v3"/></svg><span class="tab-label">Members</span></a><a href="admin-withdrawals.html" aria-label="Withdrawals" title="Withdrawals" class="active" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 7h18v13H3z M3 10h18 M7 15h4 M7 4h10"/></svg><span class="tab-label">Withdrawals</span></a><a href="admin-sponsors.html" aria-label="Sponsors" title="Sponsors"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v18 M3 8h18 M5 8l2 11h10l2-11 M8 8l4-5 4 5"/></svg><span class="tab-label">Sponsors</span></a></nav>
+ </header>
 <main class="wrap"><div class="eyebrow">CONTROL CENTER</div><h1>Withdrawal Management</h1>
 
 <div id="loading" class="empty">Checking administrator access…</div><div id="app" class="hidden"><section class="panel" style="margin-top:22px">
